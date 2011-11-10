@@ -1,0 +1,459 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F9852B19146B4DCC00ED60B2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9852B18146B4DCC00ED60B2 /* UIKit.framework */; };
+		F9852B1B146B4DCC00ED60B2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9852B1A146B4DCC00ED60B2 /* Foundation.framework */; };
+		F9852B1D146B4DCC00ED60B2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9852B1C146B4DCC00ED60B2 /* CoreGraphics.framework */; };
+		F9852B23146B4DCC00ED60B2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F9852B21146B4DCC00ED60B2 /* InfoPlist.strings */; };
+		F9852B25146B4DCC00ED60B2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F9852B24146B4DCC00ED60B2 /* main.m */; };
+		F9852B29146B4DCC00ED60B2 /* SagePadAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F9852B28146B4DCC00ED60B2 /* SagePadAppDelegate.m */; };
+		F9852B2C146B4DCC00ED60B2 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9852B2A146B4DCC00ED60B2 /* MainWindow.xib */; };
+		F9852B2F146B4DCC00ED60B2 /* SagePadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9852B2E146B4DCC00ED60B2 /* SagePadViewController.m */; };
+		F9852B32146B4DCC00ED60B2 /* SagePadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9852B30146B4DCC00ED60B2 /* SagePadViewController.xib */; };
+		F9852B3A146B4DCC00ED60B2 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9852B39146B4DCC00ED60B2 /* SenTestingKit.framework */; };
+		F9852B3B146B4DCC00ED60B2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9852B18146B4DCC00ED60B2 /* UIKit.framework */; };
+		F9852B3C146B4DCC00ED60B2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9852B1A146B4DCC00ED60B2 /* Foundation.framework */; };
+		F9852B3D146B4DCC00ED60B2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9852B1C146B4DCC00ED60B2 /* CoreGraphics.framework */; };
+		F9852B45146B4DCC00ED60B2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F9852B43146B4DCC00ED60B2 /* InfoPlist.strings */; };
+		F9852B47146B4DCC00ED60B2 /* SagePadTests.h in Resources */ = {isa = PBXBuildFile; fileRef = F9852B46146B4DCC00ED60B2 /* SagePadTests.h */; };
+		F9852B49146B4DCC00ED60B2 /* SagePadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F9852B48146B4DCC00ED60B2 /* SagePadTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F9852B3E146B4DCC00ED60B2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F9852B0B146B4DCB00ED60B2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F9852B13146B4DCC00ED60B2;
+			remoteInfo = SagePad;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F9852B14146B4DCC00ED60B2 /* SagePad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SagePad.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F9852B18146B4DCC00ED60B2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		F9852B1A146B4DCC00ED60B2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		F9852B1C146B4DCC00ED60B2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		F9852B20146B4DCC00ED60B2 /* SagePad-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SagePad-Info.plist"; sourceTree = "<group>"; };
+		F9852B22146B4DCC00ED60B2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F9852B24146B4DCC00ED60B2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F9852B26146B4DCC00ED60B2 /* SagePad-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SagePad-Prefix.pch"; sourceTree = "<group>"; };
+		F9852B27146B4DCC00ED60B2 /* SagePadAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SagePadAppDelegate.h; sourceTree = "<group>"; };
+		F9852B28146B4DCC00ED60B2 /* SagePadAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SagePadAppDelegate.m; sourceTree = "<group>"; };
+		F9852B2B146B4DCC00ED60B2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		F9852B2D146B4DCC00ED60B2 /* SagePadViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SagePadViewController.h; sourceTree = "<group>"; };
+		F9852B2E146B4DCC00ED60B2 /* SagePadViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SagePadViewController.m; sourceTree = "<group>"; };
+		F9852B31146B4DCC00ED60B2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SagePadViewController.xib; sourceTree = "<group>"; };
+		F9852B38146B4DCC00ED60B2 /* SagePadTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SagePadTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F9852B39146B4DCC00ED60B2 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		F9852B42146B4DCC00ED60B2 /* SagePadTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SagePadTests-Info.plist"; sourceTree = "<group>"; };
+		F9852B44146B4DCC00ED60B2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F9852B46146B4DCC00ED60B2 /* SagePadTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SagePadTests.h; sourceTree = "<group>"; };
+		F9852B48146B4DCC00ED60B2 /* SagePadTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SagePadTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F9852B11146B4DCC00ED60B2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F9852B19146B4DCC00ED60B2 /* UIKit.framework in Frameworks */,
+				F9852B1B146B4DCC00ED60B2 /* Foundation.framework in Frameworks */,
+				F9852B1D146B4DCC00ED60B2 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F9852B34146B4DCC00ED60B2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F9852B3A146B4DCC00ED60B2 /* SenTestingKit.framework in Frameworks */,
+				F9852B3B146B4DCC00ED60B2 /* UIKit.framework in Frameworks */,
+				F9852B3C146B4DCC00ED60B2 /* Foundation.framework in Frameworks */,
+				F9852B3D146B4DCC00ED60B2 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F9852B09146B4DCB00ED60B2 = {
+			isa = PBXGroup;
+			children = (
+				F9852B1E146B4DCC00ED60B2 /* SagePad */,
+				F9852B40146B4DCC00ED60B2 /* SagePadTests */,
+				F9852B17146B4DCC00ED60B2 /* Frameworks */,
+				F9852B15146B4DCC00ED60B2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F9852B15146B4DCC00ED60B2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F9852B14146B4DCC00ED60B2 /* SagePad.app */,
+				F9852B38146B4DCC00ED60B2 /* SagePadTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F9852B17146B4DCC00ED60B2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F9852B18146B4DCC00ED60B2 /* UIKit.framework */,
+				F9852B1A146B4DCC00ED60B2 /* Foundation.framework */,
+				F9852B1C146B4DCC00ED60B2 /* CoreGraphics.framework */,
+				F9852B39146B4DCC00ED60B2 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F9852B1E146B4DCC00ED60B2 /* SagePad */ = {
+			isa = PBXGroup;
+			children = (
+				F9852B27146B4DCC00ED60B2 /* SagePadAppDelegate.h */,
+				F9852B28146B4DCC00ED60B2 /* SagePadAppDelegate.m */,
+				F9852B2A146B4DCC00ED60B2 /* MainWindow.xib */,
+				F9852B2D146B4DCC00ED60B2 /* SagePadViewController.h */,
+				F9852B2E146B4DCC00ED60B2 /* SagePadViewController.m */,
+				F9852B30146B4DCC00ED60B2 /* SagePadViewController.xib */,
+				F9852B1F146B4DCC00ED60B2 /* Supporting Files */,
+			);
+			path = SagePad;
+			sourceTree = "<group>";
+		};
+		F9852B1F146B4DCC00ED60B2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F9852B20146B4DCC00ED60B2 /* SagePad-Info.plist */,
+				F9852B21146B4DCC00ED60B2 /* InfoPlist.strings */,
+				F9852B24146B4DCC00ED60B2 /* main.m */,
+				F9852B26146B4DCC00ED60B2 /* SagePad-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F9852B40146B4DCC00ED60B2 /* SagePadTests */ = {
+			isa = PBXGroup;
+			children = (
+				F9852B46146B4DCC00ED60B2 /* SagePadTests.h */,
+				F9852B48146B4DCC00ED60B2 /* SagePadTests.m */,
+				F9852B41146B4DCC00ED60B2 /* Supporting Files */,
+			);
+			path = SagePadTests;
+			sourceTree = "<group>";
+		};
+		F9852B41146B4DCC00ED60B2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F9852B42146B4DCC00ED60B2 /* SagePadTests-Info.plist */,
+				F9852B43146B4DCC00ED60B2 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F9852B13146B4DCC00ED60B2 /* SagePad */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F9852B4C146B4DCC00ED60B2 /* Build configuration list for PBXNativeTarget "SagePad" */;
+			buildPhases = (
+				F9852B10146B4DCC00ED60B2 /* Sources */,
+				F9852B11146B4DCC00ED60B2 /* Frameworks */,
+				F9852B12146B4DCC00ED60B2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SagePad;
+			productName = SagePad;
+			productReference = F9852B14146B4DCC00ED60B2 /* SagePad.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F9852B37146B4DCC00ED60B2 /* SagePadTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F9852B4F146B4DCC00ED60B2 /* Build configuration list for PBXNativeTarget "SagePadTests" */;
+			buildPhases = (
+				F9852B33146B4DCC00ED60B2 /* Sources */,
+				F9852B34146B4DCC00ED60B2 /* Frameworks */,
+				F9852B35146B4DCC00ED60B2 /* Resources */,
+				F9852B36146B4DCC00ED60B2 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F9852B3F146B4DCC00ED60B2 /* PBXTargetDependency */,
+			);
+			name = SagePadTests;
+			productName = SagePadTests;
+			productReference = F9852B38146B4DCC00ED60B2 /* SagePadTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F9852B0B146B4DCB00ED60B2 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = F9852B0E146B4DCB00ED60B2 /* Build configuration list for PBXProject "SagePad" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = F9852B09146B4DCB00ED60B2;
+			productRefGroup = F9852B15146B4DCC00ED60B2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F9852B13146B4DCC00ED60B2 /* SagePad */,
+				F9852B37146B4DCC00ED60B2 /* SagePadTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F9852B12146B4DCC00ED60B2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F9852B23146B4DCC00ED60B2 /* InfoPlist.strings in Resources */,
+				F9852B2C146B4DCC00ED60B2 /* MainWindow.xib in Resources */,
+				F9852B32146B4DCC00ED60B2 /* SagePadViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F9852B35146B4DCC00ED60B2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F9852B45146B4DCC00ED60B2 /* InfoPlist.strings in Resources */,
+				F9852B47146B4DCC00ED60B2 /* SagePadTests.h in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		F9852B36146B4DCC00ED60B2 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F9852B10146B4DCC00ED60B2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F9852B25146B4DCC00ED60B2 /* main.m in Sources */,
+				F9852B29146B4DCC00ED60B2 /* SagePadAppDelegate.m in Sources */,
+				F9852B2F146B4DCC00ED60B2 /* SagePadViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F9852B33146B4DCC00ED60B2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F9852B49146B4DCC00ED60B2 /* SagePadTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F9852B3F146B4DCC00ED60B2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F9852B13146B4DCC00ED60B2 /* SagePad */;
+			targetProxy = F9852B3E146B4DCC00ED60B2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F9852B21146B4DCC00ED60B2 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F9852B22146B4DCC00ED60B2 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		F9852B2A146B4DCC00ED60B2 /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F9852B2B146B4DCC00ED60B2 /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		F9852B30146B4DCC00ED60B2 /* SagePadViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F9852B31146B4DCC00ED60B2 /* en */,
+			);
+			name = SagePadViewController.xib;
+			sourceTree = "<group>";
+		};
+		F9852B43146B4DCC00ED60B2 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F9852B44146B4DCC00ED60B2 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F9852B4A146B4DCC00ED60B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		F9852B4B146B4DCC00ED60B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F9852B4D146B4DCC00ED60B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SagePad/SagePad-Prefix.pch";
+				INFOPLIST_FILE = "SagePad/SagePad-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		F9852B4E146B4DCC00ED60B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SagePad/SagePad-Prefix.pch";
+				INFOPLIST_FILE = "SagePad/SagePad-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		F9852B50146B4DCC00ED60B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SagePad.app/SagePad";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SagePad/SagePad-Prefix.pch";
+				INFOPLIST_FILE = "SagePadTests/SagePadTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		F9852B51146B4DCC00ED60B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SagePad.app/SagePad";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SagePad/SagePad-Prefix.pch";
+				INFOPLIST_FILE = "SagePadTests/SagePadTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F9852B0E146B4DCB00ED60B2 /* Build configuration list for PBXProject "SagePad" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F9852B4A146B4DCC00ED60B2 /* Debug */,
+				F9852B4B146B4DCC00ED60B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F9852B4C146B4DCC00ED60B2 /* Build configuration list for PBXNativeTarget "SagePad" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F9852B4D146B4DCC00ED60B2 /* Debug */,
+				F9852B4E146B4DCC00ED60B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		F9852B4F146B4DCC00ED60B2 /* Build configuration list for PBXNativeTarget "SagePadTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F9852B50146B4DCC00ED60B2 /* Debug */,
+				F9852B51146B4DCC00ED60B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F9852B0B146B4DCB00ED60B2 /* Project object */;
+}
