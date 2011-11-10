@@ -13,6 +13,9 @@
 @synthesize touchMovedLabel;
 @synthesize touchFinishedLabel;
 
+NSInputStream *inputStream;
+NSOutputStream *outputStream;
+
 - (void)didReceiveMemoryWarning
 {
     // Releases the view if it doesn't have a superview.
@@ -57,6 +60,49 @@
 {
     // Return YES for supported orientations
     return YES;
+}
+
+- (void)initNetworkCommunication {
+    CFReadStreamRef readStream;
+    CFWriteStreamRef writeStream;
+    CFStreamCreatePairWithSocketToHost(NULL, (CFStringRef)@"localhost", 5000, &readStream, &writeStream);
+    inputStream = (NSInputStream *)readStream;
+    outputStream = (NSOutputStream *)writeStream;
+    [inputStream setDelegate:self];
+    [outputStream setDelegate:self];
+    [inputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+    [outputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+    [inputStream open];
+    [outputStream open];
+}
+
+- (IBAction)connectServer:(id)sender {
+    [self initNetworkCommunication];
+    while(!outputStream.hasSpaceAvailable){}
+    if(outputStream.hasSpaceAvailable){
+        NSString *response  = [NSString stringWithFormat:@"GET SAGE HTTP/1.1"];
+        NSData *data = [[NSData alloc] initWithData:[response dataUsingEncoding:NSASCIIStringEncoding]];
+        [outputStream write:[data bytes] maxLength:[data length]];
+    }
+    while(!inputStream.hasBytesAvailable){}
+    if(inputStream.hasBytesAvailable){
+        uint8_t buffer[1024];
+        int len;
+        
+        while ([inputStream hasBytesAvailable]) {
+            len = [inputStream read:buffer maxLength:sizeof(buffer)];
+            if (len > 0) {
+                
+                NSString *output = [[NSString alloc] initWithBytes:buffer length:len encoding:NSASCIIStringEncoding];
+                
+                if (nil != output) {
+                    NSLog(@"server said: %@", output);
+                    //self.connectInfo.text = output;
+                }
+            }
+        }
+    }
+    
 }
 
 - (void)dealloc {
