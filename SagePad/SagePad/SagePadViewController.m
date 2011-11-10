@@ -9,9 +9,10 @@
 #import "SagePadViewController.h"
 
 @implementation SagePadViewController
-@synthesize touchBeginLabel;
-@synthesize touchMovedLabel;
-@synthesize touchFinishedLabel;
+// example synthesizing properties 
+//@synthesize touchBeginLabel
+//@synthesize touchMovedLabel
+//@synthesize touchFinishedLabel
 
 - (void)didReceiveMemoryWarning
 {
@@ -32,22 +33,26 @@
 */
 
 - (void)handleNewTouch:(CGPoint *)touchCoordinates {
-    self.touchBeginLabel.text = [NSString stringWithFormat:@"Began touch at: (%4.0f,%4.0f)", touchCoordinates->x, touchCoordinates->y];
+    // example of handling touch events in controller
+    // self.touchBeginLabel.text = [NSString stringWithFormat:@"Began touch at: (%4.0f,%4.0f)", touchCoordinates->x, touchCoordinates->y];
 }
 
 - (void)handleMovedTouch:(CGPoint *)touchCoordinates {
-    self.touchMovedLabel.text = [NSString stringWithFormat:@"Moved to: (%4.0f,%4.0f)", touchCoordinates->x, touchCoordinates->y];
+    // example of handling touch events in controller
+    //self.touchMovedLabel.text = [NSString stringWithFormat:@"Moved to: (%4.0f,%4.0f)", touchCoordinates->x, touchCoordinates->y];
 }
 
 - (void)handleFinishedTouch:(CGPoint *)touchCoordinates {
-    self.touchFinishedLabel.text = [NSString stringWithFormat:@"Finished touch at: (%4.0f,%4.0f)", touchCoordinates->x, touchCoordinates->y];
+    // example of handling touch events in controller
+    //self.touchFinishedLabel.text = [NSString stringWithFormat:@"Finished touch at: (%4.0f,%4.0f)", touchCoordinates->x, touchCoordinates->y];
 }
 
 - (void)viewDidUnload
 {
-    [self setTouchBeginLabel:nil];
-    [self setTouchMovedLabel:nil];
-    [self setTouchFinishedLabel:nil];
+    // example setting properties to nil upon unload
+//    [self setTouchBeginLabel:nil];
+//    [self setTouchMovedLabel:nil];
+//    [self setTouchFinishedLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -60,9 +65,10 @@
 }
 
 - (void)dealloc {
-    [touchBeginLabel release];
-    [touchMovedLabel release];
-    [touchFinishedLabel release];
+    // example release properties during dealloc
+//    [touchBeginLabel release];
+//    [touchMovedLabel release];
+//    [touchFinishedLabel release];
     [super dealloc];
 }
 @end

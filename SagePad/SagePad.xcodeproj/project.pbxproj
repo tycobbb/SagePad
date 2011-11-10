@@ -58,7 +58,7 @@
 		F9852B46146B4DCC00ED60B2 /* SagePadTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SagePadTests.h; sourceTree = "<group>"; };
 		F9852B48146B4DCC00ED60B2 /* SagePadTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SagePadTests.m; sourceTree = "<group>"; };
 		FB07B5CA146B4E5900DCBA95 /* SagePadTouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SagePadTouchView.m; sourceTree = "<group>"; };
-		FB07B5CD146B4F0600DCBA95 /* SagePadTouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SagePadTouchView.h; sourceTree = "<group>"; };
+		FB07B5D1146B521F00DCBA95 /* SagePadTouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SagePadTouchView.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,8 +119,9 @@
 		F9852B1E146B4DCC00ED60B2 /* SagePad */ = {
 			isa = PBXGroup;
 			children = (
-				FB07B5CE146B4F0F00DCBA95 /* Views */,
 				F9852B27146B4DCC00ED60B2 /* SagePadAppDelegate.h */,
+				FB07B5CA146B4E5900DCBA95 /* SagePadTouchView.m */,
+				FB07B5D1146B521F00DCBA95 /* SagePadTouchView.h */,
 				F9852B28146B4DCC00ED60B2 /* SagePadAppDelegate.m */,
 				F9852B2A146B4DCC00ED60B2 /* MainWindow.xib */,
 				F9852B2D146B4DCC00ED60B2 /* SagePadViewController.h */,
@@ -159,15 +160,6 @@
 				F9852B43146B4DCC00ED60B2 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		FB07B5CE146B4F0F00DCBA95 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				FB07B5CA146B4E5900DCBA95 /* SagePadTouchView.m */,
-				FB07B5CD146B4F0600DCBA95 /* SagePadTouchView.h */,
-			);
-			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
