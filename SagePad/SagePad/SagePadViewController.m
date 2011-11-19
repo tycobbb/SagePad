@@ -81,7 +81,7 @@ NSOutputStream *outputStream;
     [outputStream open];
 }
 
-- (IBAction)connectServer:(id)sender {
+- (void)connectServer:(id)sender {
     [self initNetworkCommunication];
     while(!outputStream.hasSpaceAvailable){}
     if(outputStream.hasSpaceAvailable){
