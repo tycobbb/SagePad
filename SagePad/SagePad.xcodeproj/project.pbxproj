@@ -24,6 +24,9 @@
 		F9852B47146B4DCC00ED60B2 /* SagePadTests.h in Resources */ = {isa = PBXBuildFile; fileRef = F9852B46146B4DCC00ED60B2 /* SagePadTests.h */; };
 		F9852B49146B4DCC00ED60B2 /* SagePadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F9852B48146B4DCC00ED60B2 /* SagePadTests.m */; };
 		FB07B5CB146B4E5900DCBA95 /* SagePadTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = FB07B5CA146B4E5900DCBA95 /* SagePadTouchView.m */; };
+		FB91CD61147860950067EAE3 /* ServerSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = FB91CD60147860950067EAE3 /* ServerSingleton.m */; };
+		FB91CD6414786D000067EAE3 /* InputTranslator.m in Sources */ = {isa = PBXBuildFile; fileRef = FB91CD6314786D000067EAE3 /* InputTranslator.m */; };
+		FB91CD68147871D20067EAE3 /* OutputTranslator.m in Sources */ = {isa = PBXBuildFile; fileRef = FB91CD67147871D20067EAE3 /* OutputTranslator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +62,14 @@
 		F9852B48146B4DCC00ED60B2 /* SagePadTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SagePadTests.m; sourceTree = "<group>"; };
 		FB07B5CA146B4E5900DCBA95 /* SagePadTouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SagePadTouchView.m; sourceTree = "<group>"; };
 		FB07B5D1146B521F00DCBA95 /* SagePadTouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SagePadTouchView.h; sourceTree = SOURCE_ROOT; };
+		FB91CD5E14785F880067EAE3 /* ServerSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerSingleton.h; sourceTree = "<group>"; };
+		FB91CD60147860950067EAE3 /* ServerSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerSingleton.m; sourceTree = "<group>"; };
+		FB91CD6214786D000067EAE3 /* InputTranslator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputTranslator.h; sourceTree = "<group>"; };
+		FB91CD6314786D000067EAE3 /* InputTranslator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputTranslator.m; sourceTree = "<group>"; };
+		FB91CD651478700E0067EAE3 /* InputStreamTranslator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputStreamTranslator.h; sourceTree = "<group>"; };
+		FB91CD66147871D20067EAE3 /* OutputTranslator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutputTranslator.h; sourceTree = "<group>"; };
+		FB91CD67147871D20067EAE3 /* OutputTranslator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutputTranslator.m; sourceTree = "<group>"; };
+		FB91CD69147873800067EAE3 /* OutputStreamTranslator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutputStreamTranslator.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +137,14 @@
 				F9852B2A146B4DCC00ED60B2 /* MainWindow.xib */,
 				F9852B2D146B4DCC00ED60B2 /* SagePadViewController.h */,
 				F9852B2E146B4DCC00ED60B2 /* SagePadViewController.m */,
+				FB91CD6214786D000067EAE3 /* InputTranslator.h */,
+				FB91CD6314786D000067EAE3 /* InputTranslator.m */,
+				FB91CD66147871D20067EAE3 /* OutputTranslator.h */,
+				FB91CD67147871D20067EAE3 /* OutputTranslator.m */,
+				FB91CD651478700E0067EAE3 /* InputStreamTranslator.h */,
+				FB91CD69147873800067EAE3 /* OutputStreamTranslator.h */,
+				FB91CD5E14785F880067EAE3 /* ServerSingleton.h */,
+				FB91CD60147860950067EAE3 /* ServerSingleton.m */,
 				F9852B30146B4DCC00ED60B2 /* SagePadViewController.xib */,
 				F9852B1F146B4DCC00ED60B2 /* Supporting Files */,
 			);
@@ -271,6 +290,9 @@
 				F9852B29146B4DCC00ED60B2 /* SagePadAppDelegate.m in Sources */,
 				F9852B2F146B4DCC00ED60B2 /* SagePadViewController.m in Sources */,
 				FB07B5CB146B4E5900DCBA95 /* SagePadTouchView.m in Sources */,
+				FB91CD61147860950067EAE3 /* ServerSingleton.m in Sources */,
+				FB91CD6414786D000067EAE3 /* InputTranslator.m in Sources */,
+				FB91CD68147871D20067EAE3 /* OutputTranslator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

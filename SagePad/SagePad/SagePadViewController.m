@@ -68,17 +68,7 @@ NSOutputStream *outputStream;
 }
 
 - (void)initNetworkCommunication {
-    CFReadStreamRef readStream;
-    CFWriteStreamRef writeStream;
-    CFStreamCreatePairWithSocketToHost(NULL, (CFStringRef)@"localhost", 5000, &readStream, &writeStream);
-    inputStream = (NSInputStream *)readStream;
-    outputStream = (NSOutputStream *)writeStream;
-    [inputStream setDelegate:self];
-    [outputStream setDelegate:self];
-    [inputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-    [outputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-    [inputStream open];
-    [outputStream open];
+
 }
 
 - (void)connectServer:(id)sender {
