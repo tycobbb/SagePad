@@ -7,8 +7,10 @@
 //
 
 #import "SagePadViewController.h"
+#import "InputTranslator.h"
+#import "OutputTranslator.h"
 
-@implementation SagePadViewController
+@implementation SagePadViewController 
 // example synthesizing properties 
 //@synthesize touchBeginLabel
 //@synthesize touchMovedLabel
@@ -29,6 +31,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    server = [Server initWithTranslatorIn:[InputTranslator init] andOut:[OutputTranslator init];
+    
 }
 
 - (void)handleNewTouch:(CGPoint *)touchCoordinates {

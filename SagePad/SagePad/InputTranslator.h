@@ -1,5 +1,5 @@
 //
-//  MessageTranslator.h
+//  InputTranslator.h
 //  SagePad
 //
 //  Created by Matthew Cobb on 11/19/11.
@@ -9,8 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "InputStreamTranslator.h"
 
-@interface InputTranslator : NSObject <InputStreamTranslator> {
+@interface InputTranslator : NSObject <AbstractInputTranslator> {
     NSString *notificationName;
 }
-
 @end
+
+

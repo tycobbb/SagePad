@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "OutputStreamTranslator.h"
 
-@interface OutputTranslator : NSObject <OutputStreamTranslator> {
+@interface OutputTranslator : NSObject <AbstractOutputTranslator> {
     NSString *notificationName;
     
     NSInteger *sageHeight;
