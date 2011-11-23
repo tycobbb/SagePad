@@ -130,22 +130,12 @@
 		F9852B1E146B4DCC00ED60B2 /* SagePad */ = {
 			isa = PBXGroup;
 			children = (
-				F9852B27146B4DCC00ED60B2 /* SagePadAppDelegate.h */,
-				FB07B5CA146B4E5900DCBA95 /* SagePadTouchView.m */,
-				FB07B5D1146B521F00DCBA95 /* SagePadTouchView.h */,
-				F9852B28146B4DCC00ED60B2 /* SagePadAppDelegate.m */,
-				F9852B2A146B4DCC00ED60B2 /* MainWindow.xib */,
-				F9852B2D146B4DCC00ED60B2 /* SagePadViewController.h */,
-				F9852B2E146B4DCC00ED60B2 /* SagePadViewController.m */,
-				FB91CD6214786D000067EAE3 /* InputTranslator.h */,
-				FB91CD6314786D000067EAE3 /* InputTranslator.m */,
-				FB91CD66147871D20067EAE3 /* OutputTranslator.h */,
-				FB91CD67147871D20067EAE3 /* OutputTranslator.m */,
-				FB91CD651478700E0067EAE3 /* InputStreamTranslator.h */,
-				FB91CD69147873800067EAE3 /* OutputStreamTranslator.h */,
-				FB91CD5E14785F880067EAE3 /* ServerSingleton.h */,
-				FB91CD60147860950067EAE3 /* ServerSingleton.m */,
-				F9852B30146B4DCC00ED60B2 /* SagePadViewController.xib */,
+				FBFB49B8147C842200FD6736 /* Controllers */,
+				FBFB49B9147C843900FD6736 /* Views */,
+				FB697441147C85300070D758 /* UI */,
+				FB69743E147C85050070D758 /* Translators */,
+				FB697440147C85240070D758 /* Server */,
+				FB697442147C85890070D758 /* App Delegate */,
 				F9852B1F146B4DCC00ED60B2 /* Supporting Files */,
 			);
 			path = SagePad;
@@ -179,6 +169,64 @@
 				F9852B43146B4DCC00ED60B2 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FB69743E147C85050070D758 /* Translators */ = {
+			isa = PBXGroup;
+			children = (
+				FB91CD67147871D20067EAE3 /* OutputTranslator.m */,
+				FB91CD651478700E0067EAE3 /* InputStreamTranslator.h */,
+				FB91CD69147873800067EAE3 /* OutputStreamTranslator.h */,
+				FB91CD6214786D000067EAE3 /* InputTranslator.h */,
+				FB91CD6314786D000067EAE3 /* InputTranslator.m */,
+				FB91CD66147871D20067EAE3 /* OutputTranslator.h */,
+			);
+			name = Translators;
+			sourceTree = "<group>";
+		};
+		FB697440147C85240070D758 /* Server */ = {
+			isa = PBXGroup;
+			children = (
+				FB91CD5E14785F880067EAE3 /* ServerSingleton.h */,
+				FB91CD60147860950067EAE3 /* ServerSingleton.m */,
+			);
+			name = Server;
+			sourceTree = "<group>";
+		};
+		FB697441147C85300070D758 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				F9852B2A146B4DCC00ED60B2 /* MainWindow.xib */,
+				F9852B30146B4DCC00ED60B2 /* SagePadViewController.xib */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		FB697442147C85890070D758 /* App Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				F9852B27146B4DCC00ED60B2 /* SagePadAppDelegate.h */,
+				F9852B28146B4DCC00ED60B2 /* SagePadAppDelegate.m */,
+			);
+			name = "App Delegate";
+			sourceTree = "<group>";
+		};
+		FBFB49B8147C842200FD6736 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F9852B2D146B4DCC00ED60B2 /* SagePadViewController.h */,
+				F9852B2E146B4DCC00ED60B2 /* SagePadViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		FBFB49B9147C843900FD6736 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FB07B5D1146B521F00DCBA95 /* SagePadTouchView.h */,
+				FB07B5CA146B4E5900DCBA95 /* SagePadTouchView.m */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
