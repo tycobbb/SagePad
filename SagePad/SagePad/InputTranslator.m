@@ -11,10 +11,11 @@
 @implementation InputTranslator
 
 - (id)init
-{
+{    
     self = [super init];
     if (self) {
-        // Initialization code here.
+        notificationName = @"SPSageConfiguration";
+        
     }
     
     return self;
@@ -24,8 +25,8 @@
     
 }
 
-- (void)translateConnectionConfirmation {
-    // parse out x, y, id
+- (void)translateConnectionConfirmation: (NSString *) sageConfiguration {
+    [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:self];
 }
 
 @end

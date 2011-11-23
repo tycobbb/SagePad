@@ -10,7 +10,7 @@
 #import "InputStreamTranslator.h"
 
 @interface InputTranslator : NSObject <InputStreamTranslator> {
-    
+    NSString *notificationName;
 }
 
 @end

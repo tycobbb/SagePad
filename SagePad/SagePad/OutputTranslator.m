@@ -14,7 +14,11 @@
 {
     self = [super init];
     if (self) {
-        // Initialization code here.
+        notificationName = @"SPSageConfiguration";
+        [[NSNotificationCenter defaultCenter] addObserver:self 
+                                                selector:@selector(handleSageConfiguration) 
+                                                name:@"SPSageConfiguration" 
+                                                object:nil];
     }
     
     return self;
@@ -22,6 +26,11 @@
 
 - (void)stream:(NSStream *)outputStream handleEvent:(NSStreamEvent)streamEvent {
     // handle events
+}
+
+- (void)handleSageConfiguration:(NSNotification *) notification {
+    if([[notification name] isEqualToString:notificationName])
+        NSLog(@"Successfully received notification");
 }
 
 @end

@@ -14,9 +14,6 @@
 //@synthesize touchMovedLabel
 //@synthesize touchFinishedLabel
 
-NSInputStream *inputStream;
-NSOutputStream *outputStream;
-
 - (void)didReceiveMemoryWarning
 {
     // Releases the view if it doesn't have a superview.
@@ -27,13 +24,12 @@ NSOutputStream *outputStream;
 
 #pragma mark - View lifecycle
 
-/*
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 }
-*/
 
 - (void)handleNewTouch:(CGPoint *)touchCoordinates {
     // example of handling touch events in controller
@@ -65,39 +61,6 @@ NSOutputStream *outputStream;
 {
     // Return YES for supported orientations
     return YES;
-}
-
-- (void)initNetworkCommunication {
-
-}
-
-- (void)connectServer:(id)sender {
-    [self initNetworkCommunication];
-    while(!outputStream.hasSpaceAvailable){}
-    if(outputStream.hasSpaceAvailable){
-        NSString *response  = [NSString stringWithFormat:@"GET SAGE HTTP/1.1"];
-        NSData *data = [[NSData alloc] initWithData:[response dataUsingEncoding:NSASCIIStringEncoding]];
-        [outputStream write:[data bytes] maxLength:[data length]];
-    }
-    while(!inputStream.hasBytesAvailable){}
-    if(inputStream.hasBytesAvailable){
-        uint8_t buffer[1024];
-        int len;
-        
-        while ([inputStream hasBytesAvailable]) {
-            len = [inputStream read:buffer maxLength:sizeof(buffer)];
-            if (len > 0) {
-                
-                NSString *output = [[NSString alloc] initWithBytes:buffer length:len encoding:NSASCIIStringEncoding];
-                
-                if (nil != output) {
-                    NSLog(@"server said: %@", output);
-                    //self.connectInfo.text = output;
-                }
-            }
-        }
-    }
-    
 }
 
 - (void)dealloc {

@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @protocol InputStreamTranslator <NSStreamDelegate>
+
 @required
 - (void)translateConnectionConfirmation;
+
 @end

@@ -9,6 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "OutputStreamTranslator.h"
 
-@interface OutputTranslator : NSObject <OutputStreamTranslator>
+@interface OutputTranslator : NSObject <OutputStreamTranslator> {
+    NSString *notificationName;
+    
+    NSInteger *sageHeight;
+    NSInteger *sageWidth;
+    NSInteger *pointerId;
+}
 
 @end
