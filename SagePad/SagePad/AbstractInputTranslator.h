@@ -10,7 +10,7 @@
 
 @protocol AbstractInputTranslator <NSStreamDelegate>
 
-@required
-- (void)translateConnectionConfirmation;
+@optional
+- (void)setBufferSize:(int)_bufferSize;
 
 @end

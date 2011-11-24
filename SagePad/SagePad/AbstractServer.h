@@ -14,12 +14,11 @@
 
 @required
 - (id)initWithIp:(NSString *)_ipAddress andPortNumber:(NSInteger *)_portNumber;
-- (void)startWithInputTranslator:(id<AbstractInputTranslator> *)_inputTranslator andOutputTranslator:(id<AbstractOutputTranslator> *)_outputTranslator;
+
+- (void)startWithInputTranslator:(id<NSStreamDelegate> *)_inputTranslator andOutputTranslator:(id<NSStreamDelegate> *)_outputTranslator;
+- (void)stop;
 
 - (NSString *)getIpAddress;
 - (NSInteger *)getPortNumber;
-
-- (id<AbstractInputTranslator>)getInputStreamTranslator;
-- (id<AbstractOutputTranslator>)getOutputStreamTranslator;
     
 @end

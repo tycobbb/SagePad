@@ -15,9 +15,6 @@
     
     NSStream *inputStream;
     NSStream *outputStream;
-    
-    id<AbstractInputTranslator> inputTranslator;
-    id<AbstractOutputTranslator> outputTranslator;
 }
-                    
+
 @end

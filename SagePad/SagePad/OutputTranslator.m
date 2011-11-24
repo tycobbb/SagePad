@@ -14,11 +14,11 @@
 {
     self = [super init];
     if (self) {
-        notificationName = @"SPSageConfiguration";
+        pointerConfigurationNotification = @"SPSageConfiguration"; // move this into some constant storage
         [[NSNotificationCenter defaultCenter] addObserver:self 
-                                                selector:@selector(handleSageConfiguration) 
-                                                name:@"SPSageConfiguration" 
-                                                object:nil];
+                                                 selector:@selector(handlePointerConfiguration) 
+                                                     name:@"SPSageConfiguration" 
+                                                   object:nil];
     }
     
     return self;
@@ -28,9 +28,9 @@
     // handle events
 }
 
-- (void)handleSageConfiguration:(NSNotification *) notification {
-    if([[notification name] isEqualToString:notificationName])
-        NSLog(@"Successfully received notification");
+- (void)handlePointerConfiguration:(NSNotification *) notification {
+    NSLog(@"Received notification in output translator: %@", [notification name]);
+    // need to figure out how to get the acutal string, not just notification name
 }
 
 @end

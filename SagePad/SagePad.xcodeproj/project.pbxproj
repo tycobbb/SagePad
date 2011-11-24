@@ -24,6 +24,7 @@
 		F9852B47146B4DCC00ED60B2 /* SagePadTests.h in Resources */ = {isa = PBXBuildFile; fileRef = F9852B46146B4DCC00ED60B2 /* SagePadTests.h */; };
 		F9852B49146B4DCC00ED60B2 /* SagePadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F9852B48146B4DCC00ED60B2 /* SagePadTests.m */; };
 		FB07B5CB146B4E5900DCBA95 /* SagePadTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = FB07B5CA146B4E5900DCBA95 /* SagePadTouchView.m */; };
+		FB88957C147D6D6B00A2DA58 /* NetworkingService.m in Sources */ = {isa = PBXBuildFile; fileRef = FB88957B147D6D6B00A2DA58 /* NetworkingService.m */; };
 		FB91CD61147860950067EAE3 /* Server.m in Sources */ = {isa = PBXBuildFile; fileRef = FB91CD60147860950067EAE3 /* Server.m */; };
 		FB91CD6414786D000067EAE3 /* InputTranslator.m in Sources */ = {isa = PBXBuildFile; fileRef = FB91CD6314786D000067EAE3 /* InputTranslator.m */; };
 		FB91CD68147871D20067EAE3 /* OutputTranslator.m in Sources */ = {isa = PBXBuildFile; fileRef = FB91CD67147871D20067EAE3 /* OutputTranslator.m */; };
@@ -63,14 +64,16 @@
 		F9EB3FAD147C9700006D946F /* AbstractServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractServer.h; sourceTree = "<group>"; };
 		FB07B5CA146B4E5900DCBA95 /* SagePadTouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SagePadTouchView.m; sourceTree = "<group>"; };
 		FB07B5D1146B521F00DCBA95 /* SagePadTouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SagePadTouchView.h; sourceTree = SOURCE_ROOT; };
+		FB88957A147D6D6B00A2DA58 /* NetworkingService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkingService.h; sourceTree = "<group>"; };
+		FB88957B147D6D6B00A2DA58 /* NetworkingService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkingService.m; sourceTree = "<group>"; };
 		FB91CD5E14785F880067EAE3 /* Server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Server.h; sourceTree = "<group>"; };
 		FB91CD60147860950067EAE3 /* Server.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Server.m; sourceTree = "<group>"; };
 		FB91CD6214786D000067EAE3 /* InputTranslator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputTranslator.h; sourceTree = "<group>"; };
 		FB91CD6314786D000067EAE3 /* InputTranslator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputTranslator.m; sourceTree = "<group>"; };
-		FB91CD651478700E0067EAE3 /* AbstractInputTranslator.h */ = {isa = PBXFileReference; fileEncoding = 4; path = AbstractInputTranslator.h; sourceTree = "<group>"; };
+		FB91CD651478700E0067EAE3 /* AbstractInputTranslator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractInputTranslator.h; sourceTree = "<group>"; };
 		FB91CD66147871D20067EAE3 /* OutputTranslator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutputTranslator.h; sourceTree = "<group>"; };
 		FB91CD67147871D20067EAE3 /* OutputTranslator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutputTranslator.m; sourceTree = "<group>"; };
-		FB91CD69147873800067EAE3 /* AbstractOutputTranslator.h */ = {isa = PBXFileReference; fileEncoding = 4; path = AbstractOutputTranslator.h; sourceTree = "<group>"; };
+		FB91CD69147873800067EAE3 /* AbstractOutputTranslator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractOutputTranslator.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,8 +137,7 @@
 				FBFB49B8147C842200FD6736 /* Controllers */,
 				FBFB49B9147C843900FD6736 /* Views */,
 				FB697441147C85300070D758 /* UI */,
-				FB69743E147C85050070D758 /* Translators */,
-				FB697440147C85240070D758 /* Server */,
+				FB889578147D6D2100A2DA58 /* NetworkingService */,
 				FB697442147C85890070D758 /* App Delegate */,
 				F9852B1F146B4DCC00ED60B2 /* Supporting Files */,
 			);
@@ -211,6 +213,17 @@
 				F9852B28146B4DCC00ED60B2 /* SagePadAppDelegate.m */,
 			);
 			name = "App Delegate";
+			sourceTree = "<group>";
+		};
+		FB889578147D6D2100A2DA58 /* NetworkingService */ = {
+			isa = PBXGroup;
+			children = (
+				FB697440147C85240070D758 /* Server */,
+				FB69743E147C85050070D758 /* Translators */,
+				FB88957A147D6D6B00A2DA58 /* NetworkingService.h */,
+				FB88957B147D6D6B00A2DA58 /* NetworkingService.m */,
+			);
+			name = NetworkingService;
 			sourceTree = "<group>";
 		};
 		FBFB49B8147C842200FD6736 /* Controllers */ = {
@@ -343,6 +356,7 @@
 				FB91CD61147860950067EAE3 /* Server.m in Sources */,
 				FB91CD6414786D000067EAE3 /* InputTranslator.m in Sources */,
 				FB91CD68147871D20067EAE3 /* OutputTranslator.m in Sources */,
+				FB88957C147D6D6B00A2DA58 /* NetworkingService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

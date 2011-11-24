@@ -14,57 +14,56 @@
 {    
     self = [super init];
     if (self) {
-        notificationName = @"SPSageConfiguration";
-        
+        bufferSize = 1024; // default buffer size
+        pointerConfigurationNotification = @"SPSageConfiguration"; // move this into some constant storage
     }
     
     return self;
 }
 
-- (void)stream:(NSStream *)theStream handleEvent:(NSStreamEvent)streamEvent {
-    
-	switch (streamEvent) {
-            
-		case NSStreamEventOpenCompleted:
-			NSLog(@"Stream opened");
+- (void)stream:(NSStream *)stream handleEvent:(NSStreamEvent)streamEvent {    
+    switch (streamEvent) {
+        case NSStreamEventOpenCompleted:
+			NSLog(@"Stream opened.");
 			break;
-            
 		case NSStreamEventHasBytesAvailable:
-            if(theStream){
-                uint8_t buffer[1024];
-                int len;
-                
-                while ([theStream hasBytesAvailable]) {
-                    len = [theStream read:buffer maxLength:sizeof(buffer)];
-                    if (len > 0) {
-                        
-                        NSString *output = [[NSString alloc] initWithBytes:buffer length:len encoding:NSASCIIStringEncoding];
-                        
-                        if (nil != output) {
-                            [self translateConnectionConfirmation:output];
-                            NSLog(@"server said: %@", output);
-                        }
-                    }
-                }
-            }
-			break;			
-            
+            [self handleBytesAvailableEvent:(NSInputStream *)stream];
+            break;			
 		case NSStreamEventErrorOccurred:
-			NSLog(@"Can not connect to the host!");
+			NSLog(@"Unable to connect to host.");
 			break;
-            
 		case NSStreamEventEndEncountered:
 			break;
-            
 		default:
 			NSLog(@"Unknown event");
 	}
     
 }
 
+- (void)handleBytesAvailableEvent:(NSInputStream *)inputStream {
+    if(inputStream){
+        int len;
+        uint8_t buffer[bufferSize];
+        while ([inputStream hasBytesAvailable]) {
+            len = [inputStream read:buffer maxLength:sizeof(buffer)];
+            if (len > 0) {
+                NSString *response = [[NSString alloc] initWithBytes:buffer length:len encoding:NSASCIIStringEncoding];
+                if (response != nil) {
+                    NSLog(@"Connection response: %@", response);
+                    [self translatePointerConfiguration:response];
+                }
+            }
+        }
+    }
 
-- (void)translateConnectionConfirmation: (NSString *) sageConfiguration {
-    [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:self];
+}
+
+- (void)translatePointerConfiguration:(NSString *)pointerConfiguration {
+    [[NSNotificationCenter defaultCenter] postNotificationName:pointerConfigurationNotification object:self];
+}
+
+- (void)setBufferSize:(int)_bufferSize {
+    bufferSize = _bufferSize;
 }
 
 @end

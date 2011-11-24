@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "OutputStreamTranslator.h"
+#import "AbstractOutputTranslator.h"
 
 @interface OutputTranslator : NSObject <AbstractOutputTranslator> {
-    NSString *notificationName;
+    NSString *pointerConfigurationNotification;
     
     NSInteger *sageHeight;
     NSInteger *sageWidth;

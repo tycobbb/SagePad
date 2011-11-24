@@ -18,33 +18,31 @@
         ipAddress = _ipAddress;
         portNumber = _portNumber;
     }
-    return self;
+    
+    return self; // maybe if we change the return type here to (id<AbstractServer> *) and cast self to it as well...
 }
 
-- (void)startWithInputTranslator:(id<AbstractInputTranslator> *)_inputTranslator andOutputTranslator:(id<AbstractOutputTranslator> *)_outputTranslator {
-    inputTranslator = _inputTranslator;
-    outputTranslator = _outputTranslator;
-    
-    CFStringRef ipAddress = (CFStringRef)[self getIpAddress];
-    UInt32 portNumber = (UInt32)[self getPortNumber];
-    
+- (void)startWithInputTranslator:(id<NSStreamDelegate> *)inputTranslator andOutputTranslator:(id<NSStreamDelegate> *)outputTranslator {    
     CFReadStreamRef readStream;
     CFWriteStreamRef writeStream;
-    
-    CFStreamCreatePairWithSocketToHost(NULL, ipAddress, portNumber, 
-        &readStream, &writeStream);
+    CFStreamCreatePairWithSocketToHost(NULL, (CFStringRef)[self getIpAddress], (UInt32)[self getPortNumber], &readStream, &writeStream);
     
     inputStream = (NSInputStream *)readStream;
     outputStream = (NSOutputStream *)writeStream;
     
-    [inputStream setDelegate:inputTranslator];
-    [outputStream setDelegate:outputTranslator];
+    [inputStream setDelegate:*inputTranslator];
+    [outputStream setDelegate:*outputTranslator];
     
     [inputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
     [outputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
     
     [inputStream open];
     [outputStream open];
+}
+
+- (void)stop { // i doubt this is complete, we should probably just call it in the destructor as well
+    [inputStream close];
+    [outputStream close];
 }
 
 - (NSString*)getIpAddress {

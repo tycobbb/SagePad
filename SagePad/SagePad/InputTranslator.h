@@ -7,11 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "InputStreamTranslator.h"
+#import "AbstractInputTranslator.h"
 
 @interface InputTranslator : NSObject <AbstractInputTranslator> {
-    NSString *notificationName;
+    int bufferSize;
+    NSString *pointerConfigurationNotification;
 }
+
+- (void)handleBytesAvailableEvent:(NSInputStream *)inputStream;
+- (void)translatePointerConfiguration:(NSString *)pointerConfiguration;
+
 @end
 
 
