@@ -31,8 +31,8 @@
     [server startWithInputTranslator:inputTranslator andOutputTranslator:outputTranslator]; // kind of confused by these warnings
 }                                                                                           // i think we're missing something about
                                                                                             // protocol polymorphism in obj-c
-- (void)stopServer {
-    
+- (void)stopServer {                                                                        // i think the problem lies in the pointers
+    [server stop];                                                                          // to ids will figure out later
 }
 
 @end
