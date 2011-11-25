@@ -40,9 +40,18 @@
     [outputStream open];
 }
 
-- (void)stop { // i doubt this is complete, we should probably just call it in the destructor as well
+- (void)stop { // Fixed
+    NSLog(@"Closing Streams");
     [inputStream close];
     [outputStream close];
+    [inputStream removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+    [outputStream removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+    [inputStream setDelegate:nil];
+    [outputStream setDelegate:nil];
+    [inputStream release];
+    [outputStream release];
+    inputStream = nil;
+    outputStream = nil;
 }
 
 - (NSString*)getIpAddress {

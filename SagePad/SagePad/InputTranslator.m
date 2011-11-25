@@ -41,6 +41,10 @@
 }
 
 - (void)handleBytesAvailableEvent:(NSInputStream *)inputStream {
+    int clientID;
+    int screenWidth;
+    int screenHeight;
+    int fileTransport;
     if(inputStream){
         int len;
         uint8_t buffer[bufferSize];
@@ -50,6 +54,11 @@
                 NSString *response = [[NSString alloc] initWithBytes:buffer length:len encoding:NSASCIIStringEncoding];
                 if (response != nil) {
                     NSLog(@"Connection response: %@", response);
+                    NSScanner *scanner = [NSScanner scannerWithString:response];
+                    [scanner scanInt:&clientID];
+                    [scanner scanInt:&screenWidth];
+                    [scanner scanInt:&screenHeight];
+                    [scanner scanInt:&fileTransport];
                     [self translatePointerConfiguration:response];
                 }
             }
