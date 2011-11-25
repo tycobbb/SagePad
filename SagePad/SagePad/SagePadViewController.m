@@ -36,7 +36,7 @@
     [networkingService release];
     // example setting properties to nil upon unload
     //    [self setTouchLabel:nil];
-      [super viewDidUnload];
+    [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }

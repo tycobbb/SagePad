@@ -41,24 +41,17 @@
 }
 
 - (void)handleBytesAvailableEvent:(NSInputStream *)inputStream {
-    int clientID;
-    int screenWidth;
-    int screenHeight;
-    int fileTransport;
     if(inputStream){
-        int len;
+        NSInteger responseLength;
         uint8_t buffer[bufferSize];
         while ([inputStream hasBytesAvailable]) {
-            len = [inputStream read:buffer maxLength:sizeof(buffer)];
-            if (len > 0) {
-                NSString *response = [[NSString alloc] initWithBytes:buffer length:len encoding:NSASCIIStringEncoding];
+            responseLength = [inputStream read:buffer maxLength:sizeof(buffer)];
+            if (responseLength > 0) {
+                NSString *response = [[NSString alloc] initWithBytes:buffer 
+                                                              length:responseLength 
+                                                            encoding:NSASCIIStringEncoding];
                 if (response != nil) {
                     NSLog(@"Connection response: %@", response);
-                    NSScanner *scanner = [NSScanner scannerWithString:response];
-                    [scanner scanInt:&clientID];
-                    [scanner scanInt:&screenWidth];
-                    [scanner scanInt:&screenHeight];
-                    [scanner scanInt:&fileTransport];
                     [self translatePointerConfiguration:response];
                 }
             }
@@ -68,6 +61,15 @@
 }
 
 - (void)translatePointerConfiguration:(NSString *)pointerConfiguration {
+    NSInteger clientId, screenWidth, screenHeight, ftpPortNumber;
+    NSScanner *scanner = [NSScanner scannerWithString:pointerConfiguration];
+    
+    [scanner scanInt:&clientId];
+    [scanner scanInt:&screenWidth];
+    [scanner scanInt:&screenHeight];
+    [scanner scanInt:&ftpPortNumber];
+    
+    // send the notification, may have to attach the data in some manner
     [[NSNotificationCenter defaultCenter] postNotificationName:pointerConfigurationNotification object:self];
 }
 
