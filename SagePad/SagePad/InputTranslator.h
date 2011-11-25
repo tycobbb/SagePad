@@ -10,7 +10,7 @@
 #import "AbstractInputTranslator.h"
 
 @interface InputTranslator : NSObject <AbstractInputTranslator> {
-    int bufferSize;
+    NSInteger bufferSize;
     NSString *pointerConfigurationNotification;
 }
 

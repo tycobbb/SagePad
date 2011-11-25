@@ -13,12 +13,12 @@
 @protocol AbstractServer <NSObject>
 
 @required
-- (id)initWithIp:(NSString *)_ipAddress andPortNumber:(NSInteger *)_portNumber;
+- (id)initWithIp:(NSString *)_ipAddress andPortNumber:(NSInteger)_portNumber;
 
-- (void)startWithInputTranslator:(id<NSStreamDelegate> *)_inputTranslator andOutputTranslator:(id<NSStreamDelegate> *)_outputTranslator;
+- (void)startWithInputTranslator:(id<NSStreamDelegate>)_inputTranslator andOutputTranslator:(id<NSStreamDelegate>)_outputTranslator;
 - (void)stop;
 
 - (NSString *)getIpAddress;
-- (NSInteger *)getPortNumber;
+- (NSInteger )getPortNumber;
     
 @end

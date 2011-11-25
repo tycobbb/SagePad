@@ -11,7 +11,7 @@
 
 @interface Server : NSObject <AbstractServer> {
     NSString *ipAddress;
-    NSInteger *portNumber;
+    NSInteger portNumber;
     
     NSStream *inputStream;
     NSStream *outputStream;

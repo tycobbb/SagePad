@@ -13,26 +13,31 @@
 
 @implementation NetworkingService
 
-- (id)initWithIp:(NSString *)_ip withPortNumber:(NSInteger *)_portNumber 
-        withInputTranslator:(id<AbstractInputTranslator> *)_inputTranslator
-        withOutputTranslator:(id<AbstractOutputTranslator> *)_outputTranslator {
+- (id)initWithIp:(NSString *)_ip withPortNumber:(NSInteger)_portNumber 
+        withInputTranslator:(id<AbstractInputTranslator>)_inputTranslator
+        withOutputTranslator:(id<AbstractOutputTranslator>)_outputTranslator {
     
     self = [super init];
     if (self) {
-        server = (id<AbstractServer> *)[[Server alloc] initWithIp:_ip andPortNumber:_portNumber]; // this seems like a hack
-        inputTranslator = _inputTranslator;                                                       // do we really have to cast
-        outputTranslator = _outputTranslator;                                                     // this id to the correct type
+        server = [[Server alloc] initWithIp:_ip andPortNumber:_portNumber];
+        inputTranslator = _inputTranslator;
+        outputTranslator = _outputTranslator;
     }
     
     return self;
 }
 
+- (void)dealloc {
+    [server release];
+    [super dealloc];
+}
+
 - (void)startServer {
-    [server startWithInputTranslator:inputTranslator andOutputTranslator:outputTranslator]; // kind of confused by these warnings
-}                                                                                           // i think we're missing something about
-                                                                                            // protocol polymorphism in obj-c
-- (void)stopServer {                                                                        // i think the problem lies in the pointers
-    [server stop];                                                                          // to ids will figure out later
+    [server startWithInputTranslator:inputTranslator andOutputTranslator:outputTranslator]; 
+}
+
+- (void)stopServer {
+    [server stop];
 }
 
 @end

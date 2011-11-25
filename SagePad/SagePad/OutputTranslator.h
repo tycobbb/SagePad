@@ -12,9 +12,9 @@
 @interface OutputTranslator : NSObject <AbstractOutputTranslator> {
     NSString *pointerConfigurationNotification;
     
-    NSInteger *sageHeight;
-    NSInteger *sageWidth;
-    NSInteger *pointerId;
+    NSInteger sageHeight;
+    NSInteger sageWidth;
+    NSInteger pointerId;
 }
 
 @end

@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Server.h"
+#import "NetworkingService.h"
 
 @interface SagePadViewController : UIViewController {
-    Server *server;
+    NetworkingService *networkingService;
 }
 
 @end

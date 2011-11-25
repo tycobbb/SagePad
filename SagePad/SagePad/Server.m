@@ -12,7 +12,7 @@
 
 @implementation Server
 
-- (id)initWithIp:(NSString *)_ipAddress andPortNumber:(NSInteger *)_portNumber {
+- (id)initWithIp:(NSString *)_ipAddress andPortNumber:(NSInteger)_portNumber {
     self = [super init];
     if (self) {
         ipAddress = _ipAddress;
@@ -22,7 +22,7 @@
     return self; // maybe if we change the return type here to (id<AbstractServer> *) and cast self to it as well...
 }
 
-- (void)startWithInputTranslator:(id<NSStreamDelegate> *)inputTranslator andOutputTranslator:(id<NSStreamDelegate> *)outputTranslator {    
+- (void)startWithInputTranslator:(id<NSStreamDelegate>)inputTranslator andOutputTranslator:(id<NSStreamDelegate>)outputTranslator {    
     CFReadStreamRef readStream;
     CFWriteStreamRef writeStream;
     CFStreamCreatePairWithSocketToHost(NULL, (CFStringRef)[self getIpAddress], (UInt32)[self getPortNumber], &readStream, &writeStream);
@@ -30,8 +30,8 @@
     inputStream = (NSInputStream *)readStream;
     outputStream = (NSOutputStream *)writeStream;
     
-    [inputStream setDelegate:*inputTranslator];
-    [outputStream setDelegate:*outputTranslator];
+    [inputStream setDelegate:inputTranslator];
+    [outputStream setDelegate:outputTranslator];
     
     [inputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
     [outputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
@@ -50,7 +50,7 @@
     return ipAddress;
 }
 
-- (NSInteger*)getPortNumber {
+- (NSInteger)getPortNumber {
     // get port number from core data
     return portNumber;
 }
