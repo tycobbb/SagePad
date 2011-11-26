@@ -12,6 +12,7 @@
 @interface InputTranslator : NSObject <AbstractInputTranslator> {
     NSInteger bufferSize;
     NSString *pointerConfigurationNotification;
+    BOOL config;
 }
 
 - (void)handleBytesAvailableEvent:(NSInputStream *)inputStream;

@@ -17,12 +17,18 @@
     if (self) {
         ipAddress = _ipAddress;
         portNumber = _portNumber;
+        NSLog(@"IP Address: %@", ipAddress);
+        NSLog(@"Port Number: %d", portNumber);
     }
     
     return self; // maybe if we change the return type here to (id<AbstractServer> *) and cast self to it as well...
 }
 
 - (void)startWithInputTranslator:(id<NSStreamDelegate>)inputTranslator andOutputTranslator:(id<NSStreamDelegate>)outputTranslator {    
+    
+    NSLog(@"startWithInputTranslator");
+
+    
     CFReadStreamRef readStream;
     CFWriteStreamRef writeStream;
     CFStreamCreatePairWithSocketToHost(NULL, (CFStringRef)[self getIpAddress], (UInt32)[self getPortNumber], &readStream, &writeStream);
