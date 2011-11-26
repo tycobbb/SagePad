@@ -30,6 +30,17 @@
                    withPortNumber:30000 
               withInputTranslator:[[InputTranslator alloc] init] 
              withOutputTranslator:[[OutputTranslator alloc] init]];
+    
+    UISwipeGestureRecognizer *twoFingerSwipe = 
+        [[UISwipeGestureRecognizer alloc] initWithTarget:self
+                                                  action:@selector(handleSwipeRight:)];
+    [self.view addGestureRecognizer:twoFingerSwipe];
+    [twoFingerSwipe release];
+}
+
+- (void)handleSwipeRight:(UISwipeGestureRecognizer *)swipeRight {
+    CGPoint location = [swipeRight locationInView:[swipeRight.view superview]];
+    NSLog(@"Captured a swipe left at (%f, %f).", location.x, location.y);
 }
 
 - (void)viewDidUnload {
