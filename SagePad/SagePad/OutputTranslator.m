@@ -16,7 +16,7 @@
     if (self) {
         pointerConfigurationNotification = @"SPSageConfiguration"; // move this into some constant storage
         [[NSNotificationCenter defaultCenter] addObserver:self 
-                                                 selector:@selector(handlePointerConfiguration) 
+                                                 selector:@selector(handlePointerConfiguration:) 
                                                      name:@"SPSageConfiguration" 
                                                    object:nil];
     }
@@ -36,6 +36,15 @@
 - (void)handlePointerConfiguration:(NSNotification *) notification {
     NSLog(@"Received notification in output translator: %@", [notification name]);
     // need to figure out how to get the acutal string, not just notification name
+}
+
+- (void) dealloc
+{
+    // If you don't remove yourself as an observer, the Notification Center
+    // will continue to try and send notification objects to the deallocated
+    // object.
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [super dealloc];
 }
 
 @end
