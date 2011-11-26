@@ -76,7 +76,7 @@
     NSLog(@"FTP Port Config: %d", ftpPortNumber);
     
     // send the notification, may have to attach the data in some manner
-    //[[NSNotificationCenter defaultCenter] postNotificationName:pointerConfigurationNotification object:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:pointerConfigurationNotification object:self];
 }
 
 - (void)setBufferSize:(int)_bufferSize {
