@@ -17,4 +17,6 @@
     NSInteger pointerId;
 }
 
+- (void)handlePointerConfiguration:(NSNotification *)notification;
+
 @end

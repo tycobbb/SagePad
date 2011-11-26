@@ -33,7 +33,7 @@
     // translate and send to SAGE
 }
 
-- (void)handlePointerConfiguration:(NSNotification *) notification {
+- (void)handlePointerConfiguration:(NSNotification *)notification {
     NSLog(@"Received notification in output translator: %@", [notification name]);
     // need to figure out how to get the acutal string, not just notification name
 }

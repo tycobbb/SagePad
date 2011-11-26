@@ -29,8 +29,10 @@
     
     // setup gesture recognizer to swipe right to home view
     UISwipeGestureRecognizer *twoFingerSwipe = 
-    [[UISwipeGestureRecognizer alloc] initWithTarget:self
-                                              action:@selector(handleSwipeRight:)];
+        [[UISwipeGestureRecognizer alloc] initWithTarget:self
+                                                  action:@selector(handleSwipeRight:)];
+    twoFingerSwipe.numberOfTouchesRequired = 2;
+    [twoFingerSwipe setDirection:UISwipeGestureRecognizerDirectionRight];
     [self.view addGestureRecognizer:twoFingerSwipe];
     [twoFingerSwipe release];
     
