@@ -24,8 +24,13 @@
     return self;
 }
 
+// we can probably eliminate this, does the output stream have to handle events?
 - (void)stream:(NSStream *)outputStream handleEvent:(NSStreamEvent)streamEvent {
     // handle events
+}
+
+- (void)translateTouchEvent:(CGPoint *)touchCoordinates {
+    // translate and send to SAGE
 }
 
 - (void)handlePointerConfiguration:(NSNotification *) notification {

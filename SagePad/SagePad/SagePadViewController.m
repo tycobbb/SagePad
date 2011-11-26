@@ -23,14 +23,42 @@
 
 #pragma mark - View lifecycle
 
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
+// additional setup after loading the view
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // setup gesture recognizer to swipe right to home view
+    UISwipeGestureRecognizer *twoFingerSwipe = 
+    [[UISwipeGestureRecognizer alloc] initWithTarget:self
+                                              action:@selector(handleSwipeRight:)];
+    [self.view addGestureRecognizer:twoFingerSwipe];
+    [twoFingerSwipe release];
+    
+    // instantiate and start networking service upon entering the pointer view
     NSLog(@"Initializing Networking Service");
     networkingService = [[NetworkingService alloc] initWithIp:@"localhost" 
                    withPortNumber:30000 
               withInputTranslator:[[InputTranslator alloc] init] 
              withOutputTranslator:[[OutputTranslator alloc] init]];
+    NSLog(@"SagePadViewController: about to call networkingService.startServer");
+    [networkingService startServer];
+    NSLog(@"SagePadViewController: networkingService.startServer returned");
+
+}
+
+// method to handle swipe event, direct back to the home view
+- (void)handleSwipeRight:(UISwipeGestureRecognizer *)swipeRight {
+    CGPoint location = [swipeRight locationInView:[swipeRight.view superview]];
+    NSLog(@"Captured a swipe left at (%f, %f).", location.x, location.y);
+}
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    CGPoint touchCoordinates = [[touches anyObject] locationInView:self.view];
+    [networkingService translateTouchEvent:&touchCoordinates];
+}
+
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
+    // not sure what to do with cancelled touch, or how a touch is cancelled
 }
 
 - (void)viewDidUnload {
@@ -40,27 +68,6 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-}
-
-- (IBAction)serverStart:(id)sender {
-    NSLog(@"Before start");
-    [networkingService startServer];
-    NSLog(@"After Start");
-}
-
-- (void)handleNewTouch:(CGPoint *)touchCoordinates {
-    // example of handling touch events in controller
-    // self.touchBeginLabel.text = [NSString stringWithFormat:@"Began touch at: (%4.0f,%4.0f)", touchCoordinates->x, touchCoordinates->y];
-}
-
-- (void)handleMovedTouch:(CGPoint *)touchCoordinates {
-    // example of handling touch events in controller
-    //self.touchMovedLabel.text = [NSString stringWithFormat:@"Moved to: (%4.0f,%4.0f)", touchCoordinates->x, touchCoordinates->y];
-}
-
-- (void)handleFinishedTouch:(CGPoint *)touchCoordinates {
-    // example of handling touch events in controller
-    //self.touchFinishedLabel.text = [NSString stringWithFormat:@"Finished touch at: (%4.0f,%4.0f)", touchCoordinates->x, touchCoordinates->y];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
