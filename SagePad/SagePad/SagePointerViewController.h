@@ -11,6 +11,7 @@
 
 @interface SagePointerViewController : UIViewController {
     NetworkingService *networkingService;
+    ;
 }
 
 @end
