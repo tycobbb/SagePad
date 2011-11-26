@@ -15,6 +15,8 @@
     NSInteger sageHeight;
     NSInteger sageWidth;
     NSInteger pointerId;
+    
+    BOOL test;
 }
 
 - (void)handlePointerConfiguration:(NSNotification *)notification;

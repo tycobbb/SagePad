@@ -25,18 +25,20 @@
 - (void)stream:(NSStream *)stream handleEvent:(NSStreamEvent)streamEvent {    
     switch (streamEvent) {
         case NSStreamEventOpenCompleted:
-			NSLog(@"Stream opened.");
+			NSLog(@"Input Stream opened.");
 			break;
 		case NSStreamEventHasBytesAvailable:
             [self handleBytesAvailableEvent:(NSInputStream *)stream];
+            NSLog(@"Input Stream Has Bytes Available");
             break;			
 		case NSStreamEventErrorOccurred:
-			NSLog(@"Unable to connect to host.");
+			NSLog(@"Input Stream Unable to connect to host.");
 			break;
 		case NSStreamEventEndEncountered:
+            NSLog(@"Input Stream End Event");
 			break;
 		default:
-			NSLog(@"Unknown event");
+			NSLog(@"Input Stream Unknown event");
 	}
     
 }
