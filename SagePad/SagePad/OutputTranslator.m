@@ -20,7 +20,6 @@
                                                  selector:@selector(handlePointerConfiguration:) 
                                                      name:@"SPSageConfiguration" 
                                                    object:nil];
-        test = false;
     }
     
     return self;
@@ -53,12 +52,15 @@
     // translate and send to SAGE
 }
 
-
-- (void)handlePointerConfiguration:(NSNotification *)notification {
-    NSLog(@"Received notification in output translator: %@", [notification name]);
+- (void)handlePointerConfiguration:(NSNotification *)notification {    
+    InputTranslator *inputTranslator = [notification object];
     
+    pointerId = inputTranslator.pointerId;
+    sageWidth = inputTranslator.sageWidth;
+    sageHeight = inputTranslator.sageHeight;
+    ftpPortNumber = inputTranslator.ftpPortNumber;
     
-    // need to figure out how to get the acutal string, not just notification name
+    NSLog(@"Output translator received notification: %d %d %d %d", pointerId, sageWidth, sageHeight, ftpPortNumber);
 }
 
 - (void) dealloc

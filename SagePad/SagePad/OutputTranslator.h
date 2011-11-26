@@ -13,8 +13,9 @@
     NSString *pointerConfigurationNotification;
     
     NSInteger pointerId;
-    
-    BOOL test;
+    NSInteger sageWidth;
+    NSInteger sageHeight;
+    NSInteger ftpPortNumber;
 }
 
 - (void)handlePointerConfiguration:(NSNotification *)notification;
