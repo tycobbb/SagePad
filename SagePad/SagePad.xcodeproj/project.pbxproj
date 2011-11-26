@@ -14,8 +14,8 @@
 		F9852B25146B4DCC00ED60B2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F9852B24146B4DCC00ED60B2 /* main.m */; };
 		F9852B29146B4DCC00ED60B2 /* SagePadAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F9852B28146B4DCC00ED60B2 /* SagePadAppDelegate.m */; };
 		F9852B2C146B4DCC00ED60B2 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9852B2A146B4DCC00ED60B2 /* MainWindow.xib */; };
-		F9852B2F146B4DCC00ED60B2 /* SagePadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9852B2E146B4DCC00ED60B2 /* SagePadViewController.m */; };
-		F9852B32146B4DCC00ED60B2 /* SagePadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9852B30146B4DCC00ED60B2 /* SagePadViewController.xib */; };
+		F9852B2F146B4DCC00ED60B2 /* SagePointerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9852B2E146B4DCC00ED60B2 /* SagePointerViewController.m */; };
+		F9852B32146B4DCC00ED60B2 /* SagePointerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9852B30146B4DCC00ED60B2 /* SagePointerViewController.xib */; };
 		F9852B3A146B4DCC00ED60B2 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9852B39146B4DCC00ED60B2 /* SenTestingKit.framework */; };
 		F9852B3B146B4DCC00ED60B2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9852B18146B4DCC00ED60B2 /* UIKit.framework */; };
 		F9852B3C146B4DCC00ED60B2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9852B1A146B4DCC00ED60B2 /* Foundation.framework */; };
@@ -52,9 +52,9 @@
 		F9852B27146B4DCC00ED60B2 /* SagePadAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SagePadAppDelegate.h; sourceTree = "<group>"; };
 		F9852B28146B4DCC00ED60B2 /* SagePadAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SagePadAppDelegate.m; sourceTree = "<group>"; };
 		F9852B2B146B4DCC00ED60B2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
-		F9852B2D146B4DCC00ED60B2 /* SagePadViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SagePadViewController.h; sourceTree = "<group>"; };
-		F9852B2E146B4DCC00ED60B2 /* SagePadViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SagePadViewController.m; sourceTree = "<group>"; };
-		F9852B31146B4DCC00ED60B2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SagePadViewController.xib; sourceTree = "<group>"; };
+		F9852B2D146B4DCC00ED60B2 /* SagePointerViewController.h */ = {isa = PBXFileReference; path = SagePointerViewController.h; sourceTree = "<group>"; };
+		F9852B2E146B4DCC00ED60B2 /* SagePointerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SagePointerViewController.m; sourceTree = "<group>"; };
+		F9852B31146B4DCC00ED60B2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SagePointerViewController.xib; sourceTree = "<group>"; };
 		F9852B38146B4DCC00ED60B2 /* SagePadTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SagePadTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9852B39146B4DCC00ED60B2 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		F9852B42146B4DCC00ED60B2 /* SagePadTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SagePadTests-Info.plist"; sourceTree = "<group>"; };
@@ -201,7 +201,7 @@
 			isa = PBXGroup;
 			children = (
 				F9852B2A146B4DCC00ED60B2 /* MainWindow.xib */,
-				F9852B30146B4DCC00ED60B2 /* SagePadViewController.xib */,
+				F9852B30146B4DCC00ED60B2 /* SagePointerViewController.xib */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -229,8 +229,8 @@
 		FBFB49B8147C842200FD6736 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				F9852B2D146B4DCC00ED60B2 /* SagePadViewController.h */,
-				F9852B2E146B4DCC00ED60B2 /* SagePadViewController.m */,
+				F9852B2D146B4DCC00ED60B2 /* SagePointerViewController.h */,
+				F9852B2E146B4DCC00ED60B2 /* SagePointerViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -313,7 +313,7 @@
 			files = (
 				F9852B23146B4DCC00ED60B2 /* InfoPlist.strings in Resources */,
 				F9852B2C146B4DCC00ED60B2 /* MainWindow.xib in Resources */,
-				F9852B32146B4DCC00ED60B2 /* SagePadViewController.xib in Resources */,
+				F9852B32146B4DCC00ED60B2 /* SagePointerViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -351,7 +351,7 @@
 			files = (
 				F9852B25146B4DCC00ED60B2 /* main.m in Sources */,
 				F9852B29146B4DCC00ED60B2 /* SagePadAppDelegate.m in Sources */,
-				F9852B2F146B4DCC00ED60B2 /* SagePadViewController.m in Sources */,
+				F9852B2F146B4DCC00ED60B2 /* SagePointerViewController.m in Sources */,
 				FB07B5CB146B4E5900DCBA95 /* SagePadTouchView.m in Sources */,
 				FB91CD61147860950067EAE3 /* Server.m in Sources */,
 				FB91CD6414786D000067EAE3 /* InputTranslator.m in Sources */,
@@ -395,12 +395,12 @@
 			name = MainWindow.xib;
 			sourceTree = "<group>";
 		};
-		F9852B30146B4DCC00ED60B2 /* SagePadViewController.xib */ = {
+		F9852B30146B4DCC00ED60B2 /* SagePointerViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				F9852B31146B4DCC00ED60B2 /* en */,
 			);
-			name = SagePadViewController.xib;
+			name = SagePointerViewController.xib;
 			sourceTree = "<group>";
 		};
 		F9852B43146B4DCC00ED60B2 /* InfoPlist.strings */ = {

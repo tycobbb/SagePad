@@ -7,7 +7,7 @@
 //
 
 #import "SagePadAppDelegate.h"
-#import "SagePadViewController.h"
+#import "SagePointerViewController.h"
 
 @implementation SagePadAppDelegate
 
