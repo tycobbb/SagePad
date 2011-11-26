@@ -24,4 +24,6 @@
 - (void)startServer;
 - (void)stopServer;
 
+- (void)translateTouchEvent:(CGPoint *)touchCoordinates;
+
 @end

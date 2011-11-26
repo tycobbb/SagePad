@@ -43,4 +43,8 @@
     [server stop];
 }
 
+- (void)translateTouchEvent:(CGPoint *)coordinates {
+    [outputTranslator translateTouchEvent:coordinates];
+}
+
 @end

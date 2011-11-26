@@ -20,25 +20,19 @@
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    UITouch *touch = [touches anyObject];
-    CGPoint touchCoordinates = [touch locationInView:self];
-    [self.nextResponder handleNewTouch:&touchCoordinates];
+    [self.nextResponder touchesMoved:touches withEvent:event];
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    UITouch *touch = [touches anyObject];
-    CGPoint touchCoordinates = [touch locationInView:self];
-    [self.nextResponder handleMovedTouch:&touchCoordinates];
+    [self.nextResponder touchesMoved:touches withEvent:event];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    UITouch *touch = [touches anyObject];
-    CGPoint touchCoordinates = [touch locationInView:self];
-    [self.nextResponder handleFinishedTouch:&touchCoordinates];
+    [self.nextResponder touchesMoved:touches withEvent:event];
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
-    [self.nextResponder touchesEnded:touches withEvent:event];
+    [self.nextResponder touchesCancelled:touches withEvent:event];
 }
 
 @end

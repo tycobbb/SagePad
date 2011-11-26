@@ -10,4 +10,7 @@
 
 @protocol AbstractOutputTranslator <NSStreamDelegate>
 
+@required
+- (void)translateTouchEvent:(CGPoint *)touchCoordinates;
+
 @end
