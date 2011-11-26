@@ -27,7 +27,25 @@
 
 // we can probably eliminate this, does the output stream have to handle events?
 - (void)stream:(NSStream *)outputStream handleEvent:(NSStreamEvent)streamEvent {
-    // handle events
+    switch (streamEvent) {
+        case NSStreamEventOpenCompleted:
+			NSLog(@"Output Stream opened.");
+			break;
+		case NSStreamEventHasBytesAvailable:
+            NSLog(@"Output Stream has bytes available");
+            break;			
+		case NSStreamEventErrorOccurred:
+			NSLog(@"Output Stream Unable to connect to host.");
+			break;
+        case NSStreamEventHasSpaceAvailable:
+            NSLog(@"Output Stream has Space Available");
+            break;
+		case NSStreamEventEndEncountered:
+            NSLog(@"Output Stream End Event");
+			break;
+		default:
+			NSLog(@"Output Stream Unknown event");
+    }
 }
 
 - (void)translateTouchEvent:(CGPoint *)touchCoordinates {
