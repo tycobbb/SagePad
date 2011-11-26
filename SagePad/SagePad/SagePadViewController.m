@@ -26,7 +26,8 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [[NetworkingService alloc] initWithIp:@"localhost" 
+    NSLog(@"Initializing Networking Service");
+    networkingService = [[NetworkingService alloc] initWithIp:@"localhost" 
                    withPortNumber:30000 
               withInputTranslator:[[InputTranslator alloc] init] 
              withOutputTranslator:[[OutputTranslator alloc] init]];
@@ -50,6 +51,12 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+}
+
+- (IBAction)serverStart:(id)sender {
+    NSLog(@"Before start");
+    [networkingService startServer];
+    NSLog(@"After Start");
 }
 
 - (void)handleNewTouch:(CGPoint *)touchCoordinates {

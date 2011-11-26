@@ -13,6 +13,8 @@
     NetworkingService *networkingService;
 }
 
+- (IBAction)serverStart:(id)sender;
+
 @end
 
 

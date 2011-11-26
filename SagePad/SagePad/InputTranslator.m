@@ -16,6 +16,7 @@
     if (self) {
         bufferSize = 1024; // default buffer size
         pointerConfigurationNotification = @"SPSageConfiguration"; // move this into some constant storage
+        config = false;
     }
     
     return self;
@@ -44,13 +45,14 @@
     if(inputStream){
         NSInteger responseLength;
         uint8_t buffer[bufferSize];
-        while ([inputStream hasBytesAvailable]) {
+        while ([inputStream hasBytesAvailable] && config == false) {
             responseLength = [inputStream read:buffer maxLength:sizeof(buffer)];
             if (responseLength > 0) {
                 NSString *response = [[NSString alloc] initWithBytes:buffer 
                                                               length:responseLength 
                                                             encoding:NSASCIIStringEncoding];
                 if (response != nil) {
+                    config = true;
                     NSLog(@"Connection response: %@", response);
                     [self translatePointerConfiguration:response];
                 }
@@ -65,12 +67,16 @@
     NSScanner *scanner = [NSScanner scannerWithString:pointerConfiguration];
     
     [scanner scanInt:&clientId];
+    NSLog(@"Client ID Config: %d", clientId);
     [scanner scanInt:&screenWidth];
+    NSLog(@"Screen Width ID Config: %d", screenWidth);
     [scanner scanInt:&screenHeight];
+    NSLog(@"Screen Height ID Config: %d", screenHeight);
     [scanner scanInt:&ftpPortNumber];
+    NSLog(@"FTP Port Config: %d", ftpPortNumber);
     
     // send the notification, may have to attach the data in some manner
-    [[NSNotificationCenter defaultCenter] postNotificationName:pointerConfigurationNotification object:self];
+    //[[NSNotificationCenter defaultCenter] postNotificationName:pointerConfigurationNotification object:self];
 }
 
 - (void)setBufferSize:(int)_bufferSize {

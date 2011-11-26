@@ -11,6 +11,8 @@
 #import "InputTranslator.h"
 #import "OutputTranslator.h"
 
+//static Server *server;
+
 @implementation NetworkingService
 
 - (id)initWithIp:(NSString *)_ip withPortNumber:(NSInteger)_portNumber 
@@ -33,6 +35,7 @@
 }
 
 - (void)startServer {
+    NSLog(@"StartingServer");
     [server startWithInputTranslator:inputTranslator andOutputTranslator:outputTranslator]; 
 }
 
