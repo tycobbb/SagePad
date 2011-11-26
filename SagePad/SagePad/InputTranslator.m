@@ -10,13 +10,18 @@
 
 @implementation InputTranslator
 
+@synthesize pointerId;
+@synthesize sageWidth;
+@synthesize sageHeight;
+@synthesize ftpPortNumber;
+
 - (id)init
 {    
     self = [super init];
     if (self) {
         bufferSize = 1024; // default buffer size
         pointerConfigurationNotification = @"SPSageConfiguration"; // move this into some constant storage
-        config = false;
+        isConfigured = false;
     }
     
     return self;
@@ -47,14 +52,14 @@
     if(inputStream){
         NSInteger responseLength;
         uint8_t buffer[bufferSize];
-        while ([inputStream hasBytesAvailable] && config == false) {
+        while ([inputStream hasBytesAvailable] && !isConfigured) {
             responseLength = [inputStream read:buffer maxLength:sizeof(buffer)];
             if (responseLength > 0) {
                 NSString *response = [[NSString alloc] initWithBytes:buffer 
                                                               length:responseLength 
                                                             encoding:NSASCIIStringEncoding];
                 if (response != nil) {
-                    config = true;
+                    isConfigured = true;
                     NSLog(@"Connection response: %@", response);
                     [self translatePointerConfiguration:response];
                 }
@@ -65,15 +70,14 @@
 }
 
 - (void)translatePointerConfiguration:(NSString *)pointerConfiguration {
-    NSInteger clientId, screenWidth, screenHeight, ftpPortNumber;
     NSScanner *scanner = [NSScanner scannerWithString:pointerConfiguration];
     
-    [scanner scanInt:&clientId];
-    NSLog(@"Client ID Config: %d", clientId);
-    [scanner scanInt:&screenWidth];
-    NSLog(@"Screen Width ID Config: %d", screenWidth);
-    [scanner scanInt:&screenHeight];
-    NSLog(@"Screen Height ID Config: %d", screenHeight);
+    [scanner scanInt:&pointerId];
+    NSLog(@"Client ID Config: %d", pointerId);
+    [scanner scanInt:&sageWidth];
+    NSLog(@"Screen Width ID Config: %d", sageWidth);
+    [scanner scanInt:&sageHeight];
+    NSLog(@"Screen Height ID Config: %d", sageHeight);
     [scanner scanInt:&ftpPortNumber];
     NSLog(@"FTP Port Config: %d", ftpPortNumber);
     

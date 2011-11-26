@@ -7,6 +7,7 @@
 //
 
 #import "OutputTranslator.h"
+#import "InputTranslator.h"
 
 @implementation OutputTranslator
 

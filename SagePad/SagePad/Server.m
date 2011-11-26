@@ -24,11 +24,11 @@
     return self; // maybe if we change the return type here to (id<AbstractServer> *) and cast self to it as well...
 }
 
-- (void)startWithInputTranslator:(id<NSStreamDelegate>)inputTranslator andOutputTranslator:(id<NSStreamDelegate>)outputTranslator {    
+- (void)startWithInputTranslator:(id<NSStreamDelegate>)inputTranslator 
+             andOutputTranslator:(id<NSStreamDelegate>)outputTranslator {    
     
-    NSLog(@"startWithInputTranslator");
+    NSLog(@"Server.startWithInputTranslator");
 
-    
     CFReadStreamRef readStream;
     CFWriteStreamRef writeStream;
     CFStreamCreatePairWithSocketToHost(NULL, (CFStringRef)[self getIpAddress], (UInt32)[self getPortNumber], &readStream, &writeStream);
@@ -47,7 +47,7 @@
 }
 
 - (void)stop { // Fixed
-    NSLog(@"Closing Streams");
+    NSLog(@"Server: Closing Streams");
     [inputStream close];
     [outputStream close];
     
