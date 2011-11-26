@@ -12,9 +12,10 @@
 @interface OutputTranslator : NSObject <AbstractOutputTranslator> {
     NSString *pointerConfigurationNotification;
     
-    NSInteger sageHeight;
-    NSInteger sageWidth;
     NSInteger pointerId;
+    NSInteger sageWidth;
+    NSInteger sageHeight;
+    NSInteger ftpPortNumber;
 }
 
 - (void)handlePointerConfiguration:(NSNotification *)notification;

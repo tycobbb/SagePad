@@ -11,9 +11,15 @@
 
 @interface InputTranslator : NSObject <AbstractInputTranslator> {
     NSInteger bufferSize;
+    BOOL isConfigured;
+    
     NSString *pointerConfigurationNotification;
-    BOOL config;
 }
+
+@property(readonly, nonatomic) NSInteger pointerId;
+@property(readonly, nonatomic) NSInteger sageWidth;
+@property(readonly, nonatomic) NSInteger sageHeight;
+@property(readonly, nonatomic) NSInteger ftpPortNumber;
 
 - (void)handleBytesAvailableEvent:(NSInputStream *)inputStream;
 - (void)translatePointerConfiguration:(NSString *)pointerConfiguration;

@@ -7,6 +7,7 @@
 //
 
 #import "OutputTranslator.h"
+#import "InputTranslator.h"
 
 @implementation OutputTranslator
 
@@ -33,9 +34,15 @@
     // translate and send to SAGE
 }
 
-- (void)handlePointerConfiguration:(NSNotification *)notification {
-    NSLog(@"Received notification in output translator: %@", [notification name]);
-    // need to figure out how to get the acutal string, not just notification name
+- (void)handlePointerConfiguration:(NSNotification *)notification {    
+    InputTranslator *inputTranslator = [notification object];
+    
+    pointerId = inputTranslator.pointerId;
+    sageWidth = inputTranslator.sageWidth;
+    sageHeight = inputTranslator.sageHeight;
+    ftpPortNumber = inputTranslator.ftpPortNumber;
+    
+    NSLog(@"Output translator received notification: %d %d %d %d", pointerId, sageWidth, sageHeight, ftpPortNumber);
 }
 
 - (void) dealloc
