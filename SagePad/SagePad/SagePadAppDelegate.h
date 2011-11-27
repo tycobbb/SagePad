@@ -8,12 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class SagePointerViewController;
+@class SagePadViewController;
 
 @interface SagePadAppDelegate : NSObject <UIApplicationDelegate>
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
-
-@property (nonatomic, retain) IBOutlet SagePointerViewController *viewController;
+@property (nonatomic, retain) IBOutlet UIViewController *viewController;
 
 @end
