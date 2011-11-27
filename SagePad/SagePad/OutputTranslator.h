@@ -16,6 +16,8 @@
     NSInteger sageWidth;
     NSInteger sageHeight;
     NSInteger ftpPortNumber;
+    
+    BOOL sharePointer;
 }
 
 - (void)handlePointerConfiguration:(NSNotification *)notification;

@@ -9,7 +9,7 @@
 #import <Foundation/NSObject.h>
 #import "AbstractServer.h"
 
-@interface Server : NSObject <AbstractServer> {
+@interface Server : NSObject <AbstractServer, NSStreamDelegate> {
     NSString *ipAddress;
     NSInteger portNumber;
     

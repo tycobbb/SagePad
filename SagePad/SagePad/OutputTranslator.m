@@ -20,6 +20,7 @@
                                                  selector:@selector(handlePointerConfiguration:) 
                                                      name:@"SPSageConfiguration" 
                                                    object:nil];
+        sharePointer = true;
     }
     
     return self;
@@ -39,6 +40,19 @@
 			break;
         case NSStreamEventHasSpaceAvailable:
             NSLog(@"Output Stream has Space Available");
+            if(sharePointer == true){
+                NSString *response  = [NSString stringWithFormat:@"%d %u %@ %@", 18, pointerId, @"john", @"#ff0000" ];
+                NSData *data = [[NSData alloc] initWithData:[response dataUsingEncoding:NSASCIIStringEncoding]];
+                [outputStream write:[data bytes] maxLength:[data length]];
+                NSLog(@"Sent: %@", response);
+                sharePointer = false;
+            }
+            else{
+                NSString *response  = [NSString stringWithFormat:@"%d %u %d %d", 17, pointerId, 200, 200 ];
+                NSData *data = [[NSData alloc] initWithData:[response dataUsingEncoding:NSASCIIStringEncoding]];
+                [outputStream write:[data bytes] maxLength:[data length]];
+                NSLog(@"Sent: %@", response);
+            }
             break;
 		case NSStreamEventEndEncountered:
             NSLog(@"Output Stream End Event");
