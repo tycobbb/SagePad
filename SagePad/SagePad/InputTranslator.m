@@ -7,6 +7,7 @@
 //
 
 #import "InputTranslator.h"
+#import "Server.h"
 
 @implementation InputTranslator
 
@@ -19,54 +20,20 @@
 {    
     self = [super init];
     if (self) {
-        bufferSize = 1024; // default buffer size
-        pointerConfigurationNotification = @"SPSageConfiguration"; // move this into some constant storage
-        isConfigured = false;
+        pointerConfigurationNotification = @"SPSageConfiguration";
+        [[NSNotificationCenter defaultCenter] addObserver:self 
+                                                 selector:@selector(recieveConfigurationString:) 
+                                                     name:@"TranslateInput" 
+                                                   object:nil];
     }
     
     return self;
 }
 
-- (void)stream:(NSStream *)stream handleEvent:(NSStreamEvent)streamEvent {    
-    switch (streamEvent) {
-        case NSStreamEventOpenCompleted:
-			NSLog(@"Input Stream opened.");
-			break;
-		case NSStreamEventHasBytesAvailable:
-            [self handleBytesAvailableEvent:(NSInputStream *)stream];
-            NSLog(@"Input Stream Has Bytes Available");
-            break;			
-		case NSStreamEventErrorOccurred:
-			NSLog(@"Input Stream Unable to connect to host.");
-			break;
-		case NSStreamEventEndEncountered:
-            NSLog(@"Input Stream End Event");
-			break;
-		default:
-			NSLog(@"Input Stream Unknown event");
-	}
+-(void)recieveConfigurationString:(NSNotification *)notification {
+    Server *server = [notification object];
     
-}
-
-- (void)handleBytesAvailableEvent:(NSInputStream *)inputStream {
-    if(inputStream){
-        NSInteger responseLength;
-        uint8_t buffer[bufferSize];
-        while ([inputStream hasBytesAvailable] && !isConfigured) {
-            responseLength = [inputStream read:buffer maxLength:sizeof(buffer)];
-            if (responseLength > 0) {
-                NSString *response = [[NSString alloc] initWithBytes:buffer 
-                                                              length:responseLength 
-                                                            encoding:NSASCIIStringEncoding];
-                if (response != nil) {
-                    isConfigured = true;
-                    NSLog(@"Connection response: %@", response);
-                    [self translatePointerConfiguration:response];
-                }
-            }
-        }
-    }
-
+    [self translatePointerConfiguration:server.inputFromStream];
 }
 
 - (void)translatePointerConfiguration:(NSString *)pointerConfiguration {
@@ -85,8 +52,12 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:pointerConfigurationNotification object:self];
 }
 
-- (void)setBufferSize:(int)_bufferSize {
-    bufferSize = _bufferSize;
+- (void) dealloc {
+    // If you don't remove yourself as an observer, the Notification Center
+    // will continue to try and send notification objects to the deallocated
+    // object.
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [super dealloc];
 }
 
 @end

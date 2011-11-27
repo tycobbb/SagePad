@@ -12,6 +12,8 @@
 
 @implementation Server
 
+@synthesize inputFromStream;
+
 - (id)initWithIp:(NSString *)_ipAddress andPortNumber:(NSInteger)_portNumber {
     self = [super init];
     if (self) {
@@ -19,13 +21,24 @@
         portNumber = _portNumber;
         NSLog(@"IP Address: %@", ipAddress);
         NSLog(@"Port Number: %d", portNumber);
+        
+        inputTranslatorNotification = @"TranslateInput";
+        
+        
+        bufferSize = 1024; // default buffer size
+        isConfigured = false;
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self 
+                                                 selector:@selector(sendOutputString:) 
+                                                     name:@"SendOutput" 
+                                                   object:nil];
     }
     
     return self; // maybe if we change the return type here to (id<AbstractServer> *) and cast self to it as well...
 }
 
-- (void)startWithInputTranslator:(id<NSStreamDelegate>)inputTranslator 
-             andOutputTranslator:(id<NSStreamDelegate>)outputTranslator {    
+- (void)startWithInputTranslator:(id<AbstractInputTranslator>)inputTranslator 
+             andOutputTranslator:(id<AbstractOutputTranslator>)outputTranslator {    
     
     NSLog(@"Server.startWithInputTranslator");
 
@@ -36,8 +49,8 @@
     inputStream = (NSInputStream *)readStream;
     outputStream = (NSOutputStream *)writeStream;
     
-    [inputStream setDelegate:inputTranslator];
-    [outputStream setDelegate:outputTranslator];
+    [inputStream setDelegate:self];
+    [outputStream setDelegate:self];
     
     [inputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
     [outputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
@@ -72,6 +85,59 @@
 - (NSInteger)getPortNumber {
     // get port number from core data
     return portNumber;
+}
+
+- (void)stream:(NSStream *)stream handleEvent:(NSStreamEvent)streamEvent {    
+    switch (streamEvent) {
+        case NSStreamEventOpenCompleted:
+			NSLog(@"Input Stream opened.");
+			break;
+		case NSStreamEventHasBytesAvailable:
+            if(stream == inputStream) [self handleBytesAvailableEvent];
+            NSLog(@"Input Stream Has Bytes Available");
+            break;			
+		case NSStreamEventErrorOccurred:
+			NSLog(@"Input Stream Unable to connect to host.");
+			break;
+		case NSStreamEventEndEncountered:
+            NSLog(@"Input Stream End Event");
+			break;
+		default:
+			NSLog(@"Input Stream Unknown event");
+	}
+    
+}
+
+- (void)handleBytesAvailableEvent {
+    NSInteger responseLength;
+    uint8_t buffer[bufferSize];
+    while ([inputStream hasBytesAvailable] && !isConfigured) {
+        responseLength = [inputStream read:buffer maxLength:sizeof(buffer)];
+        if (responseLength > 0) {
+            inputFromStream = [[NSString alloc] initWithBytes:buffer 
+                                                          length:responseLength 
+                                                        encoding:NSASCIIStringEncoding];
+            if (inputFromStream != nil) {
+                isConfigured = true;
+                
+                NSLog(@"Connection response: %@", inputFromStream);
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:inputTranslatorNotification object:self];
+            }
+        }
+    }
+    
+}
+
+- (void)setBufferSize:(int)_bufferSize {
+    bufferSize = _bufferSize;
+}
+
+- (void)sendOutputString:(NSNotification *)notification{
+    OutputTranslator *output = [notification object];
+    
+    NSData *data = [[NSData alloc] initWithData:[output.formattedOutput dataUsingEncoding:NSASCIIStringEncoding]];
+	[outputStream write:[data bytes] maxLength:[data length]];
 }
 
 @end

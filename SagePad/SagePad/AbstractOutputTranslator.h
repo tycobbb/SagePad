@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol AbstractOutputTranslator <NSStreamDelegate>
+@protocol AbstractOutputTranslator
 
 @required
 - (void)translateTouchEvent:(CGPoint *)touchCoordinates;

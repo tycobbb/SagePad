@@ -10,9 +10,6 @@
 #import "AbstractInputTranslator.h"
 
 @interface InputTranslator : NSObject <AbstractInputTranslator> {
-    NSInteger bufferSize;
-    BOOL isConfigured;
-    
     NSString *pointerConfigurationNotification;
 }
 
@@ -21,8 +18,8 @@
 @property(readonly, nonatomic) NSInteger sageHeight;
 @property(readonly, nonatomic) NSInteger ftpPortNumber;
 
-- (void)handleBytesAvailableEvent:(NSInputStream *)inputStream;
 - (void)translatePointerConfiguration:(NSString *)pointerConfiguration;
+- (void)recieveConfigurationString:(NSNotification *)notification; 
 
 @end
 

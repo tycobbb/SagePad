@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol AbstractInputTranslator <NSStreamDelegate>
+@protocol AbstractInputTranslator
 
 @optional
 - (void)setBufferSize:(int)_bufferSize;

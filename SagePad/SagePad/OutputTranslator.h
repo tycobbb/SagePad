@@ -11,6 +11,7 @@
 
 @interface OutputTranslator : NSObject <AbstractOutputTranslator> {
     NSString *pointerConfigurationNotification;
+    NSString *sendOutputNotification;
     
     NSInteger pointerId;
     NSInteger sageWidth;
@@ -20,6 +21,9 @@
     BOOL sharePointer;
 }
 
+@property (readonly, nonatomic) NSString *formattedOutput;
+
 - (void)handlePointerConfiguration:(NSNotification *)notification;
+- (void)formatOutput;
 
 @end
