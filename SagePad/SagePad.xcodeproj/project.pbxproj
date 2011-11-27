@@ -32,6 +32,7 @@
 		FBE8DC721481B75600A986B7 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBE8DC701481B75600A986B7 /* RootViewController.xib */; };
 		FBE8DC761481C50100A986B7 /* ConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBE8DC741481C50100A986B7 /* ConfigViewController.m */; };
 		FBE8DC771481C50100A986B7 /* ConfigViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBE8DC751481C50100A986B7 /* ConfigViewController.xib */; };
+		FBFF265F1482D82F00AA13F2 /* settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = FBFF265E1482D82E00AA13F2 /* settings.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +85,7 @@
 		FBE8DC731481C50100A986B7 /* ConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigViewController.h; sourceTree = "<group>"; };
 		FBE8DC741481C50100A986B7 /* ConfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigViewController.m; sourceTree = "<group>"; };
 		FBE8DC751481C50100A986B7 /* ConfigViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfigViewController.xib; sourceTree = "<group>"; };
+		FBFF265E1482D82E00AA13F2 /* settings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = settings.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				F9852B20146B4DCC00ED60B2 /* SagePad-Info.plist */,
+				FBFF265E1482D82E00AA13F2 /* settings.plist */,
 				F9852B21146B4DCC00ED60B2 /* InfoPlist.strings */,
 				F9852B24146B4DCC00ED60B2 /* main.m */,
 				F9852B26146B4DCC00ED60B2 /* SagePad-Prefix.pch */,
@@ -332,6 +335,7 @@
 				F9852B32146B4DCC00ED60B2 /* SagePadViewController.xib in Resources */,
 				FBE8DC721481B75600A986B7 /* RootViewController.xib in Resources */,
 				FBE8DC771481C50100A986B7 /* ConfigViewController.xib in Resources */,
+				FBFF265F1482D82F00AA13F2 /* settings.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

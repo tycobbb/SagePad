@@ -34,7 +34,7 @@
                                                    object:nil];
     }
     
-    return self; // maybe if we change the return type here to (id<AbstractServer> *) and cast self to it as well...
+    return self;
 }
 
 - (void)startWithInputTranslator:(id<AbstractInputTranslator>)inputTranslator 
