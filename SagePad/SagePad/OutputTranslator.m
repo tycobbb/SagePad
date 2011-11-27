@@ -41,9 +41,12 @@
     ftpPortNumber = inputTranslator.ftpPortNumber;
     
     NSLog(@"Output translator received notification: %d %d %d %d", pointerId, sageWidth, sageHeight, ftpPortNumber);
+    [self formatOutput];
 }
 
 - (void) formatOutput {
+    formattedOutput = @"18"; //Implement formatting of Output Here!
+    [[NSNotificationCenter defaultCenter] postNotificationName:sendOutputNotification object:self];
 }
 
 - (void) dealloc {
