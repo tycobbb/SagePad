@@ -28,6 +28,10 @@
 		FB91CD61147860950067EAE3 /* Server.m in Sources */ = {isa = PBXBuildFile; fileRef = FB91CD60147860950067EAE3 /* Server.m */; };
 		FB91CD6414786D000067EAE3 /* InputTranslator.m in Sources */ = {isa = PBXBuildFile; fileRef = FB91CD6314786D000067EAE3 /* InputTranslator.m */; };
 		FB91CD68147871D20067EAE3 /* OutputTranslator.m in Sources */ = {isa = PBXBuildFile; fileRef = FB91CD67147871D20067EAE3 /* OutputTranslator.m */; };
+		FBE8DC711481B75600A986B7 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBE8DC6F1481B75600A986B7 /* RootViewController.m */; };
+		FBE8DC721481B75600A986B7 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBE8DC701481B75600A986B7 /* RootViewController.xib */; };
+		FBE8DC761481C50100A986B7 /* ConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBE8DC741481C50100A986B7 /* ConfigViewController.m */; };
+		FBE8DC771481C50100A986B7 /* ConfigViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBE8DC751481C50100A986B7 /* ConfigViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +78,12 @@
 		FB91CD66147871D20067EAE3 /* OutputTranslator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutputTranslator.h; sourceTree = "<group>"; };
 		FB91CD67147871D20067EAE3 /* OutputTranslator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutputTranslator.m; sourceTree = "<group>"; };
 		FB91CD69147873800067EAE3 /* AbstractOutputTranslator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractOutputTranslator.h; sourceTree = "<group>"; };
+		FBE8DC6E1481B75600A986B7 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		FBE8DC6F1481B75600A986B7 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		FBE8DC701481B75600A986B7 /* RootViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
+		FBE8DC731481C50100A986B7 /* ConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigViewController.h; sourceTree = "<group>"; };
+		FBE8DC741481C50100A986B7 /* ConfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigViewController.m; sourceTree = "<group>"; };
+		FBE8DC751481C50100A986B7 /* ConfigViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfigViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +211,8 @@
 			isa = PBXGroup;
 			children = (
 				F9852B2A146B4DCC00ED60B2 /* MainWindow.xib */,
+				FBE8DC701481B75600A986B7 /* RootViewController.xib */,
+				FBE8DC751481C50100A986B7 /* ConfigViewController.xib */,
 				F9852B30146B4DCC00ED60B2 /* SagePadViewController.xib */,
 			);
 			name = UI;
@@ -231,6 +243,10 @@
 			children = (
 				F9852B2D146B4DCC00ED60B2 /* SagePadViewController.h */,
 				F9852B2E146B4DCC00ED60B2 /* SagePadViewController.m */,
+				FBE8DC6E1481B75600A986B7 /* RootViewController.h */,
+				FBE8DC6F1481B75600A986B7 /* RootViewController.m */,
+				FBE8DC731481C50100A986B7 /* ConfigViewController.h */,
+				FBE8DC741481C50100A986B7 /* ConfigViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -314,6 +330,8 @@
 				F9852B23146B4DCC00ED60B2 /* InfoPlist.strings in Resources */,
 				F9852B2C146B4DCC00ED60B2 /* MainWindow.xib in Resources */,
 				F9852B32146B4DCC00ED60B2 /* SagePadViewController.xib in Resources */,
+				FBE8DC721481B75600A986B7 /* RootViewController.xib in Resources */,
+				FBE8DC771481C50100A986B7 /* ConfigViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,6 +375,8 @@
 				FB91CD6414786D000067EAE3 /* InputTranslator.m in Sources */,
 				FB91CD68147871D20067EAE3 /* OutputTranslator.m in Sources */,
 				FB88957C147D6D6B00A2DA58 /* NetworkingService.m in Sources */,
+				FBE8DC711481B75600A986B7 /* RootViewController.m in Sources */,
+				FBE8DC761481C50100A986B7 /* ConfigViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

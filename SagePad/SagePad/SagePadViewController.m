@@ -22,40 +22,72 @@
 }
 
 #pragma mark - View lifecycle
+// --- "private" helper methods ---
+
+// setup gesture recognizer for swipe right (to home view)
+- (void)addSwipeGestureRecognizer {
+    UISwipeGestureRecognizer *twoFingerSwipe = 
+    [[UISwipeGestureRecognizer alloc] initWithTarget:self
+                                              action:@selector(handleSwipeRight:)];
+    twoFingerSwipe.numberOfTouchesRequired = 2;
+    [twoFingerSwipe setDirection:UISwipeGestureRecognizerDirectionRight];
+    [self.view addGestureRecognizer:twoFingerSwipe];
+    [twoFingerSwipe release];
+}
+
+// setup gesture recognizer for pinch zoom
+- (void)addPinchGestureRecognizer {
+    UIPinchGestureRecognizer *pinch =
+    [[UIPinchGestureRecognizer alloc] initWithTarget:self
+                                              action:@selector(handlePinch:)];
+    [self.view addGestureRecognizer:pinch];
+    [pinch release];
+}
+
+// initialize and start the networking service
+- (void)initNetworkingService {
+    NSLog(@"Initializing Networking Service");
+    networkingService = [[NetworkingService alloc] initWithIp:@"localhost" 
+                                               withPortNumber:30000 
+                                          withInputTranslator:[[InputTranslator alloc] init] 
+                                         withOutputTranslator:[[OutputTranslator alloc] init]];
+    NSLog(@"Pointer: about to call networkingService.startServer");
+    [networkingService startServer];
+    NSLog(@"Pointer: networkingService.startServer returned");
+}
+
+// --- "public" methods ---
 
 // additional setup after loading the view
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // setup gesture recognizer to swipe right to home view
-    UISwipeGestureRecognizer *twoFingerSwipe = 
-        [[UISwipeGestureRecognizer alloc] initWithTarget:self
-                                                  action:@selector(handleSwipeRight:)];
-    twoFingerSwipe.numberOfTouchesRequired = 2;
-    [twoFingerSwipe setDirection:UISwipeGestureRecognizerDirectionRight];
-    [self.view addGestureRecognizer:twoFingerSwipe];
-    [twoFingerSwipe release];
+    [self addSwipeGestureRecognizer];
+    [self addPinchGestureRecognizer];
+    [self initNetworkingService];   
     
-    // instantiate and start networking service upon entering the pointer view
-    NSLog(@"Initializing Networking Service");
-    networkingService = [[NetworkingService alloc] initWithIp:@"localhost" 
-                   withPortNumber:30000 
-              withInputTranslator:[[InputTranslator alloc] init] 
-             withOutputTranslator:[[OutputTranslator alloc] init]];
-    NSLog(@"SagePadViewController: about to call networkingService.startServer");
-    [networkingService startServer];
-    NSLog(@"SagePadViewController: networkingService.startServer returned");
-
+    // hide the navigation bar
+    [[self navigationController] setNavigationBarHidden:YES animated:YES];
 }
 
 // method to handle swipe event, direct back to the home view
 - (void)handleSwipeRight:(UISwipeGestureRecognizer *)swipeRight {
     CGPoint location = [swipeRight locationInView:[swipeRight.view superview]];
-    NSLog(@"Captured a swipe left at (%f, %f).", location.x, location.y);
+    NSLog(@"Pointer: captured a swipe right at (%f, %f).", location.x, location.y);
+    [[self navigationController] popViewControllerAnimated:YES];
+}
+
+- (void)handlePinch:(UIPinchGestureRecognizer *)pinch {
+    NSLog(@"Pointer: captured pinch with scale %f", [pinch scale]); 
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    if([touches count] > 1) { 
+        NSLog(@"Pointer: captured touch with >1 fingers");
+        return;
+    }
     CGPoint touchCoordinates = [[touches anyObject] locationInView:self.view];
+    NSLog(@"Pointer: standard touch coordinates (%f, %f).", touchCoordinates.x, touchCoordinates.y);
     [networkingService translateTouchEvent:&touchCoordinates];
 }
 
@@ -64,22 +96,16 @@
 }
 
 - (void)viewDidUnload {
+    [networkingService stopServer];
     [networkingService release];
-    // example setting properties to nil upon unload
-    //    [self setTouchLabel:nil];
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return YES;
+    return UIInterfaceOrientationIsLandscape(interfaceOrientation);
 }
 
 - (void)dealloc {
-    // example release properties during dealloc
-//    [touchLabel release];
     [super dealloc];
 }
 

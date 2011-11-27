@@ -7,7 +7,7 @@
 //
 
 #import "SagePadAppDelegate.h"
-#import "SagePadViewController.h"
+#import "RootViewController.h"
 
 @implementation SagePadAppDelegate
 
@@ -16,8 +16,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
-     
+    UIViewController *rootController = [[RootViewController alloc] init];
+    _viewController = [[UINavigationController alloc] initWithRootViewController:rootController];
+    [rootController release];
+    
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     return YES;
