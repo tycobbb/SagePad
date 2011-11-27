@@ -136,6 +136,8 @@
 - (void)sendOutputString:(NSNotification *)notification{
     OutputTranslator *output = [notification object];
     
+    NSLog(@"MESSAGE FROM OUTPUT TRANSLATOR: %@", output.formattedOutput);
+    
     NSData *data = [[NSData alloc] initWithData:[output.formattedOutput dataUsingEncoding:NSASCIIStringEncoding]];
 	[outputStream write:[data bytes] maxLength:[data length]];
 }
