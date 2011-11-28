@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ConfigViewController : UIViewController <UITextFieldDelegate> {
+@interface ConfigViewController : UIViewController <UITextFieldDelegate> {    
     NSCharacterSet *decimalDigitCharacterSet;
     NSCharacterSet *alphanumericCharacterSet;
 }

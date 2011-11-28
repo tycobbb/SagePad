@@ -33,6 +33,8 @@
 		FBE8DC761481C50100A986B7 /* ConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBE8DC741481C50100A986B7 /* ConfigViewController.m */; };
 		FBE8DC771481C50100A986B7 /* ConfigViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBE8DC751481C50100A986B7 /* ConfigViewController.xib */; };
 		FBFF265F1482D82F00AA13F2 /* settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = FBFF265E1482D82E00AA13F2 /* settings.plist */; };
+		FBFF26631482DBEE00AA13F2 /* SagePadConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = FBFF26621482DBEE00AA13F2 /* SagePadConstants.m */; };
+		FBFF26671483244200AA13F2 /* SagePadSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = FBFF26661483244200AA13F2 /* SagePadSettings.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +88,10 @@
 		FBE8DC741481C50100A986B7 /* ConfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigViewController.m; sourceTree = "<group>"; };
 		FBE8DC751481C50100A986B7 /* ConfigViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfigViewController.xib; sourceTree = "<group>"; };
 		FBFF265E1482D82E00AA13F2 /* settings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = settings.plist; sourceTree = "<group>"; };
+		FBFF26611482DBEE00AA13F2 /* SagePadConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SagePadConstants.h; sourceTree = "<group>"; };
+		FBFF26621482DBEE00AA13F2 /* SagePadConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SagePadConstants.m; sourceTree = "<group>"; };
+		FBFF26651483244200AA13F2 /* SagePadSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SagePadSettings.h; sourceTree = "<group>"; };
+		FBFF26661483244200AA13F2 /* SagePadSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SagePadSettings.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +156,7 @@
 				FBFB49B9147C843900FD6736 /* Views */,
 				FB697441147C85300070D758 /* UI */,
 				FB889578147D6D2100A2DA58 /* NetworkingService */,
+				FBFF2664148323C600AA13F2 /* Utility Classes */,
 				FB697442147C85890070D758 /* App Delegate */,
 				F9852B1F146B4DCC00ED60B2 /* Supporting Files */,
 			);
@@ -261,6 +268,17 @@
 				FB07B5CA146B4E5900DCBA95 /* SagePadTouchView.m */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		FBFF2664148323C600AA13F2 /* Utility Classes */ = {
+			isa = PBXGroup;
+			children = (
+				FBFF26611482DBEE00AA13F2 /* SagePadConstants.h */,
+				FBFF26621482DBEE00AA13F2 /* SagePadConstants.m */,
+				FBFF26651483244200AA13F2 /* SagePadSettings.h */,
+				FBFF26661483244200AA13F2 /* SagePadSettings.m */,
+			);
+			name = "Utility Classes";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -381,6 +399,8 @@
 				FB88957C147D6D6B00A2DA58 /* NetworkingService.m in Sources */,
 				FBE8DC711481B75600A986B7 /* RootViewController.m in Sources */,
 				FBE8DC761481C50100A986B7 /* ConfigViewController.m in Sources */,
+				FBFF26631482DBEE00AA13F2 /* SagePadConstants.m in Sources */,
+				FBFF26671483244200AA13F2 /* SagePadSettings.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
