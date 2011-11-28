@@ -30,13 +30,13 @@
 }
 
 - (void)dealloc {
-    [server release];
+    [server release];    
     [super dealloc];
 }
 
 - (void)startServer {
     NSLog(@"StartingServer");
-    [server startWithInputTranslator:inputTranslator andOutputTranslator:outputTranslator]; 
+    [server start]; 
 }
 
 - (void)stopServer {

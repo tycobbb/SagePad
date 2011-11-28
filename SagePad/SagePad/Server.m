@@ -25,7 +25,7 @@
         inputTranslatorNotification = @"TranslateInput";
         
         
-        bufferSize = 1024; // default buffer size
+        bufferSize = 1280; // default buffer size
         isConfigured = false;
         
         [[NSNotificationCenter defaultCenter] addObserver:self 
@@ -34,12 +34,10 @@
                                                    object:nil];
     }
     
-    return self; // maybe if we change the return type here to (id<AbstractServer> *) and cast self to it as well...
+    return self;
 }
 
-- (void)startWithInputTranslator:(id<AbstractInputTranslator>)inputTranslator 
-             andOutputTranslator:(id<AbstractOutputTranslator>)outputTranslator {    
-    
+- (void)start {    
     NSLog(@"Server.startWithInputTranslator");
 
     CFReadStreamRef readStream;
@@ -48,6 +46,9 @@
     
     inputStream = (NSInputStream *)readStream;
     outputStream = (NSOutputStream *)writeStream;
+    
+    [inputStream retain];
+    [outputStream retain];
     
     [inputStream setDelegate:self];
     [outputStream setDelegate:self];
@@ -90,29 +91,53 @@
 - (void)stream:(NSStream *)stream handleEvent:(NSStreamEvent)streamEvent {    
     switch (streamEvent) {
         case NSStreamEventOpenCompleted:
-			NSLog(@"Input Stream opened.");
+			if(stream == inputStream) NSLog(@"Input Stream opened.");
+            else NSLog(@"Output Stream opened.");
 			break;
+            
 		case NSStreamEventHasBytesAvailable:
-            if(stream == inputStream) [self handleBytesAvailableEvent];
-            NSLog(@"Input Stream Has Bytes Available");
-            break;			
+            if(stream == inputStream){
+                [self handleBytesAvailableEvent:(NSInputStream*)inputStream];
+                NSLog(@"Input Stream Has Bytes Available"); }
+            else 
+                NSLog(@"Output Stream Has Bytes Available");
+            break;
+			
 		case NSStreamEventErrorOccurred:
-			NSLog(@"Input Stream Unable to connect to host.");
+            if(stream == inputStream) NSLog(@"Input Stream Unable to connect to host.");
+            else NSLog(@"Output Stream Unable to connect to host.");
+            break;
+            
+        case NSStreamEventHasSpaceAvailable:
+            if(stream == inputStream) NSLog(@"Input Stream has Space Available");
+            else NSLog(@"Output Stream has Space Available");
+            break;
+		
+        case NSStreamEventEndEncountered:
+            if(stream == inputStream) NSLog(@"Input Stream End Event");
+            else NSLog(@"Output Stream End Event");
+            [stream close];
+            [stream removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+            [stream release];
+            stream = nil;
 			break;
-		case NSStreamEventEndEncountered:
-            NSLog(@"Input Stream End Event");
-			break;
+            
 		default:
-			NSLog(@"Input Stream Unknown event");
+			if(stream == inputStream) NSLog(@"Input Stream Unknown event");
+            else NSLog(@"Output Stream Unknown event");
+            NSLog(@"stream event %i", streamEvent);
+            break;
 	}
     
 }
 
-- (void)handleBytesAvailableEvent {
+- (void)handleBytesAvailableEvent:(NSInputStream*)inStream {
     NSInteger responseLength;
     uint8_t buffer[bufferSize];
-    while ([inputStream hasBytesAvailable] && !isConfigured) {
-        responseLength = [inputStream read:buffer maxLength:sizeof(buffer)];
+    while ([inStream hasBytesAvailable] && !isConfigured) {
+        responseLength = [inStream read:buffer maxLength:sizeof(buffer)];
+        NSLog(@"Size of buffer: %lu", sizeof(buffer));
+        NSLog(@"Reading from stream");
         if (responseLength > 0) {
             inputFromStream = [[NSString alloc] initWithBytes:buffer 
                                                           length:responseLength 
@@ -138,8 +163,27 @@
     
     NSLog(@"MESSAGE FROM OUTPUT TRANSLATOR: %@", output.formattedOutput);
     
-    NSData *data = [[NSData alloc] initWithData:[output.formattedOutput dataUsingEncoding:NSASCIIStringEncoding]];
-	[outputStream write:[data bytes] maxLength:[data length]];
+    NSMutableData *data = [[NSMutableData alloc] initWithLength:128];
+    NSData *outputData = [[NSData alloc] initWithData:[output.formattedOutput dataUsingEncoding:NSUTF8StringEncoding]];
+    NSRange range = NSMakeRange(0, [outputData length]);
+    [data replaceBytesInRange:range withBytes:outputData];
+    
+    [outputData release];
+    
+    NSLog(@"Length of Data: %d", [data length]);
+    
+    [(NSOutputStream *)outputStream write:[data bytes] maxLength:[data length]];
+}
+
+- (void)dealloc {
+	[inputStream release];
+	[outputStream release];
+    
+	[inputFromStream release];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    [super dealloc];
 }
 
 @end

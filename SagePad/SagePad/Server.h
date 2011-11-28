@@ -9,14 +9,14 @@
 #import <Foundation/NSObject.h>
 #import "AbstractServer.h"
 
-@interface Server : NSObject <AbstractServer> {
+@interface Server : NSObject <AbstractServer, NSStreamDelegate> {
     NSString *inputTranslatorNotification;
     
     NSString *ipAddress;
     NSInteger portNumber;
     
-    NSStream *inputStream;
-    NSStream *outputStream;
+    NSInputStream *inputStream;
+    NSOutputStream *outputStream;
     
     NSInteger bufferSize;
     BOOL isConfigured;
@@ -24,7 +24,7 @@
 
 @property(readonly, nonatomic) NSString *inputFromStream;
 
-- (void)handleBytesAvailableEvent;
+- (void)handleBytesAvailableEvent:(NSInputStream *)inputStream;
 - (void)setBufferSize:(int)_bufferSize;
 - (void)sendOutputString:(NSNotification *)notification;
 

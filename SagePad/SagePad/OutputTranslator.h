@@ -22,6 +22,7 @@
 }
 
 @property (readonly, nonatomic) NSString *formattedOutput;
+@property (readwrite, nonatomic) CGPoint currentCoordinates;
 
 - (void)handlePointerConfiguration:(NSNotification *)notification;
 - (void)formatOutput;

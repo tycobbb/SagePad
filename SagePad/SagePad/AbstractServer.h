@@ -15,7 +15,7 @@
 @required
 - (id)initWithIp:(NSString *)_ipAddress andPortNumber:(NSInteger)_portNumber;
 
-- (void)startWithInputTranslator:(id<NSStreamDelegate>)_inputTranslator andOutputTranslator:(id<NSStreamDelegate>)_outputTranslator;
+- (void)start;
 - (void)stop;
 
 - (NSString *)getIpAddress;

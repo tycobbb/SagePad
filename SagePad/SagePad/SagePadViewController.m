@@ -47,7 +47,7 @@
 // initialize and start the networking service
 - (void)initNetworkingService {
     NSLog(@"Initializing Networking Service");
-    networkingService = [[NetworkingService alloc] initWithIp:@"localhost" 
+    networkingService = [[NetworkingService alloc] initWithIp:@"127.0.0.1" 
                                                withPortNumber:30000 
                                           withInputTranslator:[[InputTranslator alloc] init] 
                                          withOutputTranslator:[[OutputTranslator alloc] init]];
@@ -106,6 +106,9 @@
 }
 
 - (void)dealloc {
+    [networkingService release];
+    [InputTranslator release];
+    [OutputTranslator release];
     [super dealloc];
 }
 
