@@ -10,7 +10,7 @@
 #import "AbstractInputTranslator.h"
 #import "AbstractOutputTranslator.h"
 
-@protocol AbstractServer <NSObject, NSStreamDelegate>
+@protocol AbstractServer <NSObject>
 
 @required
 - (id)initWithIp:(NSString *)_ipAddress andPortNumber:(NSInteger)_portNumber;

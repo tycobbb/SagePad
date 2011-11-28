@@ -45,9 +45,9 @@
         if(touchCoordinates->y > sageHeight) currentCoordinates.y = sageHeight;
         else currentCoordinates.y = touchCoordinates->y;
     
-        formattedOutput = [NSString stringWithFormat:@"%d%u%f%f", 17, pointerId, currentCoordinates.x, currentCoordinates.y];
+        formattedOutput = [NSString stringWithFormat:@"%d %u %f %f", 17, pointerId, currentCoordinates.x, currentCoordinates.y];
     
-        [[NSNotificationCenter defaultCenter] postNotificationName:sendOutputNotification object:self];
+        //[[NSNotificationCenter defaultCenter] postNotificationName:sendOutputNotification object:self];
     }
 }
 
@@ -67,7 +67,7 @@
 }
 
 - (void) formatOutput {
-    formattedOutput = [NSString stringWithFormat:@"%d%u%s%s", 18, pointerId, "John", "#ff0000"]; //Implement formatting of Output Here!
+    formattedOutput = [NSString stringWithFormat:@"%d %u %s %s", 18, pointerId, "John", "#ff0000"]; //Implement formatting of Output Here!
     [[NSNotificationCenter defaultCenter] postNotificationName:sendOutputNotification object:self];
 }
 

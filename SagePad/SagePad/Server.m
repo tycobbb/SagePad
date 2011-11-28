@@ -7,7 +7,6 @@
 //
 
 #import "Server.h"
-#import "InputTranslator.h"
 #import "OutputTranslator.h"
 
 @implementation Server
@@ -163,12 +162,14 @@
     
     NSLog(@"MESSAGE FROM OUTPUT TRANSLATOR: %@", output.formattedOutput);
     
+    //<3138334a 6f686e23 66663030 3030>
     NSMutableData *data = [[NSMutableData alloc] initWithLength:128];
-    NSData *outputData = [[NSData alloc] initWithData:[output.formattedOutput dataUsingEncoding:NSUTF8StringEncoding]];
+    NSMutableData *outputData = [NSMutableData dataWithData:[output.formattedOutput dataUsingEncoding:NSUTF8StringEncoding]];
+    //NSMutableData *data = [[NSMutableData alloc] initWithBytesNoCopy:outputData length:[outputData length]];
     NSRange range = NSMakeRange(0, [outputData length]);
-    [data replaceBytesInRange:range withBytes:outputData];
+    [data replaceBytesInRange:range withBytes:[outputData bytes] length:[outputData length]];
     
-    [outputData release];
+    //[outputData release];
     
     NSLog(@"Length of Data: %d", [data length]);
     
