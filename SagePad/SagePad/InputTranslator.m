@@ -8,6 +8,7 @@
 
 #import "InputTranslator.h"
 #import "Server.h"
+#import "SagePadConstants.h"
 
 @implementation InputTranslator
 
@@ -20,36 +21,26 @@
 {    
     self = [super init];
     if (self) {
-        pointerConfigurationNotification = @"SPSageConfiguration";
         [[NSNotificationCenter defaultCenter] addObserver:self 
-                                                 selector:@selector(recieveConfigurationString:) 
-                                                     name:@"TranslateInput" 
+                                                 selector:@selector(translatePointerConfiguration:) 
+                                                     name:NOTIFY_INPUT
                                                    object:nil];
     }
     
     return self;
 }
 
--(void)recieveConfigurationString:(NSNotification *)notification {
-    Server *server = [notification object];
-    
-    [self translatePointerConfiguration:server.inputFromStream];
-}
-
-- (void)translatePointerConfiguration:(NSString *)pointerConfiguration {
-    NSScanner *scanner = [NSScanner scannerWithString:pointerConfiguration];
+- (void)translatePointerConfiguration:(NSNotification *)notification {
+    NSString *configurationString = ((Server *)[notification object]).inputFromStream;
+    NSScanner *scanner = [NSScanner scannerWithString:configurationString];
     
     [scanner scanInt:&pointerId];
-    NSLog(@"Client ID Config: %d", pointerId);
     [scanner scanInt:&sageWidth];
-    NSLog(@"Screen Width ID Config: %d", sageWidth);
     [scanner scanInt:&sageHeight];
-    NSLog(@"Screen Height ID Config: %d", sageHeight);
     [scanner scanInt:&ftpPortNumber];
-    NSLog(@"FTP Port Config: %d", ftpPortNumber);
     
     // send the notification, may have to attach the data in some manner
-    [[NSNotificationCenter defaultCenter] postNotificationName:pointerConfigurationNotification object:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFY_SAGE_CONFIG object:self];
 }
 
 - (void) dealloc {

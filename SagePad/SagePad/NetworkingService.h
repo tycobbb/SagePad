@@ -17,9 +17,8 @@
     id<AbstractOutputTranslator> outputTranslator;
 }
 
-- (id)initWithIp:(NSString *)_ip withPortNumber:(NSInteger)_portNumber 
-    withInputTranslator:(id<AbstractInputTranslator>)_inputTranslator
-    withOutputTranslator:(id<AbstractOutputTranslator>)_outputTranslator;
+- (id)initWithInputTranslator:(id<AbstractInputTranslator>)_inputTranslator 
+         withOutputTranslator:(id<AbstractOutputTranslator>)_outputTranslator;
 
 - (void)startServer;
 - (void)stopServer;

@@ -8,29 +8,27 @@
 
 #import "OutputTranslator.h"
 #import "InputTranslator.h"
+#import "SagePadConstants.h"
 
 @implementation OutputTranslator
 
 @synthesize formattedOutput;
-@synthesize currentCoordinates;
 
-- (id)init
-{
+- (id)initWithDeviceWidth:(CGFloat)deviceWidth andHeight:(CGFloat)deviceHeight {
     self = [super init];
     if (self) {
-        //Notifications
-        pointerConfigurationNotification = @"SPSageConfiguration";
-        sendOutputNotification = @"SendOutput"; // move this into some constant storage
+        xAtom = deviceWidth; // not yet the atomic units...
+        yAtom = deviceHeight;
         
-        //Keeping track of coordinates in SAGE-Next
-        currentCoordinates.x = 0;
-        currentCoordinates.y = 0;
-        sharePointer = false;
+        settings = [[SagePadSettings alloc] init];
         
-        //Notification handler
+        pointerAlreadyShared = NO;        
+        previousTouch->x = 0;
+        previousTouch->y = 0;
+        
         [[NSNotificationCenter defaultCenter] addObserver:self 
                                                  selector:@selector(handlePointerConfiguration:) 
-                                                     name:@"SPSageConfiguration" 
+                                                     name:NOTIFY_SAGE_CONFIG
                                                    object:nil];
     }
     
@@ -59,10 +57,12 @@
     sageHeight = inputTranslator.sageHeight;
     ftpPortNumber = inputTranslator.ftpPortNumber;
     
-    NSLog(@"Output translator received notification: %d %d %d %d", pointerId, sageWidth, sageHeight, ftpPortNumber);
-    if(sharePointer == false){
-        [self formatOutput];
-        sharePointer = true;
+    xAtom = sageWidth / xAtom * [settings.sensitivity floatValue] / 100.0;
+    yAtom = sageWidth / xAtom * [settings.sensitivity floatValue] / 100.0;
+    
+    if(!pointerAlreadyShared) {
+        [self formatOutputAndNotifyServer:18 withParam1:settings.pointerName andParam2:settings.pointerColor];
+        pointerAlreadyShared = YES;
     }
 }
 
@@ -72,11 +72,10 @@
 }
 
 - (void) dealloc {
-    // If you don't remove yourself as an observer, the Notification Center
-    // will continue to try and send notification objects to the deallocated
-    // object.
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [settings release];
     [formattedOutput release];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
     [super dealloc];
 }
 
