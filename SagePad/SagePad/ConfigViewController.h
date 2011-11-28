@@ -8,6 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ConfigViewController : UIViewController
+@interface ConfigViewController : UIViewController <UITextFieldDelegate> {    
+    NSCharacterSet *decimalDigitCharacterSet;
+    NSCharacterSet *alphanumericCharacterSet;
+}
+
+@property (nonatomic, retain) IBOutlet UITextField *ipTextField;
+@property (nonatomic, retain) IBOutlet UITextField *portTextField;
+@property (nonatomic, retain) IBOutlet UITextField *nameTextField;
+@property (nonatomic, retain) IBOutlet UITextField *colorTextField;
+@property (nonatomic, retain) IBOutlet UISlider *sensitvitySlider;
+@property (nonatomic, retain) IBOutlet UITextField *sensitivityTextField;
+
+- (IBAction)sensitivitySliderValueChanged:(UISlider *)sender;
+- (IBAction)saveConfiguration:(id)sender;
 
 @end

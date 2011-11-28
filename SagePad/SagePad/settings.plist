@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SP_SERVER_IP_ADDRESS</key>
+	<string></string>
+	<key>SP_SERVER_PORT_NUMBER</key>
+	<integer>0</integer>
+	<key>SP_POINTER_NAME</key>
+	<string></string>
+	<key>SP_POINTER_COLOR</key>
+	<string></string>
+	<key>SP_POINTER_SENSITIVITY</key>
+	<integer>0</integer>
+</dict>
+</plist>
