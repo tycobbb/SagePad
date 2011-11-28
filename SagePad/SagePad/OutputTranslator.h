@@ -8,23 +8,26 @@
 
 #import <Foundation/Foundation.h>
 #import "AbstractOutputTranslator.h"
+#import "SagePadSettings.h"
 
 @interface OutputTranslator : NSObject <AbstractOutputTranslator> {
-    NSString *pointerConfigurationNotification;
-    NSString *sendOutputNotification;
-    
-    NSInteger pointerId;
-    NSInteger sageWidth;
-    NSInteger sageHeight;
-    NSInteger ftpPortNumber;
-    
-    BOOL sharePointer;
+    NSUInteger pointerId;
+    NSUInteger sageWidth;
+    NSUInteger sageHeight;
+    NSUInteger ftpPortNumber;
+    SagePadSettings *settings;
+
+    CGPoint *previousTouch; // coordinates of the previous pointer location read
+    CGFloat xAtom;
+    CGFloat yAtom;
+
+    BOOL pointerAlreadyShared;
 }
 
 @property (readonly, nonatomic) NSString *formattedOutput;
-@property (readwrite, nonatomic) CGPoint currentCoordinates;
 
+- (id)initWithDeviceWidth:(CGFloat)deviceWidth andHeight:(CGFloat)deviceHeight;
 - (void)handlePointerConfiguration:(NSNotification *)notification;
-- (void)formatOutput;
+- (void)formatOutputAndNotifyServer:(NSInteger)outputType withParam1:(NSString *)param1 andParam2:(NSString *)param2;
 
 @end

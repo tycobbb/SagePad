@@ -15,10 +15,10 @@
 @property (readonly, nonatomic) NSString *pointerName;
 @property (readonly, nonatomic) NSString *pointerColor;
 @property (readonly, nonatomic) NSNumber *sensitivity;
+@property (readonly, nonatomic, retain) NSMutableDictionary *dictionary;
 
-+ (NSMutableDictionary *)initDictionary;
-+ (void)writeSettingsDictionary:(NSMutableDictionary *)settings;
 - (void)refreshSettings;
+- (void)writeCurrentDictionary;
 - (void)writeValue:(id)value forKey:(NSString *)key;
 
 @end

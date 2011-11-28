@@ -17,8 +17,5 @@
 
 - (void)start;
 - (void)stop;
-
-- (NSString *)getIpAddress;
-- (NSInteger )getPortNumber;
     
 @end

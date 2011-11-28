@@ -46,11 +46,13 @@
 
 // initialize and start the networking service
 - (void)initNetworkingService {
+    CGFloat width = CGRectGetWidth(self.view.bounds);
+    CGFloat height = CGRectGetHeight(self.view.bounds); // need to account for status bar...
+
     NSLog(@"Initializing Networking Service");
-    networkingService = [[NetworkingService alloc] initWithIp:@"127.0.0.1" 
-                                               withPortNumber:30000 
-                                          withInputTranslator:[[InputTranslator alloc] init] 
-                                         withOutputTranslator:[[OutputTranslator alloc] init]];
+    networkingService = [[NetworkingService alloc] initWithInputTranslator:[[InputTranslator alloc] init]  
+                                                      withOutputTranslator:[[OutputTranslator alloc] initWithDeviceWidth:width 
+                                                                                                               andHeight:height]];
     NSLog(@"Pointer: about to call networkingService.startServer");
     [networkingService startServer];
     NSLog(@"Pointer: networkingService.startServer returned");
@@ -61,13 +63,15 @@
 // additional setup after loading the view
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    [[self navigationController] setNavigationBarHidden:YES animated:YES];
+    
     
     [self addSwipeGestureRecognizer];
     [self addPinchGestureRecognizer];
     [self initNetworkingService];   
     
     // hide the navigation bar
-    [[self navigationController] setNavigationBarHidden:YES animated:YES];
 }
 
 // method to handle swipe event, direct back to the home view

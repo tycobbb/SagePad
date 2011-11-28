@@ -10,20 +10,23 @@
 #import "Server.h"
 #import "InputTranslator.h"
 #import "OutputTranslator.h"
-
-//static Server *server;
+#import "SagePadSettings.h"
 
 @implementation NetworkingService
 
-- (id)initWithIp:(NSString *)_ip withPortNumber:(NSInteger)_portNumber 
-        withInputTranslator:(id<AbstractInputTranslator>)_inputTranslator
-        withOutputTranslator:(id<AbstractOutputTranslator>)_outputTranslator {
+- (id)initWithInputTranslator:(id<AbstractInputTranslator>)_inputTranslator
+         withOutputTranslator:(id<AbstractOutputTranslator>)_outputTranslator {
     
     self = [super init];
     if (self) {
-        server = [[Server alloc] initWithIp:_ip andPortNumber:_portNumber];
+        SagePadSettings *sagePadSettings = [[SagePadSettings alloc] init];
+        server = [[Server alloc] initWithIp:sagePadSettings.ipAddress
+                              andPortNumber:[sagePadSettings.portNumber integerValue]];
+        [sagePadSettings release];
+        
         inputTranslator = _inputTranslator;
         outputTranslator = _outputTranslator;
+        
     }
     
     return self;

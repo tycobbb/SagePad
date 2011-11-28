@@ -9,6 +9,7 @@
 #import "ConfigViewController.h"
 #import "SagePadSettings.h"
 #import "SagePadConstants.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation ConfigViewController
 
@@ -86,9 +87,17 @@
     return NO;
 }
 
-- (BOOL)colorField:(UITextField *)textField {
+- (BOOL)colorBorder:(UITextField *)textField {
+    textField.layer.cornerRadius = 8.0f;
+    textField.layer.masksToBounds = YES;
+    textField.layer.borderColor = [[UIColor redColor]CGColor];
+    textField.layer.borderWidth = 1.0f;
     
     return YES;
+}
+
+- (void)uncolorBorder:(UITextField *)textField {
+    textField.layer.borderColor = [[UIColor clearColor]CGColor];
 }
 
 // --- "public" methods ---
@@ -103,16 +112,16 @@
     [sensitivityTextField setDelegate:self];
     sensitvitySlider.minimumValue = 0.01;
     
-    SagePadSettings *sagePadSettings = [[SagePadSettings alloc] init];
-    ipTextField.text = sagePadSettings.ipAddress;
-    portTextField.text = [sagePadSettings.portNumber stringValue];
-    nameTextField.text = sagePadSettings.pointerName;
-    colorTextField.text = sagePadSettings.pointerColor;
-    sensitivityTextField.text = [sagePadSettings.sensitivity stringValue];
-    [sagePadSettings release];
+    settings = [[SagePadSettings alloc] init];
+    ipTextField.text = settings.ipAddress;
+    portTextField.text = [NSString stringWithFormat:@"%@", settings.portNumber];
+    nameTextField.text = settings.pointerName;
+    colorTextField.text = settings.pointerColor;
+    sensitivityTextField.text = [NSString stringWithFormat:@"%@", settings.sensitivity];
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)newString {
+    [self uncolorBorder:textField];
     NSInteger leftEnd = range.location, rightBegin = range.location + range.length;
     NSString *resultString = [NSString stringWithFormat:@"%@%@%@", [textField.text substringToIndex:leftEnd], 
                                  newString, [textField.text substringFromIndex:rightBegin]];
@@ -141,23 +150,27 @@
 
 - (IBAction)saveConfiguration:(id)sender {
     BOOL errorExists = NO;
-    if(![self validateIpField:ipTextField.text forSave:YES]) errorExists |= [self colorField:ipTextField];
-    if(![self validatePortField:portTextField.text forSave:YES]) errorExists |= [self colorField:portTextField];
-    if(![self validateNameField:nameTextField.text forSave:YES]) errorExists |= [self colorField:nameTextField];    
-    if(![self validateColorField:colorTextField.text forSave:YES]) errorExists |= [self colorField:colorTextField];
-    if(![self validateSensitivityField:sensitivityTextField.text forSave:YES]) errorExists |= [self colorField:sensitivityTextField];
+    if(![self validateIpField:ipTextField.text forSave:YES]) errorExists |= [self colorBorder:ipTextField];
+    if(![self validatePortField:portTextField.text forSave:YES]) errorExists |= [self colorBorder:portTextField];
+    if(![self validateNameField:nameTextField.text forSave:YES]) errorExists |= [self colorBorder:nameTextField];    
+    if(![self validateColorField:colorTextField.text forSave:YES]) errorExists |= [self colorBorder:colorTextField];
+    if(![self validateSensitivityField:sensitivityTextField.text forSave:YES]) errorExists |= [self colorBorder:sensitivityTextField];
 
     if(!errorExists) {
-        NSMutableDictionary *settings = [SagePadSettings initDictionary];
-        if(ipTextField.text.length > 0) [settings setValue:ipTextField.text forKey:SERVER_IP_KEY];
-        if(portTextField.text.length > 0) [settings setValue:portTextField.text forKey:SERVER_PORT_KEY];
+        NSNumberFormatter * format = [[NSNumberFormatter alloc] init];
+        [format setNumberStyle:NSNumberFormatterDecimalStyle];
+
+        NSMutableDictionary *settingsDictionary = settings.dictionary;
+        if(ipTextField.text.length > 0) [settingsDictionary setValue:ipTextField.text forKey:SERVER_IP_KEY];
+        if(portTextField.text.length > 0) [settingsDictionary setValue:[format numberFromString:portTextField.text]
+                                                                forKey:SERVER_PORT_KEY];
+        if(nameTextField.text.length > 0) [settingsDictionary setValue:nameTextField.text forKey:POINTER_NAME_KEY];
+        if(colorTextField.text.length > 0) [settingsDictionary setValue:colorTextField.text forKey:POINTER_COLOR_KEY];
+        if(sensitivityTextField.text.length > 0) [settingsDictionary setValue:[format numberFromString:sensitivityTextField.text]
+                                                                       forKey:POINTER_SENSITIVITY_KEY];
         
-        if(nameTextField.text.length > 0) [settings setValue:nameTextField.text forKey:POINTER_NAME_KEY];
-        if(colorTextField.text.length > 0) [settings setValue:colorTextField.text forKey:POINTER_COLOR_KEY];
-        if(sensitivityTextField.text.length > 0) [settings setValue:sensitivityTextField.text forKey:POINTER_SENSITIVITY_KEY];
-        
-        [SagePadSettings writeSettingsDictionary:settings];
-        [settings release];
+        [format release];
+        [settings writeCurrentDictionary];
     }
 }
 
@@ -178,6 +191,7 @@
 }
 
 - (void)dealloc {
+    [settings release];
     [ipTextField release];
     [portTextField release];
     [nameTextField release];

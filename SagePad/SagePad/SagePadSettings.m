@@ -16,11 +16,24 @@
 @synthesize pointerName;
 @synthesize pointerColor;
 @synthesize sensitivity;
+@synthesize dictionary;
 
 // --- "private" helper methods ---
-+ (NSString *)getAppLibraryPath {
+- (NSString *)getAppLibraryPath {
     NSString *libraryRoot = [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     return [NSString stringWithFormat:@"%@/%@.%@", libraryRoot, SETTINGS_FILE_NAME, SETTINGS_FILE_EXT];
+}
+
+- (void)refreshDictionary {
+    if(dictionary != nil) [dictionary release];
+    
+    NSString *readPath = [self getAppLibraryPath];
+    dictionary = [[NSMutableDictionary alloc] initWithContentsOfFile:readPath];
+    if(dictionary == nil) {
+        readPath = [[NSBundle mainBundle] pathForResource:SETTINGS_FILE_NAME ofType:SETTINGS_FILE_EXT];
+        dictionary = [[NSMutableDictionary alloc] initWithContentsOfFile:readPath];
+    }
+    NSLog(@"Read path: %@", readPath);
 }
 
 // --- "public" methods ---
@@ -35,39 +48,31 @@
     return self;
 }
 
-+ (NSMutableDictionary *)initDictionary {
-    NSString *readPath = [SagePadSettings getAppLibraryPath];
-    
-    NSMutableDictionary *settings = [[NSMutableDictionary alloc] initWithContentsOfFile:readPath];
-    if(settings == nil) {
-        readPath = [[NSBundle mainBundle] pathForResource:SETTINGS_FILE_NAME ofType:SETTINGS_FILE_EXT];
-        settings = [[NSMutableDictionary alloc] initWithContentsOfFile:readPath];
-    }
-    NSLog(@"Read path: %@", readPath);
-    return settings;
-}
-
-+ (void)writeSettingsDictionary:(NSMutableDictionary *)settings {
-    [settings writeToFile:[SagePadSettings getAppLibraryPath] atomically:YES];
-}
-
 - (void)refreshSettings {
-    NSMutableDictionary *settings = [SagePadSettings initDictionary];
+    [self refreshDictionary];
     
-    ipAddress = [settings valueForKey:SERVER_IP_KEY];
-    portNumber = [settings valueForKey:SERVER_PORT_KEY];
+    ipAddress = [dictionary valueForKey:SERVER_IP_KEY];
+    portNumber = [dictionary valueForKey:SERVER_PORT_KEY];
     
-    pointerName = [settings valueForKey:POINTER_NAME_KEY];
-    pointerColor = [settings valueForKey:POINTER_COLOR_KEY];
-    sensitivity = [settings valueForKey:POINTER_SENSITIVITY_KEY];
-    
-    [settings release];
+    pointerName = [dictionary valueForKey:POINTER_NAME_KEY];
+    pointerColor = [dictionary valueForKey:POINTER_COLOR_KEY];
+    sensitivity = [dictionary valueForKey:POINTER_SENSITIVITY_KEY];
+}
+
+- (void)writeCurrentDictionary {
+    [dictionary writeToFile:[self getAppLibraryPath] atomically:YES];
+    [self refreshSettings];
 }
 
 - (void)writeValue:(id)value forKey:(NSString *)key {
-    NSMutableDictionary *settings = [SagePadSettings initDictionary];
-    [settings writeToFile:[SagePadSettings getAppLibraryPath] atomically:YES];
-    [settings release];
+    [dictionary setValue:value forKey:key];
+    [dictionary writeToFile:[self getAppLibraryPath] atomically:YES];
+    [self refreshSettings];
+}
+
+- (void)dealloc {
+    [dictionary release];
+    [super dealloc];
 }
 
 @end

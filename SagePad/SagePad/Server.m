@@ -7,8 +7,8 @@
 //
 
 #import "Server.h"
-#import "InputTranslator.h"
 #import "OutputTranslator.h"
+#import "SagePadConstants.h"
 
 @implementation Server
 
@@ -21,16 +21,13 @@
         portNumber = _portNumber;
         NSLog(@"IP Address: %@", ipAddress);
         NSLog(@"Port Number: %d", portNumber);
-        
-        inputTranslatorNotification = @"TranslateInput";
-        
-        
+                
         bufferSize = 1280; // default buffer size
         isConfigured = false;
         
         [[NSNotificationCenter defaultCenter] addObserver:self 
                                                  selector:@selector(sendOutputString:) 
-                                                     name:@"SendOutput" 
+                                                     name:NOTIFY_OUTPUT 
                                                    object:nil];
     }
     
@@ -42,7 +39,7 @@
 
     CFReadStreamRef readStream;
     CFWriteStreamRef writeStream;
-    CFStreamCreatePairWithSocketToHost(NULL, (CFStringRef)[self getIpAddress], (UInt32)[self getPortNumber], &readStream, &writeStream);
+    CFStreamCreatePairWithSocketToHost(NULL, (CFStringRef)ipAddress, (UInt32)portNumber, &readStream, &writeStream);
     
     inputStream = (NSInputStream *)readStream;
     outputStream = (NSOutputStream *)writeStream;
@@ -140,14 +137,14 @@
         NSLog(@"Reading from stream");
         if (responseLength > 0) {
             inputFromStream = [[NSString alloc] initWithBytes:buffer 
-                                                          length:responseLength 
-                                                        encoding:NSASCIIStringEncoding];
+                                                       length:responseLength 
+                                                     encoding:NSASCIIStringEncoding];
             if (inputFromStream != nil) {
                 isConfigured = true;
                 
                 NSLog(@"Connection response: %@", inputFromStream);
                 
-                [[NSNotificationCenter defaultCenter] postNotificationName:inputTranslatorNotification object:self];
+                [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFY_INPUT object:self];
             }
         }
     }

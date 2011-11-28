@@ -18,8 +18,7 @@
 @property(readonly, nonatomic) NSInteger sageHeight;
 @property(readonly, nonatomic) NSInteger ftpPortNumber;
 
-- (void)translatePointerConfiguration:(NSString *)pointerConfiguration;
-- (void)recieveConfigurationString:(NSNotification *)notification; 
+- (void)translatePointerConfiguration:(NSNotification *)pointerConfiguration;
 
 @end
 

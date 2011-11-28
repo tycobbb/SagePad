@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SagePadSettings.h"
 
 @interface ConfigViewController : UIViewController <UITextFieldDelegate> {    
     NSCharacterSet *decimalDigitCharacterSet;
     NSCharacterSet *alphanumericCharacterSet;
+    SagePadSettings *settings;
 }
 
 @property (nonatomic, retain) IBOutlet UITextField *ipTextField;
