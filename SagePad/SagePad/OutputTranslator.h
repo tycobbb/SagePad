@@ -17,7 +17,7 @@
     NSUInteger ftpPortNumber;
     SagePadSettings *settings;
 
-    CGPoint *previousTouch; // coordinates of the previous pointer location read
+    CGPoint previousTouch; // coordinates of the previous pointer location read
     CGFloat xAtom;
     CGFloat yAtom;
 

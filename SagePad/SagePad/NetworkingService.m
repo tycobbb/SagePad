@@ -20,7 +20,7 @@
     self = [super init];
     if (self) {
         SagePadSettings *sagePadSettings = [[SagePadSettings alloc] init];
-        server = [[Server alloc] initWithIp:sagePadSettings.ipAddress
+        server = [[Server alloc] initWithIp:[sagePadSettings.ipAddress copy]
                               andPortNumber:[sagePadSettings.portNumber integerValue]];
         [sagePadSettings release];
         

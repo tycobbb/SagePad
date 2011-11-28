@@ -23,8 +23,8 @@
         settings = [[SagePadSettings alloc] init];
         
         pointerAlreadyShared = NO;        
-        previousTouch->x = 0;
-        previousTouch->y = 0;
+        previousTouch.x = 0;
+        previousTouch.y = 0;
         
         [[NSNotificationCenter defaultCenter] addObserver:self 
                                                  selector:@selector(handlePointerConfiguration:) 
@@ -33,20 +33,6 @@
     }
     
     return self;
-}
-
-- (void)translateTouchEvent:(CGPoint *)touchCoordinates {
-    if(sharePointer){
-        if(touchCoordinates->x > sageWidth) currentCoordinates.x = sageWidth;
-        else currentCoordinates.x = touchCoordinates->x;
-        
-        if(touchCoordinates->y > sageHeight) currentCoordinates.y = sageHeight;
-        else currentCoordinates.y = touchCoordinates->y;
-    
-        formattedOutput = [NSString stringWithFormat:@"%d %u %f %f", 17, pointerId, currentCoordinates.x, currentCoordinates.y];
-    
-        //[[NSNotificationCenter defaultCenter] postNotificationName:sendOutputNotification object:self];
-    }
 }
 
 - (void)handlePointerConfiguration:(NSNotification *)notification {    
@@ -66,9 +52,28 @@
     }
 }
 
-- (void) formatOutput {
-    formattedOutput = [NSString stringWithFormat:@"%d %u %s %s", 18, pointerId, "John", "#ff0000"]; //Implement formatting of Output Here!
-    [[NSNotificationCenter defaultCenter] postNotificationName:sendOutputNotification object:self];
+- (void)translateTouchEvent:(CGPoint *)newTouch {
+    if(pointerAlreadyShared) {
+        CGFloat sageX = previousTouch.x + (newTouch->x - previousTouch.x) * xAtom;
+        CGFloat sageY = previousTouch.y + (newTouch->y - previousTouch.y) * yAtom;
+        
+        if(sageX > sageWidth) sageX = sageWidth;
+        else if(sageX < 0) sageX = 0;    
+        if(sageY > sageHeight) sageY = sageHeight;
+        else if(sageY < 0) sageY = 0;
+        
+        previousTouch.x = sageX;
+        previousTouch.y = sageY;
+        
+        [self formatOutputAndNotifyServer:17 
+                               withParam1:[NSString stringWithFormat:@"%f", sageX] 
+                                andParam2:[NSString stringWithFormat:@"%f", sageY]];
+    }
+}
+
+- (void)formatOutputAndNotifyServer:(NSInteger)outputType withParam1:(NSString *)param1 andParam2:(NSString *)param2 {
+    formattedOutput = [NSString stringWithFormat:@"%d %u %@ %@", outputType, pointerId, param1, param2];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFY_OUTPUT object:self];
 }
 
 - (void) dealloc {
