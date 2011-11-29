@@ -19,5 +19,7 @@
 - (void)translatePinch:(CGFloat *)scale;
 - (void)translatePress:(CGPoint *)newTouch;
 - (void)translateDrag:(CGPoint *)newTouch;
+- (void)translateRelease:(CGPoint *)newTouch;
+- (void)translateClick:(CGPoint *)newTouch;
 
 @end

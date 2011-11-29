@@ -56,6 +56,14 @@
     [outputTranslator translateDrag:touchCoordinates];
 }
 
+- (void)handleRelease:(CGPoint *)touchCoodinates {
+    [outputTranslator translateRelease:touchCoodinates];
+}
+
+- (void)handleClick:(CGPoint *)touchCoordinates {
+    [outputTranslator translateClick:touchCoordinates];
+}    
+
 - (void)dealloc {
     [inputTranslator release];
     [outputTranslator release];
