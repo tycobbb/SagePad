@@ -38,10 +38,18 @@
 // setup gesture recognizer for pinch zoom
 - (void)addPinchGestureRecognizer {
     UIPinchGestureRecognizer *pinch =
-    [[UIPinchGestureRecognizer alloc] initWithTarget:self
+        [[UIPinchGestureRecognizer alloc] initWithTarget:self
                                               action:@selector(handlePinch:)];
     [self.view addGestureRecognizer:pinch];
     [pinch release];
+}
+
+- (void)addLongPressGestureRecognizer {
+    UILongPressGestureRecognizer *longPress = 
+        [[UILongPressGestureRecognizer alloc] initWithTarget:self
+                                                      action:@selector(handleLongPress:)];
+    [self.view addGestureRecognizer:longPress];
+    [longPress release];
 }
 
 // initialize and start the networking service
@@ -67,18 +75,9 @@
 
 // handle touches
 - (void)handleTouches:(NSSet *)touches isFirst:(BOOL)isFirst {
+    if([touches count] != 1) return;
     CGPoint touchCoordinates = [[touches anyObject] locationInView:self.view];
-    switch([touches count]) {
-        case 1:
-            [networkingService handleMove:&touchCoordinates isFirst:isFirst];
-            break;
-        case 2:
-            if(isFirst) [networkingService handlePress:&touchCoordinates];
-            else [networkingService handleDrag:&touchCoordinates];
-            break;
-        default:
-            break;
-    }
+    [networkingService handleMove:&touchCoordinates isFirst:isFirst];
 }
 
 // --- "public" methods ---
@@ -89,26 +88,38 @@
         
     [self addSwipeGestureRecognizer];
     [self addPinchGestureRecognizer];
+    [self addLongPressGestureRecognizer];
     [self initNetworkingService];   
 }
 
 // method to handle swipe event, direct back to the home view
 - (void)handleSwipeRight:(UISwipeGestureRecognizer *)swipeRight {
-    CGPoint location = [swipeRight locationInView:[swipeRight.view superview]];
-    NSLog(@"Pointer: captured a swipe right at (%f, %f).", location.x, location.y);
     [[self navigationController] popViewControllerAnimated:YES];
 }
 
 // method to handle pinch event, delegate responsibility to networkingService
 - (void)handlePinch:(UIPinchGestureRecognizer *)pinch {
-    NSLog(@"Pointer: captured pinch with scale %f", [pinch scale]); 
     CGFloat scale = [pinch scale];
-    switch(pinch.state){
+    switch(pinch.state) {
         case UIGestureRecognizerStateBegan:
             [networkingService handlePinch:&scale isFirst:YES];
             break;
         case UIGestureRecognizerStateChanged:
             [networkingService handlePinch:&scale isFirst:NO];
+            break;
+        default:
+            break;
+    }
+}
+
+- (void)handleLongPress:(UILongPressGestureRecognizer *)longPress {
+    CGPoint touchCoordinates = [longPress locationInView:self.view];
+    switch(longPress.state) {
+        case UIGestureRecognizerStateBegan:
+            [networkingService handlePress:&touchCoordinates];
+            break;
+        case UIGestureRecognizerStateChanged:
+            [networkingService handleDrag:&touchCoordinates];
             break;
         default:
             break;

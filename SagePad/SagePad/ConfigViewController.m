@@ -115,9 +115,11 @@
     settings = [[SagePadSettings alloc] init];
     ipTextField.text = settings.ipAddress;
     portTextField.text = [NSString stringWithFormat:@"%@", settings.portNumber];
+    portTextField.text = [settings.portNumber stringValue];
     nameTextField.text = settings.pointerName;
     colorTextField.text = settings.pointerColor;
     sensitivityTextField.text = [NSString stringWithFormat:@"%@", settings.sensitivity];
+    sensitvitySlider.value = [settings.sensitivity floatValue] / 100;
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)newString {

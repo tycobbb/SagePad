@@ -12,7 +12,7 @@
 
 @required
 - (id)initWithDeviceWidth:(CGFloat)deviceWidth andHeight:(CGFloat)deviceHeight;
-- (void)notifyServer;
+- (void)notifyServerOfOutput;
 
 @optional
 - (void)translateMove:(CGPoint *)newTouch isFirst:(BOOL)isFirst;

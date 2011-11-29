@@ -148,9 +148,7 @@
     }
 }
 
-- (void)setBufferSize:(NSInteger)_bufferSize {
-    bufferSize = _bufferSize;
-}
+
 
 - (void)sendOutputString:(NSNotification *)notification{
     OutputTranslator *output = [notification object];
@@ -167,6 +165,10 @@
     NSLog(@"Length of Data: %d", [data length]);
     
     [(NSOutputStream *)outputStream write:[data bytes] maxLength:[data length]];
+}
+
+- (void)setBufferSize:(NSInteger)_bufferSize {
+    bufferSize = _bufferSize;
 }
 
 - (void)dealloc {

@@ -14,6 +14,30 @@
 
 @synthesize formattedOutput;
 
+// --- "private" helper methods ---
+
+- (void)setPreviousTouch:(CGPoint *)newTouch {
+    previousTouch.x = newTouch->x;
+    previousTouch.y = newTouch->y;
+}
+
+- (void)calculateNewSageLocation:(CGPoint *)newTouch {
+    CGFloat sageX = sageLocation.x + (newTouch->x - previousTouch.x) * xAtom;
+    CGFloat sageY = sageLocation.y + (newTouch->y - previousTouch.y) * yAtom;
+    
+    if(sageX > sageWidth) sageX = sageWidth;
+    else if(sageX < 0) sageX = 0;    
+    if(sageY > sageHeight) sageY = sageHeight;
+    else if(sageY < 0) sageY = 0;
+    
+    sageLocation.x = sageX;
+    sageLocation.y = sageY;
+    
+    [self setPreviousTouch:newTouch];
+}
+
+// --- "public" methods ---
+
 - (id)initWithDeviceWidth:(CGFloat)deviceWidth andHeight:(CGFloat)deviceHeight {
     self = [super init];
     if (self) {
@@ -57,89 +81,63 @@
 
 - (void)translateMove:(CGPoint *)newTouch isFirst:(BOOL)isFirst {
     if(!pointerAlreadyShared) return;
+    if(isFirst) {
+        [self setPreviousTouch:newTouch];
+        return;
+    }
     
-    previousTouch.x = newTouch->x;
-    previousTouch.y = newTouch->y;
-    if(isFirst) return;
-    
-    CGFloat sageX = sageLocation.x + (newTouch->x - previousTouch.x) * xAtom;
-    CGFloat sageY = sageLocation.y + (newTouch->y - previousTouch.y) * yAtom;
-    
-    if(sageX > sageWidth) sageX = sageWidth;
-    else if(sageX < 0) sageX = 0;    
-    if(sageY > sageHeight) sageY = sageHeight;
-    else if(sageY < 0) sageY = 0;
-    
-    sageLocation.x = sageX;
-    sageLocation.y = sageY;
-    
+    [self calculateNewSageLocation:newTouch];    
     [self formatOutputAndNotifyServer:17 
-                           withParam1:[NSString stringWithFormat:@"%d", (NSInteger)sageX] 
-                            andParam2:[NSString stringWithFormat:@"%d", (NSInteger)sageY]];
+                           withParam1:[NSString stringWithFormat:@"%d", (NSInteger)sageLocation.x] 
+                            andParam2:[NSString stringWithFormat:@"%d", (NSInteger)sageLocation.y]];
 }
 
 - (void)translatePinch:(CGFloat *)scale isFirst:(BOOL)isFirst {
     if(!pointerAlreadyShared) return;
-
     if(isFirst) {
         firstPinch = *scale;
         return;
     }
     
     CGFloat changeScale = *scale - firstPinch;
-    NSLog(@"Pinch scale: %f and current pinch at: %f", changeScale, *scale);
     [self formatOutputAndNotifyServer:19 
-                           withParam1:[NSString stringWithFormat:@"%d", (NSInteger)previousTouch.x] 
-                            andParam2:[NSString stringWithFormat:@"%d", (NSInteger)previousTouch.y]
+                           withParam1:[NSString stringWithFormat:@"%d", (NSInteger)sageLocation.x] 
+                            andParam2:[NSString stringWithFormat:@"%d", (NSInteger)sageLocation.y]
                             andParam3:[NSString stringWithFormat:@"%d", (NSInteger)changeScale]];
 }
 
 - (void)translatePress:(CGPoint *)newTouch {
+    NSLog(@"x:%f y:%f", newTouch->x, newTouch->y);
     if(!pointerAlreadyShared) return;
-    
-    previousTouch.x = newTouch->x;
-    previousTouch.y = newTouch->y;
+    [self setPreviousTouch:newTouch];
     [self formatOutputAndNotifyServer:8 
                            withParam1:[NSString stringWithFormat:@"%d", (NSInteger)sageLocation.x] 
                             andParam2:[NSString stringWithFormat:@"%d", (NSInteger)sageLocation.y]];
 }
 
 - (void)translateDrag:(CGPoint *)newTouch {
+    NSLog(@"x:%f y:%f", newTouch->x, newTouch->y);
     if(!pointerAlreadyShared) return;
-    
-    previousTouch.x = newTouch->x;
-    previousTouch.y = newTouch->y;
-    
-    CGFloat sageX = sageLocation.x + (newTouch->x - previousTouch.x) * xAtom;
-    CGFloat sageY = sageLocation.y + (newTouch->y - previousTouch.y) * yAtom;
-    
-    if(sageX > sageWidth) sageX = sageWidth;
-    else if(sageX < 0) sageX = 0;    
-    if(sageY > sageHeight) sageY = sageHeight;
-    else if(sageY < 0) sageY = 0;
-    
-    sageLocation.x = sageX;
-    sageLocation.y = sageY;
-    
+    [self calculateNewSageLocation:newTouch];    
     [self formatOutputAndNotifyServer:15 
-                           withParam1:[NSString stringWithFormat:@"%d", (NSInteger)sageX] 
-                            andParam2:[NSString stringWithFormat:@"%d", (NSInteger)sageY]];
+                           withParam1:[NSString stringWithFormat:@"%d", (NSInteger)sageLocation.x] 
+                            andParam2:[NSString stringWithFormat:@"%d", (NSInteger)sageLocation.y]];
 }
 
 - (void)formatOutputAndNotifyServer:(NSInteger)outputType withParam1:(NSString *)param1 
                           andParam2:(NSString *)param2 {
     formattedOutput = [NSString stringWithFormat:@"%d %u %@ %@", outputType, pointerId, param1, param2];
-    [self notifyServer];
+    [self notifyServerOfOutput];
 }
 
 - (void)formatOutputAndNotifyServer:(NSInteger)outputType withParam1:(NSString *)param1 
                           andParam2:(NSString *)param2 
                           andParam3:(NSString *)param3 {
     formattedOutput = [NSString stringWithFormat:@"%d %u %@ %@ %@", outputType, pointerId, param1, param2, param3];
-    [self notifyServer];
+    [self notifyServerOfOutput];
 }
 
-- (void)notifyServer {
+- (void)notifyServerOfOutput {
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFY_OUTPUT object:self];
 }
 
