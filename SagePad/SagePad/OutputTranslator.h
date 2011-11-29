@@ -30,11 +30,14 @@
 
 - (void)handlePointerConfiguration:(NSNotification *)notification;
 
+- (void)formatOutputAndNotifyServer:(NSInteger)outputType;
+
 - (void)formatOutputAndNotifyServer:(NSInteger)outputType withParam1:(NSString *)param1 
                           andParam2:(NSString *)param2;
 
 - (void)formatOutputAndNotifyServer:(NSInteger)outputType withParam1:(NSString *)param1 
                           andParam2:(NSString *)param2 
                           andParam3:(NSString *)param3;
+- (void)unsharePointer;
 
 @end

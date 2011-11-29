@@ -16,7 +16,7 @@
 
 @optional
 - (void)translateMove:(CGPoint *)newTouch isFirst:(BOOL)isFirst;
-- (void)translatePinch:(CGFloat *)scale isFirst:(BOOL)isFirst;
+- (void)translatePinch:(CGFloat *)scale;
 - (void)translatePress:(CGPoint *)newTouch;
 - (void)translateDrag:(CGPoint *)newTouch;
 

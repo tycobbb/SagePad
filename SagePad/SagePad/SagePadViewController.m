@@ -101,11 +101,8 @@
 - (void)handlePinch:(UIPinchGestureRecognizer *)pinch {
     CGFloat scale = [pinch scale];
     switch(pinch.state) {
-        case UIGestureRecognizerStateBegan:
-            [networkingService handlePinch:&scale isFirst:YES];
-            break;
         case UIGestureRecognizerStateChanged:
-            [networkingService handlePinch:&scale isFirst:NO];
+            [networkingService handlePinch:&scale];
             break;
         default:
             break;

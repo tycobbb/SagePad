@@ -92,14 +92,11 @@
                             andParam2:[NSString stringWithFormat:@"%d", (NSInteger)sageLocation.y]];
 }
 
-- (void)translatePinch:(CGFloat *)scale isFirst:(BOOL)isFirst {
+- (void)translatePinch:(CGFloat *)scale {
     if(!pointerAlreadyShared) return;
-    if(isFirst) {
-        firstPinch = *scale;
-        return;
-    }
     
-    CGFloat changeScale = *scale - firstPinch;
+    CGFloat changeScale = *scale - 1;
+    if (changeScale < 0) changeScale *= 10;
     [self formatOutputAndNotifyServer:19 
                            withParam1:[NSString stringWithFormat:@"%d", (NSInteger)sageLocation.x] 
                             andParam2:[NSString stringWithFormat:@"%d", (NSInteger)sageLocation.y]
@@ -122,6 +119,13 @@
     [self formatOutputAndNotifyServer:15 
                            withParam1:[NSString stringWithFormat:@"%d", (NSInteger)sageLocation.x] 
                             andParam2:[NSString stringWithFormat:@"%d", (NSInteger)sageLocation.y]];
+}
+- (void)unsharePointer {
+    [self formatOutputAndNotifyServer:20];
+}
+
+- (void)formatOutputAndNotifyServer:(NSInteger)outputType {
+    formattedOutput = [NSString stringWithFormat:@"%d %u", outputType, pointerId];
 }
 
 - (void)formatOutputAndNotifyServer:(NSInteger)outputType withParam1:(NSString *)param1 

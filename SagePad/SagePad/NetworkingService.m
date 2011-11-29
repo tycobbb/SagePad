@@ -44,8 +44,8 @@
     [outputTranslator translateMove:coordinates isFirst:isFirst];
 }
 
-- (void)handlePinch:(CGFloat *)scale isFirst:(BOOL)isFirst {
-    [outputTranslator translatePinch:scale isFirst:isFirst];
+- (void)handlePinch:(CGFloat *)scale {
+    [outputTranslator translatePinch:scale];
 }
 
 - (void)handlePress:(CGPoint *)touchCoordinates {
