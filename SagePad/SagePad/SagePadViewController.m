@@ -9,10 +9,10 @@
 #import "SagePadViewController.h"
 #import "InputTranslator.h"
 #import "OutputTranslator.h"
+#import "Server.h"
+#import "SagePadSettings.h"
 
 @implementation SagePadViewController 
-// example synthesizing properties 
-//@synthesize touchLabel
 
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
@@ -49,13 +49,20 @@
     CGFloat width = CGRectGetWidth(self.view.bounds);
     CGFloat height = CGRectGetHeight(self.view.bounds); // need to account for status bar...
 
-    NSLog(@"Initializing Networking Service");
-    networkingService = [[NetworkingService alloc] initWithInputTranslator:[[InputTranslator alloc] init]  
-                                                      withOutputTranslator:[[OutputTranslator alloc] initWithDeviceWidth:width 
-                                                                                                               andHeight:height]];
-    NSLog(@"Pointer: about to call networkingService.startServer");
+    SagePadSettings *sagePadSettings = [[SagePadSettings alloc] init];
+    InputTranslator *inputTranslator = [[InputTranslator alloc] init];
+    OutputTranslator *outputTranslator = [[OutputTranslator alloc] initWithDeviceWidth:width andHeight:height];
+    Server *server = [[Server alloc] initWithIp:[sagePadSettings.ipAddress copy]
+                                  andPortNumber:[sagePadSettings.portNumber integerValue]];
+    networkingService = [[NetworkingService alloc] initWithInputTranslator:inputTranslator 
+                                                       andOutputTranslator:outputTranslator
+                                                                 andServer:server];
+    [sagePadSettings release];
+    [inputTranslator release];
+    [outputTranslator release];
+    [server release];
+
     [networkingService startServer];
-    NSLog(@"Pointer: networkingService.startServer returned");
 }
 
 // --- "public" methods ---
@@ -63,14 +70,10 @@
 // additional setup after loading the view
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [[self navigationController] setNavigationBarHidden:YES animated:YES];
-    
+        
     [self addSwipeGestureRecognizer];
     [self addPinchGestureRecognizer];
     [self initNetworkingService];   
-    
-    // hide the navigation bar
 }
 
 // method to handle swipe event, direct back to the home view
@@ -80,42 +83,41 @@
     [[self navigationController] popViewControllerAnimated:YES];
 }
 
-
+// method to handle pinch event, delegate responsibility to networkingService
 - (void)handlePinch:(UIPinchGestureRecognizer *)pinch {
     NSLog(@"Pointer: captured pinch with scale %f", [pinch scale]); 
     CGFloat scalef = [pinch scale];
     switch(pinch.state){
         case UIGestureRecognizerStateBegan:
-            [networkingService translatePinchEvent:&scalef isFirst:YES];
+            [networkingService handlePinchEvent:&scalef isFirst:YES];
             break;
         case UIGestureRecognizerStateChanged:
-            [networkingService translatePinchEvent:&scalef isFirst:NO];
+            [networkingService handlePinchEvent:&scalef isFirst:NO];
             break;
         default:
             break;
     }
 }
 
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    if([touches count] > 1) { 
-        NSLog(@"Pointer: captured touch with >1 fingers");
-        return;
-    }
-    CGPoint touchCoordinates = [[touches anyObject] locationInView:self.view];
-    NSLog(@"Pointer: standard touch coordinates (%f, %f).", touchCoordinates.x, touchCoordinates.y);
-    [networkingService translateTouchEvent:&touchCoordinates isFirst:NO];
-}
-
+// method to handle touchDown event, delegate responsibility to networkingService
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     if([touches count] > 1) { 
         NSLog(@"Pointer: captured touch with >1 fingers");
         return;
     }
     CGPoint touchCoordinates = [[touches anyObject] locationInView:self.view];
-    NSLog(@"Pointer: standard touch coordinates (%f, %f).", touchCoordinates.x, touchCoordinates.y);
-    [networkingService translateTouchEvent:&touchCoordinates isFirst:YES];
+    [networkingService handleTouchEvent:&touchCoordinates isFirst:YES];
 }
 
+// method to handle touchMoved and touchUp event, delegate responsibility to networkingService
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    if([touches count] > 1) { 
+        NSLog(@"Pointer: captured touch with >1 fingers");
+        return;
+    }
+    CGPoint touchCoordinates = [[touches anyObject] locationInView:self.view];
+    [networkingService handleTouchEvent:&touchCoordinates isFirst:NO];
+}
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
     // not sure what to do with cancelled touch, or how a touch is cancelled
@@ -132,9 +134,6 @@
 }
 
 - (void)dealloc {
-    [networkingService release];
-    [InputTranslator release];
-    [OutputTranslator release];
     [super dealloc];
 }
 

@@ -44,18 +44,21 @@
 }
 
 - (void)handleSwipeLeft:(UISwipeGestureRecognizer *)swipeLeft {
-    CGPoint location = [swipeLeft locationInView:[swipeLeft.view superview]];
-    NSLog(@"Home: captured a swipe left at (%f, %f).", location.x, location.y);
     [[self navigationController] pushViewController:sagePadViewController animated:YES];
 }
 
 - (IBAction)configButtonPressed:(id)sender {
-    NSLog(@"Config buton pressed -- switch to config view");
     [[self navigationController] pushViewController:configViewController animated:YES];
 }
 
 - (IBAction)fileButtonPressed:(id)sender {
-    NSLog(@"File button pressed");
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"File Upload" 
+                                                    message:@"This feature is not yet implemented." 
+                                                   delegate:nil 
+                                          cancelButtonTitle:@"Swag"
+                                          otherButtonTitles:nil];
+    [alert show];
+    [alert release];
 }
 
 - (void)viewDidUnload {

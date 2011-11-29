@@ -12,19 +12,20 @@
 #import "AbstractOutputTranslator.h"
 
 @interface NetworkingService : NSObject {
-    id<AbstractServer> server;
     id<AbstractInputTranslator> inputTranslator;
     id<AbstractOutputTranslator> outputTranslator;
+    id<AbstractServer> server;
 }
 
 - (id)initWithInputTranslator:(id<AbstractInputTranslator>)_inputTranslator 
-         withOutputTranslator:(id<AbstractOutputTranslator>)_outputTranslator;
+          andOutputTranslator:(id<AbstractOutputTranslator>)_outputTranslator
+                    andServer:(id<AbstractServer>)_server;
 
 - (void)startServer;
 - (void)stopServer;
+- (void)setServerBufferSize:(NSInteger)bufferSize;
 
-- (void)translateTouchEvent:(CGPoint *)touchCoordinates isFirst:(BOOL)first;
-
-- (void)translatePinchEvent:(CGFloat *)scalef isFirst:(BOOL)first;
+- (void)handleTouchEvent:(CGPoint *)touchCoordinates isFirst:(BOOL)isFirst;
+- (void)handlePinchEvent:(CGFloat *)scalef isFirst:(BOOL)isFirst;
 
 @end

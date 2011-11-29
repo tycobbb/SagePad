@@ -104,7 +104,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+        
     [ipTextField setDelegate:self];
     [portTextField setDelegate:self];
     [nameTextField setDelegate:self];
@@ -148,6 +148,10 @@
     sensitivityTextField.text = [NSString stringWithFormat:@"%d", roundedValue];
 }
 
+- (IBAction)cancelEdit:(id)sender {
+    [[self navigationController] popViewControllerAnimated:YES];
+}
+
 - (IBAction)saveConfiguration:(id)sender {
     BOOL errorExists = NO;
     if(![self validateIpField:ipTextField.text forSave:YES]) errorExists |= [self colorBorder:ipTextField];
@@ -171,8 +175,10 @@
         
         [format release];
         [settings writeCurrentDictionary];
+        [[self navigationController] popViewControllerAnimated:YES];
     }
 }
+
 
 - (void)viewDidUnload {
     [self setIpTextField:nil];

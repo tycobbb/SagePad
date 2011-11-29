@@ -8,9 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol AbstractInputTranslator
+@protocol AbstractInputTranslator <NSObject>
 
-@optional
-- (void)setBufferSize:(int)_bufferSize;
 
 @end

@@ -8,11 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol AbstractOutputTranslator
+@protocol AbstractOutputTranslator <NSObject>
+
+@optional
+- (void)translateTouchEvent:(CGPoint *)coordinates isFirst:(BOOL)isFirst;
+- (void)translatePinchEvent:(CGFloat *)scale isFirst:(BOOL)isFirst;
 
 @required
-- (void)translateTouchEvent:(CGPoint *)coordinates isFirst:(BOOL)first;
-
-- (void)translatePinchEvent:(CGFloat *)scalef isFirst:(BOOL)first; 
+- (void)notifyServer;
 
 @end

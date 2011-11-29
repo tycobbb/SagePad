@@ -141,17 +141,14 @@
                                                      encoding:NSASCIIStringEncoding];
             if (inputFromStream != nil) {
                 isConfigured = true;
-                
                 NSLog(@"Connection response: %@", inputFromStream);
-                
                 [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFY_INPUT object:self];
             }
         }
     }
-    
 }
 
-- (void)setBufferSize:(int)_bufferSize {
+- (void)setBufferSize:(NSInteger)_bufferSize {
     bufferSize = _bufferSize;
 }
 
@@ -175,7 +172,6 @@
 - (void)dealloc {
 	[inputStream release];
 	[outputStream release];
-    
 	[inputFromStream release];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];

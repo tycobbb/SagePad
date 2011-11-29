@@ -18,4 +18,7 @@
 - (void)start;
 - (void)stop;
     
+@optional
+- (void)setBufferSize:(NSInteger)_bufferSize;
+
 @end

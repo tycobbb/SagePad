@@ -172,14 +172,12 @@
 		F9852B1F146B4DCC00ED60B2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				FB0EC0C6148490E600304418 /* Images */,
 				F9852B20146B4DCC00ED60B2 /* SagePad-Info.plist */,
 				FBFF265E1482D82E00AA13F2 /* settings.plist */,
 				F9852B21146B4DCC00ED60B2 /* InfoPlist.strings */,
 				F9852B24146B4DCC00ED60B2 /* main.m */,
 				F9852B26146B4DCC00ED60B2 /* SagePad-Prefix.pch */,
-				FB7A430A148476840016CE54 /* swipeleft.png */,
-				FB9C63941484829F007AC794 /* evl_logo.png */,
-				FB9C63951484829F007AC794 /* title.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -203,13 +201,23 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		FB0EC0C6148490E600304418 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				FB7A430A148476840016CE54 /* swipeleft.png */,
+				FB9C63941484829F007AC794 /* evl_logo.png */,
+				FB9C63951484829F007AC794 /* title.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		FB69743E147C85050070D758 /* Translators */ = {
 			isa = PBXGroup;
 			children = (
 				FB91CD651478700E0067EAE3 /* AbstractInputTranslator.h */,
-				FB91CD69147873800067EAE3 /* AbstractOutputTranslator.h */,
 				FB91CD6214786D000067EAE3 /* InputTranslator.h */,
 				FB91CD6314786D000067EAE3 /* InputTranslator.m */,
+				FB91CD69147873800067EAE3 /* AbstractOutputTranslator.h */,
 				FB91CD66147871D20067EAE3 /* OutputTranslator.h */,
 				FB91CD67147871D20067EAE3 /* OutputTranslator.m */,
 			);

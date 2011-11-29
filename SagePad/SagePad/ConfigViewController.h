@@ -23,6 +23,7 @@
 @property (nonatomic, retain) IBOutlet UITextField *sensitivityTextField;
 
 - (IBAction)sensitivitySliderValueChanged:(UISlider *)sender;
+- (IBAction)cancelEdit:(id)sender;
 - (IBAction)saveConfiguration:(id)sender;
 
 @end
