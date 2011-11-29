@@ -117,15 +117,6 @@
     [networkingService translateTouchEvent:&touchCoordinates isFirst:YES];
 }
 
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    if([touches count] > 1) { 
-        NSLog(@"Pointer: captured touch with >1 fingers");
-        return;
-    }
-    CGPoint touchCoordinates = [[touches anyObject] locationInView:self.view];
-    NSLog(@"Pointer: standard touch coordinates (%f, %f).", touchCoordinates.x, touchCoordinates.y);
-    [networkingService translateLastLocationEvent:&touchCoordinates];
-}
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
     // not sure what to do with cancelled touch, or how a touch is cancelled
