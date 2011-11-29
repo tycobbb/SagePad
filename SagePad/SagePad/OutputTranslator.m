@@ -104,7 +104,6 @@
 }
 
 - (void)translatePress:(CGPoint *)newTouch {
-    NSLog(@"x:%f y:%f", newTouch->x, newTouch->y);
     if(!pointerAlreadyShared) return;
     [self setPreviousTouch:newTouch];
     [self formatOutputAndNotifyServer:8 
@@ -113,13 +112,27 @@
 }
 
 - (void)translateDrag:(CGPoint *)newTouch {
-    NSLog(@"x:%f y:%f", newTouch->x, newTouch->y);
     if(!pointerAlreadyShared) return;
     [self calculateNewSageLocation:newTouch];    
     [self formatOutputAndNotifyServer:15 
                            withParam1:[NSString stringWithFormat:@"%d", (NSInteger)sageLocation.x] 
                             andParam2:[NSString stringWithFormat:@"%d", (NSInteger)sageLocation.y]];
 }
+
+- (void)translateRelease:(CGPoint *)newTouch {
+    if(!pointerAlreadyShared) return;
+    [self formatOutputAndNotifyServer:10
+                              withParam1:[NSString stringWithFormat:@"%d", (NSInteger)sageLocation.x] 
+                               andParam2:[NSString stringWithFormat:@"%d", (NSInteger)sageLocation.y]];
+}
+
+- (void)translateClick:(CGPoint *)newTouch {
+    if(!pointerAlreadyShared) return;
+    [self formatOutputAndNotifyServer:12
+                           withParam1:[NSString stringWithFormat:@"%d", (NSInteger)sageLocation.x] 
+                            andParam2:[NSString stringWithFormat:@"%d", (NSInteger)sageLocation.y]];
+}
+
 - (void)unsharePointer {
     [self formatOutputAndNotifyServer:20];
 }

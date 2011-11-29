@@ -29,5 +29,7 @@
 - (void)handlePinch:(CGFloat *)scale;
 - (void)handlePress:(CGPoint *)touchCoordinates;
 - (void)handleDrag:(CGPoint *)touchCoordinates;
+- (void)handleRelease:(CGPoint *)touchCoodinates;
+- (void)handleClick:(CGPoint *)touchCoordinates;
 
 @end

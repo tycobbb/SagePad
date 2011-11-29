@@ -52,6 +52,14 @@
     [longPress release];
 }
 
+- (void)addSingleTapGestureRecognizer {
+    UITapGestureRecognizer *tap =
+        [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                action:@selector(handleSingleTap:)];
+    [self.view addGestureRecognizer:tap];
+    [tap release];
+}
+
 // initialize and start the networking service
 - (void)initNetworkingService {
     CGFloat width = CGRectGetWidth(self.view.bounds);
@@ -89,6 +97,7 @@
     [self addSwipeGestureRecognizer];
     [self addPinchGestureRecognizer];
     [self addLongPressGestureRecognizer];
+    [self addSingleTapGestureRecognizer];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -123,9 +132,17 @@
         case UIGestureRecognizerStateChanged:
             [networkingService handleDrag:&touchCoordinates];
             break;
+        case UIGestureRecognizerStateEnded:
+            [networkingService handleRelease:&touchCoordinates];
+            break;
         default:
             break;
     }
+}
+
+- (void)handleSingleTap:(UITapGestureRecognizer *)tap {
+    CGPoint touchCoordinates = [tap locationInView:self.view];
+    [networkingService handleClick:&touchCoordinates];
 }
 
 // method to handle touchDown event, delegate responsibility to networkingService
