@@ -143,14 +143,13 @@
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
+    [networkingService stopServer];
     [networkingService release];
     
     [super viewDidDisappear:animated];
 }
 
 - (void)viewDidUnload {
-    [networkingService stopServer];
-    [networkingService release];
     [super viewDidUnload];
 }
 

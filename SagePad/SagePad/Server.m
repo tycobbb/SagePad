@@ -44,8 +44,8 @@
     inputStream = (NSInputStream *)readStream;
     outputStream = (NSOutputStream *)writeStream;
     
-    [inputStream retain];
-    [outputStream retain];
+//    [inputStream retain];
+//    [outputStream retain];
     
     [inputStream setDelegate:self];
     [outputStream setDelegate:self];
@@ -152,15 +152,12 @@
 
 - (void)sendOutputString:(NSNotification *)notification{
     OutputTranslator *output = [notification object];
-    
     NSLog(@"MESSAGE FROM OUTPUT TRANSLATOR: %@", output.formattedOutput);
     
     NSMutableData *data = [[NSMutableData alloc] initWithLength:128];
     NSMutableData *outputData = [NSMutableData dataWithData:[output.formattedOutput dataUsingEncoding:NSUTF8StringEncoding]];
     NSRange range = NSMakeRange(0, [outputData length]);
     [data replaceBytesInRange:range withBytes:[outputData bytes] length:[outputData length]];
-    
-    //[outputData release];
     
     NSLog(@"Length of Data: %d", [data length]);
     
@@ -172,11 +169,7 @@
 }
 
 - (void)dealloc {
-    
-	[inputStream release];
-	[outputStream release];
-	[inputFromStream release];
-    
+    [inputFromStream release];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
     [super dealloc];

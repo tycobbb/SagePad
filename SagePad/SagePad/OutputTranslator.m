@@ -126,6 +126,7 @@
 
 - (void)formatOutputAndNotifyServer:(NSInteger)outputType {
     formattedOutput = [NSString stringWithFormat:@"%d %u", outputType, pointerId];
+    [self notifyServerOfOutput];
 }
 
 - (void)formatOutputAndNotifyServer:(NSInteger)outputType withParam1:(NSString *)param1 
@@ -146,8 +147,8 @@
 }
 
 - (void) dealloc {
+    [self unsharePointer];
     [settings release];
-    [formattedOutput release];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
     [super dealloc];
