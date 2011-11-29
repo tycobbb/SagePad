@@ -48,7 +48,7 @@
 					<object class="IBUILabel" id="261249710">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 20}, {301, 59}}</string>
+						<string key="NSFrame">{{316, 40}, {392, 44}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="887709879"/>
@@ -59,9 +59,9 @@
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<string key="IBUIText">Options &amp; Configuration</string>
-						<object class="NSFont" key="IBUIFont" id="1009167181">
-							<string key="NSName">Helvetica</string>
-							<double key="NSSize">17</double>
+						<object class="NSFont" key="IBUIFont">
+							<string key="NSName">Futura-CondensedExtraBold</string>
+							<double key="NSSize">36</double>
 							<int key="NSfFlags">16</int>
 						</object>
 						<object class="NSColor" key="IBUITextColor" id="278818983">
@@ -86,7 +86,11 @@
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<string key="IBUIText">Server Configuration</string>
-						<reference key="IBUIFont" ref="1009167181"/>
+						<object class="NSFont" key="IBUIFont" id="1009167181">
+							<string key="NSName">Helvetica</string>
+							<double key="NSSize">17</double>
+							<int key="NSfFlags">16</int>
+						</object>
 						<reference key="IBUITextColor" ref="278818983"/>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">1</int>
@@ -545,7 +549,6 @@
 						<reference key="object" ref="766721923"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="261249710"/>
 							<reference ref="887709879"/>
 							<reference ref="1066622081"/>
 							<reference ref="797087193"/>
@@ -561,6 +564,7 @@
 							<reference ref="663473570"/>
 							<reference ref="74182831"/>
 							<reference ref="306870969"/>
+							<reference ref="261249710"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>

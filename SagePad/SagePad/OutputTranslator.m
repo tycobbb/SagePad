@@ -55,41 +55,75 @@
     }
 }
 
-- (void)translateTouchEvent:(CGPoint *)newTouch isFirst:(BOOL)isFirst {
-    if(pointerAlreadyShared) {
-        previousTouch.x = newTouch->x;
-        previousTouch.y = newTouch->y;
-        if(isFirst) return;
-        
-        CGFloat sageX = sageLocation.x + (newTouch->x - previousTouch.x) * xAtom;
-        CGFloat sageY = sageLocation.y + (newTouch->y - previousTouch.y) * yAtom;
-        
-        if(sageX > sageWidth) sageX = sageWidth;
-        else if(sageX < 0) sageX = 0;    
-        if(sageY > sageHeight) sageY = sageHeight;
-        else if(sageY < 0) sageY = 0;
-        
-        sageLocation.x = sageX;
-        sageLocation.y = sageY;
-        
-        [self formatOutputAndNotifyServer:17 
-                               withParam1:[NSString stringWithFormat:@"%d", (NSInteger)sageX] 
-                                andParam2:[NSString stringWithFormat:@"%d", (NSInteger)sageY]];
-    }
+- (void)translateMove:(CGPoint *)newTouch isFirst:(BOOL)isFirst {
+    if(!pointerAlreadyShared) return;
+    
+    previousTouch.x = newTouch->x;
+    previousTouch.y = newTouch->y;
+    if(isFirst) return;
+    
+    CGFloat sageX = sageLocation.x + (newTouch->x - previousTouch.x) * xAtom;
+    CGFloat sageY = sageLocation.y + (newTouch->y - previousTouch.y) * yAtom;
+    
+    if(sageX > sageWidth) sageX = sageWidth;
+    else if(sageX < 0) sageX = 0;    
+    if(sageY > sageHeight) sageY = sageHeight;
+    else if(sageY < 0) sageY = 0;
+    
+    sageLocation.x = sageX;
+    sageLocation.y = sageY;
+    
+    [self formatOutputAndNotifyServer:17 
+                           withParam1:[NSString stringWithFormat:@"%d", (NSInteger)sageX] 
+                            andParam2:[NSString stringWithFormat:@"%d", (NSInteger)sageY]];
 }
 
-- (void)translatePinchEvent:(CGFloat *)scale isFirst:(BOOL)first {
-    if(pointerAlreadyShared){
-        if(first) firstPinch = *scale;
-        else{
-            CGFloat changeScale = *scale - firstPinch;
-            NSLog(@"Pinch scale: %f and current pinch at: %f", changeScale, *scale);
-            [self formatOutputAndNotifyServer:19 
-                                   withParam1:[NSString stringWithFormat:@"%d", (NSInteger)previousTouch.x] 
-                                    andParam2:[NSString stringWithFormat:@"%d", (NSInteger)previousTouch.y]
-                                    andParam3:[NSString stringWithFormat:@"%d", (NSInteger)changeScale]];
-        }
+- (void)translatePinch:(CGFloat *)scale isFirst:(BOOL)isFirst {
+    if(!pointerAlreadyShared) return;
+
+    if(isFirst) {
+        firstPinch = *scale;
+        return;
     }
+    
+    CGFloat changeScale = *scale - firstPinch;
+    NSLog(@"Pinch scale: %f and current pinch at: %f", changeScale, *scale);
+    [self formatOutputAndNotifyServer:19 
+                           withParam1:[NSString stringWithFormat:@"%d", (NSInteger)previousTouch.x] 
+                            andParam2:[NSString stringWithFormat:@"%d", (NSInteger)previousTouch.y]
+                            andParam3:[NSString stringWithFormat:@"%d", (NSInteger)changeScale]];
+}
+
+- (void)translatePress:(CGPoint *)newTouch {
+    if(!pointerAlreadyShared) return;
+    
+    previousTouch.x = newTouch->x;
+    previousTouch.y = newTouch->y;
+    [self formatOutputAndNotifyServer:8 
+                           withParam1:[NSString stringWithFormat:@"%d", (NSInteger)sageLocation.x] 
+                            andParam2:[NSString stringWithFormat:@"%d", (NSInteger)sageLocation.y]];
+}
+
+- (void)translateDrag:(CGPoint *)newTouch {
+    if(!pointerAlreadyShared) return;
+    
+    previousTouch.x = newTouch->x;
+    previousTouch.y = newTouch->y;
+    
+    CGFloat sageX = sageLocation.x + (newTouch->x - previousTouch.x) * xAtom;
+    CGFloat sageY = sageLocation.y + (newTouch->y - previousTouch.y) * yAtom;
+    
+    if(sageX > sageWidth) sageX = sageWidth;
+    else if(sageX < 0) sageX = 0;    
+    if(sageY > sageHeight) sageY = sageHeight;
+    else if(sageY < 0) sageY = 0;
+    
+    sageLocation.x = sageX;
+    sageLocation.y = sageY;
+    
+    [self formatOutputAndNotifyServer:15 
+                           withParam1:[NSString stringWithFormat:@"%d", (NSInteger)sageX] 
+                            andParam2:[NSString stringWithFormat:@"%d", (NSInteger)sageY]];
 }
 
 - (void)formatOutputAndNotifyServer:(NSInteger)outputType withParam1:(NSString *)param1 

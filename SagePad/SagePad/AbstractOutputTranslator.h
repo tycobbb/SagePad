@@ -15,7 +15,9 @@
 - (void)notifyServer;
 
 @optional
-- (void)translateTouchEvent:(CGPoint *)coordinates isFirst:(BOOL)isFirst;
-- (void)translatePinchEvent:(CGFloat *)scale isFirst:(BOOL)isFirst;
+- (void)translateMove:(CGPoint *)newTouch isFirst:(BOOL)isFirst;
+- (void)translatePinch:(CGFloat *)scale isFirst:(BOOL)isFirst;
+- (void)translatePress:(CGPoint *)newTouch;
+- (void)translateDrag:(CGPoint *)newTouch;
 
 @end

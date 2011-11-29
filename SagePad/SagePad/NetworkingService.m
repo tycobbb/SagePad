@@ -7,9 +7,6 @@
 //
 
 #import "NetworkingService.h"
-#import "AbstractServer.h"
-#import "AbstractInputTranslator.h"
-#import "AbstractOutputTranslator.h"
 
 @implementation NetworkingService
 
@@ -43,12 +40,20 @@
     [server setBufferSize:bufferSize];
 }
 
-- (void)handlePinchEvent:(CGFloat *)scalef isFirst:(BOOL)isFirst {
-    [outputTranslator translatePinchEvent:scalef isFirst:isFirst];
+- (void)handleMove:(CGPoint *)coordinates isFirst:(BOOL)isFirst {
+    [outputTranslator translateMove:coordinates isFirst:isFirst];
 }
 
-- (void)handleTouchEvent:(CGPoint *)coordinates isFirst:(BOOL)isFirst {
-    [outputTranslator translateTouchEvent:coordinates isFirst:isFirst];
+- (void)handlePinch:(CGFloat *)scale isFirst:(BOOL)isFirst {
+    [outputTranslator translatePinch:scale isFirst:isFirst];
+}
+
+- (void)handlePress:(CGPoint *)touchCoordinates {
+    [outputTranslator translatePress:touchCoordinates];
+}
+
+- (void)handleDrag:(CGPoint *)touchCoordinates {
+    [outputTranslator translateDrag:touchCoordinates];
 }
 
 - (void)dealloc {

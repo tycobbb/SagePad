@@ -25,7 +25,9 @@
 - (void)stopServer;
 - (void)setServerBufferSize:(NSInteger)bufferSize;
 
-- (void)handleTouchEvent:(CGPoint *)touchCoordinates isFirst:(BOOL)isFirst;
-- (void)handlePinchEvent:(CGFloat *)scalef isFirst:(BOOL)isFirst;
+- (void)handleMove:(CGPoint *)touchCoordinates isFirst:(BOOL)isFirst;
+- (void)handlePinch:(CGFloat *)scale isFirst:(BOOL)isFirst;
+- (void)handlePress:(CGPoint *)touchCoordinates;
+- (void)handleDrag:(CGPoint *)touchCoordinates;
 
 @end

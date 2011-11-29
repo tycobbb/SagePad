@@ -65,6 +65,22 @@
     [networkingService startServer];
 }
 
+// handle touches
+- (void)handleTouches:(NSSet *)touches isFirst:(BOOL)isFirst {
+    CGPoint touchCoordinates = [[touches anyObject] locationInView:self.view];
+    switch([touches count]) {
+        case 1:
+            [networkingService handleMove:&touchCoordinates isFirst:isFirst];
+            break;
+        case 2:
+            if(isFirst) [networkingService handlePress:&touchCoordinates];
+            else [networkingService handleDrag:&touchCoordinates];
+            break;
+        default:
+            break;
+    }
+}
+
 // --- "public" methods ---
 
 // additional setup after loading the view
@@ -86,13 +102,13 @@
 // method to handle pinch event, delegate responsibility to networkingService
 - (void)handlePinch:(UIPinchGestureRecognizer *)pinch {
     NSLog(@"Pointer: captured pinch with scale %f", [pinch scale]); 
-    CGFloat scalef = [pinch scale];
+    CGFloat scale = [pinch scale];
     switch(pinch.state){
         case UIGestureRecognizerStateBegan:
-            [networkingService handlePinchEvent:&scalef isFirst:YES];
+            [networkingService handlePinch:&scale isFirst:YES];
             break;
         case UIGestureRecognizerStateChanged:
-            [networkingService handlePinchEvent:&scalef isFirst:NO];
+            [networkingService handlePinch:&scale isFirst:NO];
             break;
         default:
             break;
@@ -101,22 +117,12 @@
 
 // method to handle touchDown event, delegate responsibility to networkingService
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    if([touches count] > 1) { 
-        NSLog(@"Pointer: captured touch with >1 fingers");
-        return;
-    }
-    CGPoint touchCoordinates = [[touches anyObject] locationInView:self.view];
-    [networkingService handleTouchEvent:&touchCoordinates isFirst:YES];
+    [self handleTouches:touches isFirst:YES];
 }
 
 // method to handle touchMoved and touchUp event, delegate responsibility to networkingService
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    if([touches count] > 1) { 
-        NSLog(@"Pointer: captured touch with >1 fingers");
-        return;
-    }
-    CGPoint touchCoordinates = [[touches anyObject] locationInView:self.view];
-    [networkingService handleTouchEvent:&touchCoordinates isFirst:NO];
+    [self handleTouches:touches isFirst:NO];
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
