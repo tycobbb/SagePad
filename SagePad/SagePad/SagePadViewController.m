@@ -81,8 +81,21 @@
     [[self navigationController] popViewControllerAnimated:YES];
 }
 
+
 - (void)handlePinch:(UIPinchGestureRecognizer *)pinch {
     NSLog(@"Pointer: captured pinch with scale %f", [pinch scale]); 
+    CGFloat scalef = [pinch scale];
+    switch(pinch.state){
+        case UIGestureRecognizerStateBegan:
+            [networkingService translatePinchBegan:&scalef];
+            break;
+        case UIGestureRecognizerStateChanged:
+            [networkingService translatePinchEvent:&scalef];
+            break;
+        default:
+            break;
+    }
+    [networkingService translatePinchEvent:&scalef];
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {

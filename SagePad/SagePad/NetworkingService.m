@@ -46,6 +46,14 @@
     [server stop];
 }
 
+- (void)translatePinchBegan:(CGFloat *)scalef {
+    [outputTranslator translatePinchBegan:scalef];
+}
+
+- (void)translatePinchEvent:(CGFloat *)scalef {
+    [outputTranslator translatePinchEvent:scalef];
+}
+
 - (void)translateTouchEvent:(CGPoint *)coordinates {
     [outputTranslator translateTouchEvent:coordinates];
 }

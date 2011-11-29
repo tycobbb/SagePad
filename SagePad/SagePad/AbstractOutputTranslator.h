@@ -13,4 +13,7 @@
 @required
 - (void)translateTouchEvent:(CGPoint *)touchCoordinates;
 
+- (void)translatePinchEvent:(CGFloat *)scalef;
+- (void)translatePinchBegan:(CGFloat *)scalef;
+
 @end
