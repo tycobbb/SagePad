@@ -18,7 +18,8 @@
     SagePadSettings *settings;
 
     CGPoint previousTouch; // coordinates of the previous pointer location read
-    CGFloat pinchBegan;
+    CGPoint sageLocation;
+    CGFloat firstPinch;
     CGFloat xAtom;
     CGFloat yAtom;
 
@@ -29,7 +30,12 @@
 
 - (id)initWithDeviceWidth:(CGFloat)deviceWidth andHeight:(CGFloat)deviceHeight;
 - (void)handlePointerConfiguration:(NSNotification *)notification;
-- (void)formatOutputAndNotifyServer:(NSInteger)outputType withParam1:(NSString *)param1 andParam2:(NSString *)param2;
-- (void)formatOutputAndNotifyServer:(NSInteger)outputType withParam1:(NSString *)param1 andParam2:(NSString *)param2 andParam3:(NSString *)param3;
+
+- (void)formatOutputAndNotifyServer:(NSInteger)outputType withParam1:(NSString *)param1 
+                          andParam2:(NSString *)param2;
+
+- (void)formatOutputAndNotifyServer:(NSInteger)outputType withParam1:(NSString *)param1 
+                          andParam2:(NSString *)param2 
+                          andParam3:(NSString *)param3;
 
 @end

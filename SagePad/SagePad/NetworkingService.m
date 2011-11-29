@@ -46,16 +46,16 @@
     [server stop];
 }
 
-- (void)translatePinchBegan:(CGFloat *)scalef {
-    [outputTranslator translatePinchBegan:scalef];
+
+- (void)translatePinchEvent:(CGFloat *)scalef isFirst:(BOOL)first {
+    if(first) [outputTranslator translatePinchEvent:scalef isFirst:YES];
+    else [outputTranslator translatePinchEvent:scalef isFirst:NO];
 }
 
-- (void)translatePinchEvent:(CGFloat *)scalef {
-    [outputTranslator translatePinchEvent:scalef];
+- (void)translateTouchEvent:(CGPoint *)coordinates isFirst:(BOOL)first {
+    if(first) [outputTranslator translateTouchEvent:coordinates isFirst:YES];
+    else [outputTranslator translateTouchEvent:coordinates isFirst:NO];
 }
 
-- (void)translateTouchEvent:(CGPoint *)coordinates {
-    [outputTranslator translateTouchEvent:coordinates];
-}
 
 @end

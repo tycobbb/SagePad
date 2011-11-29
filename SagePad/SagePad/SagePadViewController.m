@@ -87,15 +87,14 @@
     CGFloat scalef = [pinch scale];
     switch(pinch.state){
         case UIGestureRecognizerStateBegan:
-            [networkingService translatePinchBegan:&scalef];
+            [networkingService translatePinchEvent:&scalef isFirst:YES];
             break;
         case UIGestureRecognizerStateChanged:
-            [networkingService translatePinchEvent:&scalef];
+            [networkingService translatePinchEvent:&scalef isFirst:NO];
             break;
         default:
             break;
     }
-    [networkingService translatePinchEvent:&scalef];
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -105,7 +104,27 @@
     }
     CGPoint touchCoordinates = [[touches anyObject] locationInView:self.view];
     NSLog(@"Pointer: standard touch coordinates (%f, %f).", touchCoordinates.x, touchCoordinates.y);
-    [networkingService translateTouchEvent:&touchCoordinates];
+    [networkingService translateTouchEvent:&touchCoordinates isFirst:NO];
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    if([touches count] > 1) { 
+        NSLog(@"Pointer: captured touch with >1 fingers");
+        return;
+    }
+    CGPoint touchCoordinates = [[touches anyObject] locationInView:self.view];
+    NSLog(@"Pointer: standard touch coordinates (%f, %f).", touchCoordinates.x, touchCoordinates.y);
+    [networkingService translateTouchEvent:&touchCoordinates isFirst:YES];
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    if([touches count] > 1) { 
+        NSLog(@"Pointer: captured touch with >1 fingers");
+        return;
+    }
+    CGPoint touchCoordinates = [[touches anyObject] locationInView:self.view];
+    NSLog(@"Pointer: standard touch coordinates (%f, %f).", touchCoordinates.x, touchCoordinates.y);
+    [networkingService translateLastLocationEvent:&touchCoordinates];
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
