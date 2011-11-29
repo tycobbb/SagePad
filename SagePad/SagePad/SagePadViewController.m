@@ -89,6 +89,11 @@
     [self addSwipeGestureRecognizer];
     [self addPinchGestureRecognizer];
     [self addLongPressGestureRecognizer];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
     [self initNetworkingService];   
 }
 
@@ -138,6 +143,12 @@
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
     // not sure what to do with cancelled touch, or how a touch is cancelled
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [networkingService release];
+    
+    [super viewDidDisappear:animated];
 }
 
 - (void)viewDidUnload {

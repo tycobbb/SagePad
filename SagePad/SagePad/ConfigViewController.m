@@ -111,6 +111,10 @@
     [colorTextField setDelegate:self];
     [sensitivityTextField setDelegate:self];
     sensitvitySlider.minimumValue = 0.01;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
     settings = [[SagePadSettings alloc] init];
     ipTextField.text = settings.ipAddress;
@@ -181,6 +185,11 @@
     }
 }
 
+- (void) viewDidDisappear:(BOOL)animated {
+    [settings release];
+    
+    [super viewDidDisappear:animated];
+}
 
 - (void)viewDidUnload {
     [self setIpTextField:nil];
@@ -189,9 +198,8 @@
     [self setColorTextField:nil];
     [self setSensitvitySlider:nil];
     [self setSensitivityTextField:nil];
+    
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
