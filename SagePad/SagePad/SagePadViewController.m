@@ -63,9 +63,8 @@
 // additional setup after loading the view
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    [[self navigationController] setNavigationBarHidden:YES animated:YES];
     
+    [[self navigationController] setNavigationBarHidden:YES animated:YES];
     
     [self addSwipeGestureRecognizer];
     [self addPinchGestureRecognizer];

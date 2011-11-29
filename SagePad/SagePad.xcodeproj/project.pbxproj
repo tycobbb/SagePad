@@ -24,10 +24,13 @@
 		F9852B47146B4DCC00ED60B2 /* SagePadTests.h in Resources */ = {isa = PBXBuildFile; fileRef = F9852B46146B4DCC00ED60B2 /* SagePadTests.h */; };
 		F9852B49146B4DCC00ED60B2 /* SagePadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F9852B48146B4DCC00ED60B2 /* SagePadTests.m */; };
 		FB07B5CB146B4E5900DCBA95 /* SagePadTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = FB07B5CA146B4E5900DCBA95 /* SagePadTouchView.m */; };
+		FB7A430B148476840016CE54 /* swipeleft.png in Resources */ = {isa = PBXBuildFile; fileRef = FB7A430A148476840016CE54 /* swipeleft.png */; };
 		FB88957C147D6D6B00A2DA58 /* NetworkingService.m in Sources */ = {isa = PBXBuildFile; fileRef = FB88957B147D6D6B00A2DA58 /* NetworkingService.m */; };
 		FB91CD61147860950067EAE3 /* Server.m in Sources */ = {isa = PBXBuildFile; fileRef = FB91CD60147860950067EAE3 /* Server.m */; };
 		FB91CD6414786D000067EAE3 /* InputTranslator.m in Sources */ = {isa = PBXBuildFile; fileRef = FB91CD6314786D000067EAE3 /* InputTranslator.m */; };
 		FB91CD68147871D20067EAE3 /* OutputTranslator.m in Sources */ = {isa = PBXBuildFile; fileRef = FB91CD67147871D20067EAE3 /* OutputTranslator.m */; };
+		FB9C63961484829F007AC794 /* evl_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = FB9C63941484829F007AC794 /* evl_logo.png */; };
+		FB9C63971484829F007AC794 /* title.png in Resources */ = {isa = PBXBuildFile; fileRef = FB9C63951484829F007AC794 /* title.png */; };
 		FBE8DC711481B75600A986B7 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBE8DC6F1481B75600A986B7 /* RootViewController.m */; };
 		FBE8DC721481B75600A986B7 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBE8DC701481B75600A986B7 /* RootViewController.xib */; };
 		FBE8DC761481C50100A986B7 /* ConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBE8DC741481C50100A986B7 /* ConfigViewController.m */; };
@@ -71,6 +74,7 @@
 		F9EB3FAD147C9700006D946F /* AbstractServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractServer.h; sourceTree = "<group>"; };
 		FB07B5CA146B4E5900DCBA95 /* SagePadTouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SagePadTouchView.m; sourceTree = "<group>"; };
 		FB07B5D1146B521F00DCBA95 /* SagePadTouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SagePadTouchView.h; sourceTree = SOURCE_ROOT; };
+		FB7A430A148476840016CE54 /* swipeleft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = swipeleft.png; sourceTree = "<group>"; };
 		FB88957A147D6D6B00A2DA58 /* NetworkingService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkingService.h; sourceTree = "<group>"; };
 		FB88957B147D6D6B00A2DA58 /* NetworkingService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkingService.m; sourceTree = "<group>"; };
 		FB91CD5E14785F880067EAE3 /* Server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Server.h; sourceTree = "<group>"; };
@@ -81,6 +85,8 @@
 		FB91CD66147871D20067EAE3 /* OutputTranslator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutputTranslator.h; sourceTree = "<group>"; };
 		FB91CD67147871D20067EAE3 /* OutputTranslator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OutputTranslator.m; sourceTree = "<group>"; };
 		FB91CD69147873800067EAE3 /* AbstractOutputTranslator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractOutputTranslator.h; sourceTree = "<group>"; };
+		FB9C63941484829F007AC794 /* evl_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = evl_logo.png; sourceTree = "<group>"; };
+		FB9C63951484829F007AC794 /* title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = title.png; sourceTree = "<group>"; };
 		FBE8DC6E1481B75600A986B7 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		FBE8DC6F1481B75600A986B7 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		FBE8DC701481B75600A986B7 /* RootViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
@@ -171,6 +177,9 @@
 				F9852B21146B4DCC00ED60B2 /* InfoPlist.strings */,
 				F9852B24146B4DCC00ED60B2 /* main.m */,
 				F9852B26146B4DCC00ED60B2 /* SagePad-Prefix.pch */,
+				FB7A430A148476840016CE54 /* swipeleft.png */,
+				FB9C63941484829F007AC794 /* evl_logo.png */,
+				FB9C63951484829F007AC794 /* title.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -354,6 +363,9 @@
 				FBE8DC721481B75600A986B7 /* RootViewController.xib in Resources */,
 				FBE8DC771481C50100A986B7 /* ConfigViewController.xib in Resources */,
 				FBFF265F1482D82F00AA13F2 /* settings.plist in Resources */,
+				FB7A430B148476840016CE54 /* swipeleft.png in Resources */,
+				FB9C63961484829F007AC794 /* evl_logo.png in Resources */,
+				FB9C63971484829F007AC794 /* title.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

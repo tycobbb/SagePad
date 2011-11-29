@@ -31,10 +31,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [[self navigationController] setNavigationBarHidden:YES animated:YES];
+    
     // setup gesture recognizer to swipe right to home view
     UISwipeGestureRecognizer *twoFingerSwipe = 
-    [[UISwipeGestureRecognizer alloc] initWithTarget:self
-                                              action:@selector(handleSwipeLeft:)];
+        [[UISwipeGestureRecognizer alloc] initWithTarget:self
+                                                  action:@selector(handleSwipeLeft:)];
     twoFingerSwipe.numberOfTouchesRequired = 2;
     [twoFingerSwipe setDirection:UISwipeGestureRecognizerDirectionLeft];
     [self.view addGestureRecognizer:twoFingerSwipe];
