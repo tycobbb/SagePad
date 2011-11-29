@@ -22,7 +22,7 @@
     self = [super init];
     if (self) {
         [[NSNotificationCenter defaultCenter] addObserver:self 
-                                                 selector:@selector(translatePointerConfiguration:) 
+                                                 selector:@selector(handleInputNotification:) 
                                                      name:NOTIFY_INPUT
                                                    object:nil];
     }
@@ -30,7 +30,8 @@
     return self;
 }
 
-- (void)translatePointerConfiguration:(NSNotification *)notification {
+// translates pointer configuration data from the SAGE server after connecting
+- (void)handleInputNotification:(NSNotification *)notification {
     NSString *configurationString = ((Server *)[notification object]).inputFromStream;
     NSScanner *scanner = [NSScanner scannerWithString:configurationString];
     
@@ -39,7 +40,10 @@
     [scanner scanInt:&sageHeight];
     [scanner scanInt:&ftpPortNumber];
     
-    // send the notification, may have to attach the data in some manner
+    [self notifyTranslatedInput];
+}
+
+- (void)notifyTranslatedInput {
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFY_SAGE_CONFIG object:self];
 }
 

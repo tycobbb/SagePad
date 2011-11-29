@@ -104,6 +104,7 @@
 						<string key="NSFrame">{{545, 260}, {479, 479}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:544</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -115,7 +116,7 @@
 					<object class="IBUIImageView" id="1039228845">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{69, 54}, {752, 188}}</string>
+						<string key="NSFrame">{{20, 54}, {984, 188}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="18496921"/>
@@ -130,7 +131,7 @@
 					<object class="IBUIImageView" id="192271590">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 608}, {160, 91}}</string>
+						<string key="NSFrame">{{20, 680}, {86, 48}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="365343785"/>
@@ -145,7 +146,7 @@
 					<object class="IBUILabel" id="365343785">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 707}, {273, 21}}</string>
+						<string key="NSFrame">{{120, 693}, {273, 21}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="48515121"/>
@@ -244,12 +245,12 @@
 						<reference key="object" ref="766721923"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="365343785"/>
-							<reference ref="192271590"/>
 							<reference ref="48515121"/>
 							<reference ref="1039228845"/>
 							<reference ref="18496921"/>
 							<reference ref="271537471"/>
+							<reference ref="192271590"/>
+							<reference ref="365343785"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -395,7 +396,7 @@
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>{160, 91}</string>
 				<string>{2000, 2000}</string>
-				<string>{2000, 526}</string>
+				<string>{2500, 500}</string>
 			</object>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">534</string>

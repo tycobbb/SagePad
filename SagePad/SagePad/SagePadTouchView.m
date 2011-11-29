@@ -20,10 +20,18 @@
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    if([touches count] > 1) { 
+        NSLog(@"Pointer: captured touch with >1 fingers");
+        return;
+    }
     [self.nextResponder touchesBegan:touches withEvent:event];
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    if([touches count] > 1) { 
+        NSLog(@"Pointer: captured touch with >1 fingers");
+        return;
+    }
     [self.nextResponder touchesMoved:touches withEvent:event];
 }
 

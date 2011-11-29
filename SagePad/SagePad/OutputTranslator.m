@@ -78,8 +78,6 @@
     }
 }
 
-
-
 - (void)translatePinchEvent:(CGFloat *)scale isFirst:(BOOL)first {
     if(pointerAlreadyShared){
         if(first) firstPinch = *scale;

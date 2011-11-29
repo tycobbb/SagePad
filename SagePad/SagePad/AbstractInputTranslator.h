@@ -10,5 +10,8 @@
 
 @protocol AbstractInputTranslator <NSObject>
 
+@required
+- (void)handleInputNotification:(NSNotification *)notification;
+- (void)notifyTranslatedInput;
 
 @end

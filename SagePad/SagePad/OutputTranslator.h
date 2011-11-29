@@ -17,8 +17,8 @@
     NSUInteger ftpPortNumber;
     SagePadSettings *settings;
 
-    CGPoint sageLocation;
-    CGPoint previousTouch; // coordinates of the previous pointer location read
+    CGPoint sageLocation; // current coordiantes of the SAGE pointer
+    CGPoint previousTouch; // coordinates of the previous touch location read
     CGFloat firstPinch;
     CGFloat xAtom;
     CGFloat yAtom;
@@ -28,7 +28,6 @@
 
 @property (readonly, nonatomic) NSString *formattedOutput;
 
-- (id)initWithDeviceWidth:(CGFloat)deviceWidth andHeight:(CGFloat)deviceHeight;
 - (void)handlePointerConfiguration:(NSNotification *)notification;
 
 - (void)formatOutputAndNotifyServer:(NSInteger)outputType withParam1:(NSString *)param1 

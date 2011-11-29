@@ -10,11 +10,12 @@
 
 @protocol AbstractOutputTranslator <NSObject>
 
+@required
+- (id)initWithDeviceWidth:(CGFloat)deviceWidth andHeight:(CGFloat)deviceHeight;
+- (void)notifyServer;
+
 @optional
 - (void)translateTouchEvent:(CGPoint *)coordinates isFirst:(BOOL)isFirst;
 - (void)translatePinchEvent:(CGFloat *)scale isFirst:(BOOL)isFirst;
-
-@required
-- (void)notifyServer;
 
 @end
