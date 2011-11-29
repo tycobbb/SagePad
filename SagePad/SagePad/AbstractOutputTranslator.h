@@ -11,9 +11,8 @@
 @protocol AbstractOutputTranslator
 
 @required
-- (void)translateTouchEvent:(CGPoint *)touchCoordinates;
+- (void)translateTouchEvent:(CGPoint *)coordinates isFirst:(BOOL)first;
 
-- (void)translatePinchEvent:(CGFloat *)scalef;
-- (void)translatePinchBegan:(CGFloat *)scalef;
+- (void)translatePinchEvent:(CGFloat *)scalef isFirst:(BOOL)first; 
 
 @end

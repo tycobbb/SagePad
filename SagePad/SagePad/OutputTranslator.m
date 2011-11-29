@@ -25,7 +25,9 @@
         pointerAlreadyShared = NO;        
         previousTouch.x = 0;
         previousTouch.y = 0;
-        pinchBegan = 0;
+        sageLocation.x = 0;
+        sageLocation.y = 0;
+        firstPinch = 0;
         
         [[NSNotificationCenter defaultCenter] addObserver:self 
                                                  selector:@selector(handlePointerConfiguration:) 
@@ -53,47 +55,57 @@
     }
 }
 
-- (void)translateTouchEvent:(CGPoint *)newTouch {
+- (void)translateTouchEvent:(CGPoint *)newTouch isFirst:(BOOL)first {
     if(pointerAlreadyShared) {
-        CGFloat sageX = previousTouch.x + (newTouch->x - previousTouch.x) * xAtom;
-        CGFloat sageY = previousTouch.y + (newTouch->y - previousTouch.y) * yAtom;
-        
-        if(sageX > sageWidth) sageX = sageWidth;
-        else if(sageX < 0) sageX = 0;    
-        if(sageY > sageHeight) sageY = sageHeight;
-        else if(sageY < 0) sageY = 0;
-        
-        previousTouch.x = sageX;
-        previousTouch.y = sageY;
-        
-        [self formatOutputAndNotifyServer:17 
-                               withParam1:[NSString stringWithFormat:@"%d", (NSInteger)sageX] 
-                                andParam2:[NSString stringWithFormat:@"%d", (NSInteger)sageY]];
+        if(first){
+            previousTouch.x = newTouch->x;
+            previousTouch.y = newTouch->y;
+        }
+        else{
+            CGFloat sageX = sageLocation.x + (newTouch->x - previousTouch.x) * xAtom;
+            CGFloat sageY = sageLocation.y + (newTouch->y - previousTouch.y) * yAtom;
+            
+            if(sageX > sageWidth) sageX = sageWidth;
+            else if(sageX < 0) sageX = 0;    
+            if(sageY > sageHeight) sageY = sageHeight;
+            else if(sageY < 0) sageY = 0;
+            
+            sageLocation.x = sageX;
+            sageLocation.y = sageY;
+            
+            [self formatOutputAndNotifyServer:17 
+                                   withParam1:[NSString stringWithFormat:@"%d", (NSInteger)sageX] 
+                                    andParam2:[NSString stringWithFormat:@"%d", (NSInteger)sageY]];
+        }
     }
 }
 
-- (void)translatePinchBegan:(CGFloat *)scalef {
-    pinchBegan = *scalef;
-    NSLog(@"Pinch Began at: %f", pinchBegan);
-}
 
-- (void)translatePinchEvent:(CGFloat *)scalef {
-    CGFloat changeScale = *scalef - pinchBegan;
-    NSLog(@"Pinch scale: %f and current pinch at: %f", changeScale, *scalef);
+- (void)translatePinchEvent:(CGFloat *)scalef isFirst:(BOOL)first {
     if(pointerAlreadyShared){
-        [self formatOutputAndNotifyServer:19 
-                               withParam1:[NSString stringWithFormat:@"%d", (NSInteger)previousTouch.x] 
-                                andParam2:[NSString stringWithFormat:@"%d", (NSInteger)previousTouch.y]
-                                andParam3:[NSString stringWithFormat:@"%d", (NSInteger)changeScale]];
+        if(first) firstPinch = *scalef;
+        else{
+            CGFloat changeScale = *scalef - firstPinch;
+            NSLog(@"Pinch scale: %f and current pinch at: %f", changeScale, *scalef);
+            if(pointerAlreadyShared){
+                [self formatOutputAndNotifyServer:19 
+                                       withParam1:[NSString stringWithFormat:@"%d", (NSInteger)previousTouch.x] 
+                                        andParam2:[NSString stringWithFormat:@"%d", (NSInteger)previousTouch.y]
+                                        andParam3:[NSString stringWithFormat:@"%d", (NSInteger)changeScale]];
+            }
+        }
     }
 }
 
-- (void)formatOutputAndNotifyServer:(NSInteger)outputType withParam1:(NSString *)param1 andParam2:(NSString *)param2 {
+- (void)formatOutputAndNotifyServer:(NSInteger)outputType withParam1:(NSString *)param1 
+                          andParam2:(NSString *)param2 {
     formattedOutput = [NSString stringWithFormat:@"%d %u %@ %@", outputType, pointerId, param1, param2];
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFY_OUTPUT object:self];
 }
 
-- (void)formatOutputAndNotifyServer:(NSInteger)outputType withParam1:(NSString *)param1 andParam2:(NSString *)param2 andParam3:(NSString *)param3 {
+- (void)formatOutputAndNotifyServer:(NSInteger)outputType withParam1:(NSString *)param1 
+                          andParam2:(NSString *)param2 
+                          andParam3:(NSString *)param3 {
     formattedOutput = [NSString stringWithFormat:@"%d %u %@ %@ %@", outputType, pointerId, param1, param2, param3];
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFY_OUTPUT object:self];
 }

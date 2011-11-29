@@ -23,9 +23,8 @@
 - (void)startServer;
 - (void)stopServer;
 
-- (void)translateTouchEvent:(CGPoint *)touchCoordinates;
+- (void)translateTouchEvent:(CGPoint *)touchCoordinates isFirst:(BOOL)first;
 
-- (void)translatePinchEvent:(CGFloat *)scalef;
-- (void)translatePinchBegan:(CGFloat *)scalef;
+- (void)translatePinchEvent:(CGFloat *)scalef isFirst:(BOOL)first;
 
 @end
