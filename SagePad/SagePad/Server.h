@@ -25,6 +25,5 @@
 @property(readonly, nonatomic) NSString *inputFromStream;
 
 - (void)handleBytesAvailableEvent:(NSInputStream *)inputStream;
-- (void)sendOutputString:(NSNotification *)notification;
 
 @end
