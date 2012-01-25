@@ -7,6 +7,7 @@
 //
 
 #import "SagePadConstants.h"
+#import <DropboxSDK/DropboxSDK.h>
 
 NSString * const SETTINGS_FILE_NAME = @"settings";
 NSString * const SETTINGS_FILE_EXT = @"plist";
@@ -22,6 +23,10 @@ NSString * const POINTER_SENSITIVITY_KEY = @"SP_POINTER_SENSITIVITY";
 NSString * const NOTIFY_INPUT = @"SP_NOTIFY_INPUT";
 NSString * const NOTIFY_OUTPUT = @"SP_NOTIFY_OUTPUT";
 NSString * const NOTIFY_SAGE_CONFIG = @"SP_NOTIFY_SAGE_CONFIG";
+
+// dropbox api constants
+NSString * const DROPBOX_KEY = @"5090d932zm4sguc";
+NSString * const DROPBOX_SECRET = @"z2dg316hyr49zhw";
 
 @implementation SagePadConstants
 

@@ -7,6 +7,7 @@
 //
 
 #import "RootViewController.h"
+#import <DropboxSDK/DropboxSDK.h>
 
 @implementation RootViewController
 
@@ -52,13 +53,16 @@
 }
 
 - (IBAction)fileButtonPressed:(id)sender {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"File Upload" 
-                                                    message:@"This feature is not yet implemented." 
-                                                   delegate:nil 
-                                          cancelButtonTitle:@"Swag"
-                                          otherButtonTitles:nil];
-    [alert show];
-    [alert release];
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"File Upload" 
+//                                                    message:@"This feature is not yet implemented." 
+//                                                   delegate:nil 
+//                                          cancelButtonTitle:@"Swag"
+//                                          otherButtonTitles:nil];
+//    [alert show];
+//    [alert release];
+    if (![[DBSession sharedSession] isLinked]) {
+        [[DBSession sharedSession] link];
+    }
 }
 
 - (void)viewDidUnload {
