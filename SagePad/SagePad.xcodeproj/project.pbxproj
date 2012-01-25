@@ -24,6 +24,8 @@
 		F9852B47146B4DCC00ED60B2 /* SagePadTests.h in Resources */ = {isa = PBXBuildFile; fileRef = F9852B46146B4DCC00ED60B2 /* SagePadTests.h */; };
 		F9852B49146B4DCC00ED60B2 /* SagePadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F9852B48146B4DCC00ED60B2 /* SagePadTests.m */; };
 		FB07B5CB146B4E5900DCBA95 /* SagePadTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = FB07B5CA146B4E5900DCBA95 /* SagePadTouchView.m */; };
+		FB39681714CFC58000CC7BD9 /* DropboxSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB39681614CFC58000CC7BD9 /* DropboxSDK.framework */; };
+		FB39681A14CFC5BB00CC7BD9 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB39681914CFC5BB00CC7BD9 /* Security.framework */; };
 		FB7A430B148476840016CE54 /* swipeleft.png in Resources */ = {isa = PBXBuildFile; fileRef = FB7A430A148476840016CE54 /* swipeleft.png */; };
 		FB88957C147D6D6B00A2DA58 /* NetworkingService.m in Sources */ = {isa = PBXBuildFile; fileRef = FB88957B147D6D6B00A2DA58 /* NetworkingService.m */; };
 		FB91CD61147860950067EAE3 /* Server.m in Sources */ = {isa = PBXBuildFile; fileRef = FB91CD60147860950067EAE3 /* Server.m */; };
@@ -74,6 +76,8 @@
 		F9EB3FAD147C9700006D946F /* AbstractServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractServer.h; sourceTree = "<group>"; };
 		FB07B5CA146B4E5900DCBA95 /* SagePadTouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SagePadTouchView.m; sourceTree = "<group>"; };
 		FB07B5D1146B521F00DCBA95 /* SagePadTouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SagePadTouchView.h; sourceTree = SOURCE_ROOT; };
+		FB39681614CFC58000CC7BD9 /* DropboxSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DropboxSDK.framework; sourceTree = "<group>"; };
+		FB39681914CFC5BB00CC7BD9 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		FB7A430A148476840016CE54 /* swipeleft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = swipeleft.png; sourceTree = "<group>"; };
 		FB88957A147D6D6B00A2DA58 /* NetworkingService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkingService.h; sourceTree = "<group>"; };
 		FB88957B147D6D6B00A2DA58 /* NetworkingService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkingService.m; sourceTree = "<group>"; };
@@ -105,9 +109,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB39681A14CFC5BB00CC7BD9 /* Security.framework in Frameworks */,
 				F9852B19146B4DCC00ED60B2 /* UIKit.framework in Frameworks */,
 				F9852B1B146B4DCC00ED60B2 /* Foundation.framework in Frameworks */,
 				F9852B1D146B4DCC00ED60B2 /* CoreGraphics.framework in Frameworks */,
+				FB39681714CFC58000CC7BD9 /* DropboxSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,6 +153,8 @@
 		F9852B17146B4DCC00ED60B2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FB39681914CFC5BB00CC7BD9 /* Security.framework */,
+				FB39681614CFC58000CC7BD9 /* DropboxSDK.framework */,
 				F9852B18146B4DCC00ED60B2 /* UIKit.framework */,
 				F9852B1A146B4DCC00ED60B2 /* Foundation.framework */,
 				F9852B1C146B4DCC00ED60B2 /* CoreGraphics.framework */,
@@ -526,6 +534,10 @@
 		F9852B4D146B4DCC00ED60B2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SagePad/SagePad-Prefix.pch";
 				INFOPLIST_FILE = "SagePad/SagePad-Info.plist";
@@ -537,6 +549,10 @@
 		F9852B4E146B4DCC00ED60B2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SagePad/SagePad-Prefix.pch";
 				INFOPLIST_FILE = "SagePad/SagePad-Info.plist";

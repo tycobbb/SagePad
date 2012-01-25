@@ -16,6 +16,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // dropbox API configuration
+    NSString *appKey = @"5090d932zm4sguc";
+	NSString *appSecret = @"z2dg316hyr49zhw";
+	NSString *root = @"kDBRootAppFolder"; // Should be set to either kDBRootAppFolder or kDBRootDropbox
+    
+    
     UIViewController *rootController = [[RootViewController alloc] init];
     _viewController = [[UINavigationController alloc] initWithRootViewController:rootController];
     [rootController release];
