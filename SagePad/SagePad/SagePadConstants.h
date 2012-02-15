@@ -26,6 +26,9 @@ extern NSString * const NOTIFY_SAGE_CONFIG;
 // dropbox api constants
 extern NSString * const DROPBOX_KEY;
 extern NSString * const DROPBOX_SECRET;
+extern NSString * const DROPBOX_ROOT_DIR;
+
+extern NSString * const FILE_TREE_CELL_ID;
 
 @interface SagePadConstants : NSObject
 

@@ -7,15 +7,18 @@
 //
 
 #import "RootViewController.h"
-#import <DropboxSDK/DropboxSDK.h>
 
 @implementation RootViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        sagePadViewController = [[SagePadViewController alloc] init];
         configViewController = [[ConfigViewController alloc] init];
+        fileTableViewController = [[FileTableViewController alloc] init];
+        sagePadViewController = [[SagePadViewController alloc] init];
+        
+        dropboxManager = [[DropboxManager alloc] init];
+        dropboxManager.delegate = self;
     }
     return self;
 }
@@ -53,16 +56,18 @@
 }
 
 - (IBAction)fileButtonPressed:(id)sender {
-//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"File Upload" 
-//                                                    message:@"This feature is not yet implemented." 
-//                                                   delegate:nil 
-//                                          cancelButtonTitle:@"Swag"
-//                                          otherButtonTitles:nil];
-//    [alert show];
-//    [alert release];
-    if (![[DBSession sharedSession] isLinked]) {
+    if(![[DBSession sharedSession] isLinked]) {
         [[DBSession sharedSession] link];
     }
+    
+    if([[DBSession sharedSession] isLinked]) {
+        [dropboxManager requestFileList];        
+    }
+}
+
+- (void)handleDirectoryMetadata:(DBMetadata *)metadata {
+    fileTableViewController.rootMetadata = metadata;
+    [[self navigationController] pushViewController:fileTableViewController animated:YES];
 }
 
 - (void)viewDidUnload {
@@ -76,6 +81,9 @@
 - (void)dealloc {
     [sagePadViewController release];
     [configViewController release];
+    [fileTableViewController release];
+    
+    [dropboxManager release];
     
     [super dealloc];
 }

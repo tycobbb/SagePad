@@ -6,10 +6,9 @@
 //  Copyright 2011 UIC. All rights reserved.
 //
 
-#import <DropboxSDK/DropboxSDK.h>
 #import "SagePadAppDelegate.h"
 #import "RootViewController.h"
-#import "SagePadConstants.h"
+#import "DropboxManager.h"
 
 @implementation SagePadAppDelegate
 
@@ -18,12 +17,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // create dropbox session
-    NSString * dropboxRootFolder = kDBRootAppFolder;
-    DBSession* dbSession = [[[DBSession alloc] initWithAppKey:DROPBOX_KEY
-                                                    appSecret:DROPBOX_SECRET
-                                                         root:dropboxRootFolder] autorelease];
-    [DBSession setSharedSession:dbSession];
+    [DropboxManager createSession];
     
     UIViewController *rootController = [[RootViewController alloc] init];
     _viewController = [[UINavigationController alloc] initWithRootViewController:rootController];
@@ -70,10 +64,7 @@
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
     if ([[DBSession sharedSession] handleOpenURL:url]) {
-        if ([[DBSession sharedSession] isLinked]) {
-            NSLog(@"App linked successfully!");
-            // At this point you can start making API calls
-        }
+        if ([[DBSession sharedSession] isLinked]) NSLog(@"App linked successfully!");
         return YES;
     }
     // Add whatever other url handling code your app requires here

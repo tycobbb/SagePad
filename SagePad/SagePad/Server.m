@@ -44,9 +44,6 @@
     inputStream = (NSInputStream *)readStream;
     outputStream = (NSOutputStream *)writeStream;
     
-//    [inputStream retain];
-//    [outputStream retain];
-    
     [inputStream setDelegate:self];
     [outputStream setDelegate:self];
     
@@ -147,8 +144,6 @@
         }
     }
 }
-
-
 
 - (void)sendOutputString:(NSNotification *)notification{
     OutputTranslator *output = [notification object];

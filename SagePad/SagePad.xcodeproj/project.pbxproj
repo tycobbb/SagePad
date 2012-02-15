@@ -23,7 +23,10 @@
 		F9852B45146B4DCC00ED60B2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F9852B43146B4DCC00ED60B2 /* InfoPlist.strings */; };
 		F9852B47146B4DCC00ED60B2 /* SagePadTests.h in Resources */ = {isa = PBXBuildFile; fileRef = F9852B46146B4DCC00ED60B2 /* SagePadTests.h */; };
 		F9852B49146B4DCC00ED60B2 /* SagePadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F9852B48146B4DCC00ED60B2 /* SagePadTests.m */; };
+		FB07099014EAF74000313FC0 /* FileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FB07098F14EAF74000313FC0 /* FileTableViewController.m */; };
+		FB07099614EB548F00313FC0 /* DBDirectory.m in Sources */ = {isa = PBXBuildFile; fileRef = FB07099514EB548F00313FC0 /* DBDirectory.m */; };
 		FB07B5CB146B4E5900DCBA95 /* SagePadTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = FB07B5CA146B4E5900DCBA95 /* SagePadTouchView.m */; };
+		FB0E259F14D06841007078FB /* DropboxManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FB0E259E14D06841007078FB /* DropboxManager.m */; };
 		FB39681714CFC58000CC7BD9 /* DropboxSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB39681614CFC58000CC7BD9 /* DropboxSDK.framework */; };
 		FB39681A14CFC5BB00CC7BD9 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB39681914CFC5BB00CC7BD9 /* Security.framework */; };
 		FB7A430B148476840016CE54 /* swipeleft.png in Resources */ = {isa = PBXBuildFile; fileRef = FB7A430A148476840016CE54 /* swipeleft.png */; };
@@ -33,6 +36,7 @@
 		FB91CD68147871D20067EAE3 /* OutputTranslator.m in Sources */ = {isa = PBXBuildFile; fileRef = FB91CD67147871D20067EAE3 /* OutputTranslator.m */; };
 		FB9C63961484829F007AC794 /* evl_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = FB9C63941484829F007AC794 /* evl_logo.png */; };
 		FB9C63971484829F007AC794 /* title.png in Resources */ = {isa = PBXBuildFile; fileRef = FB9C63951484829F007AC794 /* title.png */; };
+		FBB8ED0414EB6A6D00B8EF8D /* DBFileType.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB8ED0314EB6A6D00B8EF8D /* DBFileType.m */; };
 		FBE8DC711481B75600A986B7 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBE8DC6F1481B75600A986B7 /* RootViewController.m */; };
 		FBE8DC721481B75600A986B7 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBE8DC701481B75600A986B7 /* RootViewController.xib */; };
 		FBE8DC761481C50100A986B7 /* ConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBE8DC741481C50100A986B7 /* ConfigViewController.m */; };
@@ -74,8 +78,15 @@
 		F9852B46146B4DCC00ED60B2 /* SagePadTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SagePadTests.h; sourceTree = "<group>"; };
 		F9852B48146B4DCC00ED60B2 /* SagePadTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SagePadTests.m; sourceTree = "<group>"; };
 		F9EB3FAD147C9700006D946F /* AbstractServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractServer.h; sourceTree = "<group>"; };
+		FB07098D14EAF48F00313FC0 /* DropboxManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DropboxManagerDelegate.h; path = SagePad/DropboxManagerDelegate.h; sourceTree = "<group>"; };
+		FB07098E14EAF73F00313FC0 /* FileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileTableViewController.h; sourceTree = "<group>"; };
+		FB07098F14EAF74000313FC0 /* FileTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileTableViewController.m; sourceTree = "<group>"; };
+		FB07099414EB548F00313FC0 /* DBDirectory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBDirectory.h; path = SagePad/DBDirectory.h; sourceTree = "<group>"; };
+		FB07099514EB548F00313FC0 /* DBDirectory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBDirectory.m; path = SagePad/DBDirectory.m; sourceTree = "<group>"; };
 		FB07B5CA146B4E5900DCBA95 /* SagePadTouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SagePadTouchView.m; sourceTree = "<group>"; };
 		FB07B5D1146B521F00DCBA95 /* SagePadTouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SagePadTouchView.h; sourceTree = SOURCE_ROOT; };
+		FB0E259D14D06841007078FB /* DropboxManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DropboxManager.h; path = SagePad/DropboxManager.h; sourceTree = "<group>"; };
+		FB0E259E14D06841007078FB /* DropboxManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DropboxManager.m; path = SagePad/DropboxManager.m; sourceTree = "<group>"; };
 		FB39681614CFC58000CC7BD9 /* DropboxSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DropboxSDK.framework; sourceTree = "<group>"; };
 		FB39681914CFC5BB00CC7BD9 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		FB7A430A148476840016CE54 /* swipeleft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = swipeleft.png; sourceTree = "<group>"; };
@@ -91,6 +102,8 @@
 		FB91CD69147873800067EAE3 /* AbstractOutputTranslator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractOutputTranslator.h; sourceTree = "<group>"; };
 		FB9C63941484829F007AC794 /* evl_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = evl_logo.png; sourceTree = "<group>"; };
 		FB9C63951484829F007AC794 /* title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = title.png; sourceTree = "<group>"; };
+		FBB8ED0214EB6A6D00B8EF8D /* DBFileType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBFileType.h; path = SagePad/DBFileType.h; sourceTree = "<group>"; };
+		FBB8ED0314EB6A6D00B8EF8D /* DBFileType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBFileType.m; path = SagePad/DBFileType.m; sourceTree = "<group>"; };
 		FBE8DC6E1481B75600A986B7 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		FBE8DC6F1481B75600A986B7 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		FBE8DC701481B75600A986B7 /* RootViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
@@ -169,6 +182,7 @@
 				FBFB49B8147C842200FD6736 /* Controllers */,
 				FBFB49B9147C843900FD6736 /* Views */,
 				FB889578147D6D2100A2DA58 /* NetworkingService */,
+				FB0E259A14D067C7007078FB /* File IO */,
 				FB697441147C85300070D758 /* UI */,
 				FBFF2664148323C600AA13F2 /* Utility Classes */,
 				FB697442147C85890070D758 /* App Delegate */,
@@ -207,6 +221,29 @@
 				F9852B43146B4DCC00ED60B2 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FB0E259A14D067C7007078FB /* File IO */ = {
+			isa = PBXGroup;
+			children = (
+				FB0E259C14D0680A007078FB /* Dropbox Utility */,
+			);
+			name = "File IO";
+			path = ..;
+			sourceTree = "<group>";
+		};
+		FB0E259C14D0680A007078FB /* Dropbox Utility */ = {
+			isa = PBXGroup;
+			children = (
+				FB07098D14EAF48F00313FC0 /* DropboxManagerDelegate.h */,
+				FB0E259D14D06841007078FB /* DropboxManager.h */,
+				FB0E259E14D06841007078FB /* DropboxManager.m */,
+				FBB8ED0214EB6A6D00B8EF8D /* DBFileType.h */,
+				FBB8ED0314EB6A6D00B8EF8D /* DBFileType.m */,
+				FB07099414EB548F00313FC0 /* DBDirectory.h */,
+				FB07099514EB548F00313FC0 /* DBDirectory.m */,
+			);
+			name = "Dropbox Utility";
 			sourceTree = "<group>";
 		};
 		FB0EC0C6148490E600304418 /* Images */ = {
@@ -276,12 +313,14 @@
 		FBFB49B8147C842200FD6736 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				F9852B2D146B4DCC00ED60B2 /* SagePadViewController.h */,
-				F9852B2E146B4DCC00ED60B2 /* SagePadViewController.m */,
 				FBE8DC6E1481B75600A986B7 /* RootViewController.h */,
 				FBE8DC6F1481B75600A986B7 /* RootViewController.m */,
+				FB07098E14EAF73F00313FC0 /* FileTableViewController.h */,
+				FB07098F14EAF74000313FC0 /* FileTableViewController.m */,
 				FBE8DC731481C50100A986B7 /* ConfigViewController.h */,
 				FBE8DC741481C50100A986B7 /* ConfigViewController.m */,
+				F9852B2D146B4DCC00ED60B2 /* SagePadViewController.h */,
+				F9852B2E146B4DCC00ED60B2 /* SagePadViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -429,6 +468,10 @@
 				FBE8DC761481C50100A986B7 /* ConfigViewController.m in Sources */,
 				FBFF26631482DBEE00AA13F2 /* SagePadConstants.m in Sources */,
 				FBFF26671483244200AA13F2 /* SagePadSettings.m in Sources */,
+				FB0E259F14D06841007078FB /* DropboxManager.m in Sources */,
+				FB07099014EAF74000313FC0 /* FileTableViewController.m in Sources */,
+				FB07099614EB548F00313FC0 /* DBDirectory.m in Sources */,
+				FBB8ED0414EB6A6D00B8EF8D /* DBFileType.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
