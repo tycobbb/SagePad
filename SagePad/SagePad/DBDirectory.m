@@ -21,10 +21,6 @@
     return self;
 }
 
-- (DBFileType *)objectAtIndex:(NSInteger)index {
-    return [_contents objectAtIndex:index];
-}    
-
 - (void)dealloc {
     [_contents release];
     

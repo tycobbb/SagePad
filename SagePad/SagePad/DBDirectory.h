@@ -14,6 +14,5 @@
 @property (nonatomic, retain) NSMutableArray *contents;
 
 - (id)initWithName:(NSString *)string;
-- (DBFileType *)objectAtIndex:(NSInteger)index;
 
 @end
