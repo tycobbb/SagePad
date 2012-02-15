@@ -11,8 +11,10 @@
 
 @interface DBDirectory : DBFileType
 
-@property (nonatomic, retain) NSMutableArray *contents;
+@property (nonatomic, retain) DBDirectory *parent;
+@property (nonatomic, retain) NSMutableArray *children;
+@property (nonatomic, retain) NSMutableArray *files;
 
-- (id)initWithName:(NSString *)string;
+- (id)initWithName:(NSString *)name andParent:(DBDirectory *)parent;
 
 @end

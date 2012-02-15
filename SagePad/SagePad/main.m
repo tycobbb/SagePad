@@ -2,7 +2,7 @@
 //  main.m
 //  SagePad
 //
-//  Created by Jakub Misterka on 11/9/11.
+//  Created by Ty Cobb & Jakub Misterka on 11/9/11.
 //  Copyright 2011 UIC. All rights reserved.
 //
 

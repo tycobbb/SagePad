@@ -29,6 +29,8 @@ NSString * const DROPBOX_SECRET = @"z2dg316hyr49zhw";
 NSString * const DROPBOX_ROOT_DIR = @"/";
 
 NSString * const FILE_TREE_CELL_ID = @"FILE_TREE_CELL";
+NSString * const DIRECTORY_SECTION_TITLE = @"Directories";
+NSString * const FILES_SECTION_TITLE = @"Files";
 
 @implementation SagePadConstants
 

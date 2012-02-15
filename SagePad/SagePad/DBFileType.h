@@ -12,6 +12,6 @@
 
 @property (nonatomic, retain) NSString *name;
 
-- (id)initWithName:(NSString *)string;
+- (id)initWithName:(NSString *)name;
 
 @end

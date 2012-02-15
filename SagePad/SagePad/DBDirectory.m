@@ -10,19 +10,25 @@
 
 @implementation DBDirectory
 
-@synthesize contents = _contents;
+@synthesize parent = _parent;
+@synthesize children = _children;
+@synthesize files = _files;
 
-- (id)initWithName:(NSString *)string {
-    self = [super initWithName:string];
+- (id)initWithName:(NSString *)name andParent:(DBDirectory *)parent {
+    self = [super initWithName:name];
     if (self) {
-        _contents = [[NSMutableArray alloc] init];
+        self.parent = parent;
+        self.children = [[NSMutableArray alloc] init];
+        self.files = [[NSMutableArray alloc] init];
     }
     
     return self;
 }
 
 - (void)dealloc {
-    [_contents release];
+    [_parent release];
+    [_children release];
+    [_files release];
     
     [super dealloc];
 }

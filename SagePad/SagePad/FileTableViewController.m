@@ -20,11 +20,11 @@
     NSLog(@"Folder '%@' contains:", directory.name);
     for(DBMetadata *data in metadata.contents) {
         if(data.isDirectory) {
-            [directory.contents addObject:[[DBDirectory alloc] initWithName: data.path]];
-            [self parse:data into: [directory.contents lastObject]];
+            [directory.children addObject:[[DBDirectory alloc] initWithName:data.path andParent:directory]];
+            [self parse:data into:[directory.children lastObject]];
         } else {
-            [directory.contents addObject:[[DBFileType alloc] initWithName:data.filename]];
-            NSLog(@"\t%@", [[directory.contents lastObject] name]);
+            [directory.files addObject:[[DBFileType alloc] initWithName:data.filename]];
+            NSLog(@"\t%@", [[directory.files lastObject] name]);
         }
     }
 }
@@ -49,25 +49,39 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [rootDirectory release];
-    rootDirectory = [[DBDirectory alloc] initWithName:rootMetadata.path];
+    rootDirectory = [[DBDirectory alloc] initWithName:rootMetadata.path andParent:nil];
     [self parse:rootMetadata into:rootDirectory];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:FILE_TREE_CELL_ID];
-    if (cell == nil) {
+    if(cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:FILE_TREE_CELL_ID] autorelease];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
-    NSLog(@"GO: %@", ((DBFileType *)[rootDirectory.contents objectAtIndex:0]).name);
-    //cell.textLabel.text = [[rootDirectory.contents objectAtIndex:indexPath.row] name];
-    
+    NSMutableArray *dataSection = (indexPath.section == 0) ? rootDirectory.children : rootDirectory.files;
+    cell.textLabel.text = [[dataSection objectAtIndex:indexPath.row] name];
     return cell;
 }
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 2;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [rootDirectory.contents count];
+    return (section == 0) ? [rootDirectory.children count] : [rootDirectory.files count];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    switch(section) {
+        case 0:
+            return DIRECTORY_SECTION_TITLE;
+        case 1:
+            return FILES_SECTION_TITLE;
+        default:
+            return @"";
+    }
 }
 
 - (void) viewDidDisappear:(BOOL)animated {
