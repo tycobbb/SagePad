@@ -8,7 +8,7 @@
 
 #import "SagePadAppDelegate.h"
 #import "RootViewController.h"
-#import "DropboxManager.h"
+#import "DBManager.h"
 
 @implementation SagePadAppDelegate
 
@@ -17,7 +17,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [DropboxManager createSession];
+    [DBManager createSession];
     
     UIViewController *rootController = [[RootViewController alloc] init];
     _viewController = [[UINavigationController alloc] initWithRootViewController:rootController];

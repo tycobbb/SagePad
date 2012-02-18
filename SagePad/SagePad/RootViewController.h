@@ -10,14 +10,15 @@
 #import "ConfigViewController.h"
 #import "FileTableViewController.h"
 #import "SagePadViewController.h"
-#import "DropboxManager.h"
+#import "DBManagerDelegate.h"
+#import "DBManager.h"
 
-@interface RootViewController : UIViewController <DropboxManagerDelegate> {    
+@interface RootViewController : UIViewController <DBManagerDelegate> {    
     ConfigViewController *configViewController;
     FileTableViewController *fileTableViewController;
     SagePadViewController *sagePadViewController;
     
-    DropboxManager *dropboxManager;
+    DBManager *dropboxManager;
 }
 
 - (IBAction)configButtonPressed:(id)sender;

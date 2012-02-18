@@ -10,23 +10,43 @@
 
 @implementation DBDirectory
 
-@synthesize parent = _parent;
 @synthesize children = _children;
 @synthesize files = _files;
 
-- (id)initWithName:(NSString *)name andParent:(DBDirectory *)parent {
-    self = [super initWithName:name];
-    if (self) {
-        self.parent = parent;
-        self.children = [[NSMutableArray alloc] init];
-        self.files = [[NSMutableArray alloc] init];
+- (void)initContents {
+    self.children = [[NSMutableArray alloc] init];
+    self.files = [[NSMutableArray alloc] init];
+    
+    NSLog(@"dir: '%@' contains:", self.name);
+    for(DBMetadata *data in self.metadata.contents) {
+        if(data.isDirectory) {
+            [self.children addObject:[[DBDirectory alloc] initWithMetadata:(DBMetadata *)data andParent:self]];
+        } else {
+            [self.files addObject:[[DBBasicFile alloc] initWithMetadata:data andParent:self]];
+            NSLog(@"\t%@", [[_files lastObject] name]);
+        }
+    }
+}
+
+- (id)initWithMetadata:(DBMetadata *)metadata {
+    self = [super initWithMetadata:metadata andParent:nil];
+    if(self) {
+        [self initContents];
+    }
+    
+    return self;
+}
+
+- (id)initWithMetadata:(DBMetadata *)metadata andParent:(DBBasicFile *)parent {
+    self = [super initWithMetadata:metadata andParent:parent];
+    if(self) {
+        [self initContents];
     }
     
     return self;
 }
 
 - (void)dealloc {
-    [_parent release];
     [_children release];
     [_files release];
     

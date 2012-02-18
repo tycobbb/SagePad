@@ -8,34 +8,21 @@
 
 #import "FileTableViewController.h"
 #import "SagePadConstants.h"
-#import "DBFileType.h"
+#import "DBManager.h"
 
 @implementation FileTableViewController
 
-@synthesize rootMetadata;
+@synthesize currentDirectory = _currentDirectory;
 
 // --- "private" helper methods ---
 
-- (void)parse:(DBMetadata *)metadata into:(DBDirectory *)directory {
-    NSLog(@"Folder '%@' contains:", directory.name);
-    for(DBMetadata *data in metadata.contents) {
-        if(data.isDirectory) {
-            [directory.children addObject:[[DBDirectory alloc] initWithName:data.path andParent:directory]];
-            [self parse:data into:[directory.children lastObject]];
-        } else {
-            [directory.files addObject:[[DBFileType alloc] initWithName:data.filename]];
-            NSLog(@"\t%@", [[directory.files lastObject] name]);
-        }
-    }
-}
-
 // --- "public" methods ---
 
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        rootDirectory = [[DBDirectory alloc] init];
+- (id)initWithStyle:(UITableViewStyle)style {
+    self = [super initWithStyle:style];
+    if(self) {
+        dropboxManager = [[DBManager alloc] init];
+        dropboxManager.delegate = self;
     }
     
     return self;
@@ -43,16 +30,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [rootDirectory release];
-    rootDirectory = [[DBDirectory alloc] initWithName:rootMetadata.path andParent:nil];
-    [self parse:rootMetadata into:rootDirectory];
+    
+    [[self navigationController] setNavigationBarHidden:NO animated:YES];
+
 }
 
+// UITableViewDataSource protocol implementation
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:FILE_TREE_CELL_ID];
     if(cell == nil) {
@@ -60,7 +47,7 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
-    NSMutableArray *dataSection = (indexPath.section == 0) ? rootDirectory.children : rootDirectory.files;
+    NSMutableArray *dataSection = (indexPath.section == 0) ? _currentDirectory.children : _currentDirectory.files;
     cell.textLabel.text = [[dataSection objectAtIndex:indexPath.row] name];
     return cell;
 }
@@ -70,17 +57,39 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return (section == 0) ? [rootDirectory.children count] : [rootDirectory.files count];
+    return (section == 0) ? [_currentDirectory.children count] : [_currentDirectory.files count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     switch(section) {
         case 0:
-            return DIRECTORY_SECTION_TITLE;
+            if([_currentDirectory.children count] == 0) {
+                return ([_currentDirectory.files count] == 0) ? DIRECTORY_EMPTY_SECTION_TITLE : @"";
+            } else {
+                return DIRECTORY_SECTION_TITLE;
+            }
+            break;
         case 1:
-            return FILES_SECTION_TITLE;
+            return ([_currentDirectory.files count] == 0) ? @"" : FILES_SECTION_TITLE;
+            break;
         default:
             return @"";
+    }
+}
+
+// UITableViewDelegate protocol implementation
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    switch(indexPath.section) {
+        case 0: {
+            if(!childFileTableViewController) childFileTableViewController = [[FileTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+            childFileTableViewController.currentDirectory = [_currentDirectory.children objectAtIndex:indexPath.row];
+            [[self navigationController] pushViewController:childFileTableViewController animated:YES];
+            break;
+        } case 1: {
+            NSLog(@"Should download selected item and push to wall");
+            break;
+        } default:
+            break;
     }
 }
 
@@ -99,7 +108,7 @@
 }
 
 - (void)dealloc {
-    [rootMetadata release];
+    [_currentDirectory release];
     
     [super dealloc];
 }

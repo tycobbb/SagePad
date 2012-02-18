@@ -7,14 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DBFileType.h"
+#import "DBBasicFile.h"
 
-@interface DBDirectory : DBFileType
+@interface DBDirectory : DBBasicFile
 
-@property (nonatomic, retain) DBDirectory *parent;
 @property (nonatomic, retain) NSMutableArray *children;
 @property (nonatomic, retain) NSMutableArray *files;
 
-- (id)initWithName:(NSString *)name andParent:(DBDirectory *)parent;
+- (id)initWithMetadata:(DBMetadata *)metadata;
+- (id)initWithMetadata:(DBMetadata *)metadata andParent:(DBBasicFile *)parent; 
 
 @end

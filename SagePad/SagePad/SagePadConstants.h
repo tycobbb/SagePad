@@ -29,8 +29,10 @@ extern NSString * const DROPBOX_SECRET;
 extern NSString * const DROPBOX_ROOT_DIR;
 
 extern NSString * const FILE_TREE_CELL_ID;
-extern NSString * const DIRECTORY_SECTION_TITLE;
-extern NSString * const FILES_SECTION_TITLE;
+
+extern NSString * const DIRECTORY_EMPTY_SECTION_TITLE; // relocate these
+extern NSString * const DIRECTORY_SECTION_TITLE;       // to some content
+extern NSString * const FILES_SECTION_TITLE;           // management system
 
 @interface SagePadConstants : NSObject
 
