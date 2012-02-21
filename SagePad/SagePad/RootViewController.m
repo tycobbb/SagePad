@@ -7,6 +7,7 @@
 //
 
 #import "RootViewController.h"
+#import "SagePadConstants.h"
 
 @implementation RootViewController
 
@@ -16,10 +17,8 @@
         configViewController = [[ConfigViewController alloc] init];
         fileTableViewController = [[FileTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
         sagePadViewController = [[SagePadViewController alloc] init];
-        
-        dropboxManager = [[DBManager alloc] init];
-        dropboxManager.delegate = self;
     }
+    
     return self;
 }
 
@@ -66,16 +65,18 @@
     }
     
     if([[DBSession sharedSession] isLinked]) {
-        [dropboxManager requestFileList];        
+        NSLog(@"attempt to create root");
+        pushDirectory = [[DBDirectory alloc] initAsRoot];
+        pushDirectory.delegate = self;
     }
 }
 
-- (void)handleMetadataLoaded:(DBMetadata *)metadata {
-    fileTableViewController.currentDirectory = [[DBDirectory alloc] initWithMetadata:metadata];
+- (void)handleDirectoryReady {
+    fileTableViewController.currentDirectory = pushDirectory;
     [[self navigationController] pushViewController:fileTableViewController animated:YES];
 }
 
-- (void)handleMetadataLoadFailure:(NSError *)error {
+- (void)handleDirectoryLoadFailure:(NSError *)error {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Couldn't Connect to Dropbox" 
                                                     message:[error localizedDescription]
                                                    delegate:self 
@@ -97,9 +98,8 @@
     [sagePadViewController release];
     [configViewController release];
     [fileTableViewController release];
-    
-    [dropboxManager release];
-    
+    [pushDirectory release];
+        
     [super dealloc];
 }
 

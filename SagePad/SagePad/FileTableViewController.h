@@ -9,14 +9,12 @@
 #import <UIKit/UIKit.h>
 #import <DropboxSDK/DropboxSDK.h>
 #import "DBManagerDelegate.h"
-#import "DBManager.h"
 #import "DBDirectory.h"
 
 @interface FileTableViewController : UITableViewController 
-        <UITableViewDelegate, UITableViewDataSource, DBManagerDelegate> {
+        <UITableViewDelegate, UITableViewDataSource, DBDirectoryDelegate> {
     
     FileTableViewController *childFileTableViewController;
-    DBManager *dropboxManager;
 }
 
 @property (nonatomic, retain) DBDirectory *currentDirectory;

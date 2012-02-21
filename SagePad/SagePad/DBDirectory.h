@@ -7,14 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DBBasicFile.h"
+#import "DBFileType.h"
+#import "DBDirectoryDelegate.h"
 
-@interface DBDirectory : DBBasicFile
+@interface DBDirectory : DBFileType {
+    Boolean isPopulated;
+}
 
+@property (nonatomic, assign) id<DBDirectoryDelegate> delegate;
 @property (nonatomic, retain) NSMutableArray *children;
-@property (nonatomic, retain) NSMutableArray *files;
+@property (nonatomic, retain) NSMutableArray *files;    
 
-- (id)initWithMetadata:(DBMetadata *)metadata;
-- (id)initWithMetadata:(DBMetadata *)metadata andParent:(DBBasicFile *)parent; 
+- (id)initAsRoot;
+- (id)initWithMetadata:(DBMetadata *)metadata andParent:(DBFileType *)parent; 
+
+- (void)populate;
 
 @end

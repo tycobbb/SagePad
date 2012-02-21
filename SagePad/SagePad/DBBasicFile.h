@@ -1,20 +1,17 @@
 //
-//  DBFileType.h
+//  DBBasicFile.h
 //  SagePad
 //
-//  Created by Matthew Cobb on 2/14/12.
+//  Created by Matthew Cobb on 2/20/12.
 //  Copyright 2012 UIC. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <DropboxSDK/DropboxSDK.h>
+#import "DBFileType.h"
 
-@interface DBBasicFile : NSObject
+@interface DBBasicFile : DBFileType
 
-@property (nonatomic, retain) DBMetadata *metadata;
-@property (nonatomic, retain) DBBasicFile *parent;
-@property (nonatomic, retain) NSString *name;
+- (id)initWithMetadata:(DBMetadata *)metadata andParent:(DBFileType *)parent; 
 
-- (id)initWithMetadata:(DBMetadata *)metadata andParent:(DBBasicFile *)parent;
+- (void)download;
 
 @end

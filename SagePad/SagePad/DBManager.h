@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <DropboxSDK/DropboxSDK.h>
 #import "DBManagerDelegate.h"
-#import "DBBasicFile.h"
 
 @interface DBManager : NSObject <DBRestClientDelegate> {
     DBRestClient *restClient;
@@ -19,7 +18,7 @@
 
 + (void)createSession;
 
-- (void)requestFileList;
+- (void)requestFileList:(NSString *)path;
 - (void)restClient:(DBRestClient *)client loadedMetadata:(DBMetadata *)metadata;
 - (void)restClient:(DBRestClient *)client loadMetadataFailedWithError:(NSError *)error;
 
@@ -29,7 +28,8 @@
           metadata:(DBMetadata *)metadata;
 - (void)restClient:(DBRestClient *)client uploadFileFailedWithError:(NSError*)error;
 
-- (void)downloadFile:(DBBasicFile *)file;
+- (void)downloadFile:(NSString *)file;
 - (void)restClient:(DBRestClient *)client loadedFile:(NSString*)localPath;
 - (void)restClient:(DBRestClient *)client loadFileFailedWithError:(NSError*)error;
+
 @end

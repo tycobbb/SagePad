@@ -33,8 +33,8 @@
     [DBSession setSharedSession:dbSession];
 }
 
-- (void)requestFileList {
-    [restClient loadMetadata:DROPBOX_ROOT_DIR];
+- (void)requestFileList:(NSString *)path {
+    [restClient loadMetadata:path];
 }
 
 - (void)restClient:(DBRestClient *)client loadedMetadata:(DBMetadata *)metadata {
@@ -63,7 +63,7 @@
     NSLog(@"File upload failed with error - %@", error);
 }
 
-- (void)downloadFile:(DBBasicFile *)file {
+- (void)downloadFile:(NSString *)file {
     [restClient loadFile:@"" intoPath:@""];
 }
 

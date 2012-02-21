@@ -1,8 +1,8 @@
 //
-//  DBFileType.m
+//  DBBasicFile.m
 //  SagePad
 //
-//  Created by Matthew Cobb on 2/14/12.
+//  Created by Matthew Cobb on 2/20/12.
 //  Copyright 2012 UIC. All rights reserved.
 //
 
@@ -10,35 +10,22 @@
 
 @implementation DBBasicFile
 
-@synthesize metadata = _metadata;
-@synthesize parent = _parent;
-@synthesize name = _name;
-
-// --- "private" helper methods ---
-
-- (NSString *)sanitize:(NSString *)name {
-    return [name substringFromIndex:1];
-}
-
-// --- "public" methods ---
-
-- (id)initWithMetadata:(DBMetadata *)metadata andParent:(DBBasicFile *)parent {
-    self = [super init];
-    if (self) {
-        self.metadata = metadata;
-        self.parent = parent;
-        self.name = [self sanitize:metadata.path];
-    }
-    
+- (id)initWithMetadata:(DBMetadata *)metadata andParent:(DBFileType *)parent {
+    self = [super initWithMetadata:metadata andParent:parent];
+    if(self) { }
     return self;
 }
 
-- (void)dealloc {
-    [_metadata release];
-    [_parent release];
-    [_name release];
+- (void)download {
     
-    [super dealloc];
+}
+
+- (void)handleFileLoaded:(NSString*)localPath {
+    
+}
+
+- (void)handleFileLoadFailure:(NSError*)error {
+    
 }
 
 @end

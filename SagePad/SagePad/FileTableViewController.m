@@ -21,8 +21,7 @@
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     if(self) {
-        dropboxManager = [[DBManager alloc] init];
-        dropboxManager.delegate = self;
+
     }
     
     return self;
@@ -34,9 +33,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
-
+    [[self tableView] reloadData];
 }
 
 // UITableViewDataSource protocol implementation
@@ -82,15 +80,33 @@
     switch(indexPath.section) {
         case 0: {
             if(!childFileTableViewController) childFileTableViewController = [[FileTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
-            childFileTableViewController.currentDirectory = [_currentDirectory.children objectAtIndex:indexPath.row];
-            [[self navigationController] pushViewController:childFileTableViewController animated:YES];
+            
+            DBDirectory *pushDirectory = [_currentDirectory.children objectAtIndex:indexPath.row];
+            pushDirectory.delegate = self;
+            
+            childFileTableViewController.currentDirectory = pushDirectory;
+            [pushDirectory populate];
             break;
         } case 1: {
-            NSLog(@"Should download selected item and push to wall");
+            
             break;
         } default:
             break;
     }
+}
+
+- (void)handleDirectoryReady {
+    [[self navigationController] pushViewController:childFileTableViewController animated:YES];
+}
+
+- (void)handleDirectoryLoadFailure:(NSError *)error {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Couldn't Connect to Dropbox" 
+                                                    message:[error localizedDescription]
+                                                   delegate:self 
+                                          cancelButtonTitle:@"Okay"
+                                          otherButtonTitles:nil];
+    [alert show];
+    [alert release];
 }
 
 - (void) viewDidDisappear:(BOOL)animated {

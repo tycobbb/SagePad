@@ -7,9 +7,12 @@
 //
 
 #import "DBDirectory.h"
+#import "SagePadConstants.h"
+#import "DBBasicFile.h"
 
 @implementation DBDirectory
 
+@synthesize delegate = _delegate;
 @synthesize children = _children;
 @synthesize files = _files;
 
@@ -20,7 +23,7 @@
     NSLog(@"dir: '%@' contains:", self.name);
     for(DBMetadata *data in self.metadata.contents) {
         if(data.isDirectory) {
-            [self.children addObject:[[DBDirectory alloc] initWithMetadata:(DBMetadata *)data andParent:self]];
+            [self.children addObject:[[DBDirectory alloc] initWithMetadata:data andParent:self]];
         } else {
             [self.files addObject:[[DBBasicFile alloc] initWithMetadata:data andParent:self]];
             NSLog(@"\t%@", [[_files lastObject] name]);
@@ -28,22 +31,40 @@
     }
 }
 
-- (id)initWithMetadata:(DBMetadata *)metadata {
-    self = [super initWithMetadata:metadata andParent:nil];
+- (id)initAsRoot {
+    self = [super init];
     if(self) {
-        [self initContents];
+        isPopulated = NO;
+        [dropboxManager requestFileList:DROPBOX_ROOT_DIR];
     }
     
     return self;
 }
 
-- (id)initWithMetadata:(DBMetadata *)metadata andParent:(DBBasicFile *)parent {
+- (id)initWithMetadata:(DBMetadata *)metadata andParent:(DBFileType *)parent {
     self = [super initWithMetadata:metadata andParent:parent];
     if(self) {
-        [self initContents];
+        isPopulated = NO;
     }
     
     return self;
+}
+
+- (void)populate {
+    if(!isPopulated) [dropboxManager requestFileList:self.metadata.path];
+    else [_delegate handleDirectoryReady];
+}
+
+- (void)handleMetadataLoaded:(DBMetadata *)metadata {
+    [super setMetadataAndNameWith:metadata];
+    [self initContents];
+    isPopulated = YES;
+    [_delegate handleDirectoryReady];
+}
+
+- (void)handleMetadataLoadFailure:(NSError *)error {
+    NSLog(@"error in dir");
+    [_delegate handleDirectoryLoadFailure:error];
 }
 
 - (void)dealloc {
