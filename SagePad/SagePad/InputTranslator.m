@@ -7,7 +7,7 @@
 //
 
 #import "InputTranslator.h"
-#import "Server.h"
+#import "Client.h"
 #import "SagePadConstants.h"
 
 @implementation InputTranslator
@@ -32,7 +32,7 @@
 
 // translates pointer configuration data from the SAGE server after connecting
 - (void)handleInputNotification:(NSNotification *)notification {
-    NSString *configurationString = ((Server *)[notification object]).inputFromStream;
+    NSString *configurationString = ((Client *)[notification object]).inputFromStream;
     NSScanner *scanner = [NSScanner scannerWithString:configurationString];
     
     [scanner scanInt:&pointerId];

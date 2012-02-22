@@ -10,6 +10,7 @@
 
 @implementation DBFileType
 
+@synthesize delegate = _delegate;
 @synthesize metadata = _metadata;
 @synthesize parent = _parent;
 @synthesize name = _name;
@@ -55,6 +56,7 @@
 }
 
 - (void)dealloc {
+    [_delegate release];
     [_metadata release];
     [_parent release];
     [_name release];

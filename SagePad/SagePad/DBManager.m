@@ -64,11 +64,20 @@
 }
 
 - (void)downloadFile:(NSString *)file {
-    [restClient loadFile:@"" intoPath:@""];
+    [restClient loadFile:file 
+                intoPath:[NSString stringWithFormat:@"/tmp%@", file]];
 }
 
 - (void)restClient:(DBRestClient *)client loadedFile:(NSString*)localPath {
-    [delegate handleFileLoaded:@""];
+    NSLog(@"Downloaded file: %@", localPath);
+    [delegate handleFileLoaded:localPath];
+    
+    // temporary immediate deletion
+    NSFileManager *fileManager = [[NSFileManager alloc] init];
+    if(![fileManager removeItemAtPath:localPath error:nil])
+        NSLog(@"Error removing file: %@", localPath);
+    else
+        NSLog(@"Deleted %@ successfully", localPath);
 }
 
 - (void)restClient:(DBRestClient *)client loadFileFailedWithError:(NSError*)error {

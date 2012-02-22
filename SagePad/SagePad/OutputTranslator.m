@@ -71,10 +71,10 @@
     ftpPortNumber = inputTranslator.ftpPortNumber;
     
     xAtom = sageWidth / xAtom * [settings.sensitivity floatValue] / 100.0; // now the atomic values are set correctly
-    yAtom = sageWidth / yAtom * [settings.sensitivity floatValue] / 100.0;
+    yAtom = sageHeight / yAtom * [settings.sensitivity floatValue] / 100.0;
     
     if(!pointerAlreadyShared) {
-        [self formatOutputAndNotifyServer:18 withParam1:settings.pointerName andParam2:settings.pointerColor];
+        [self formatOutputAndNotifyClient:18 withParam1:settings.pointerName andParam2:settings.pointerColor];
         pointerAlreadyShared = YES;
     }
 }
@@ -87,7 +87,7 @@
     }
     
     [self calculateNewSageLocation:newTouch];    
-    [self formatOutputAndNotifyServer:17 
+    [self formatOutputAndNotifyClient:POINTER_MOVING 
                            withParam1:[NSString stringWithFormat:@"%d", (NSInteger)sageLocation.x] 
                             andParam2:[NSString stringWithFormat:@"%d", (NSInteger)sageLocation.y]];
 }
@@ -97,7 +97,7 @@
     
     CGFloat changeScale = *scale - 1;
     if (changeScale < 0) changeScale *= 10;
-    [self formatOutputAndNotifyServer:19 
+    [self formatOutputAndNotifyClient:POINTER_WHEEL 
                            withParam1:[NSString stringWithFormat:@"%d", (NSInteger)sageLocation.x] 
                             andParam2:[NSString stringWithFormat:@"%d", (NSInteger)sageLocation.y]
                             andParam3:[NSString stringWithFormat:@"%d", (NSInteger)changeScale]];
@@ -106,7 +106,7 @@
 - (void)translatePress:(CGPoint *)newTouch {
     if(!pointerAlreadyShared) return;
     [self setPreviousTouch:newTouch];
-    [self formatOutputAndNotifyServer:8 
+    [self formatOutputAndNotifyClient:POINTER_PRESS 
                            withParam1:[NSString stringWithFormat:@"%d", (NSInteger)sageLocation.x] 
                             andParam2:[NSString stringWithFormat:@"%d", (NSInteger)sageLocation.y]];
 }
@@ -114,48 +114,48 @@
 - (void)translateDrag:(CGPoint *)newTouch {
     if(!pointerAlreadyShared) return;
     [self calculateNewSageLocation:newTouch];    
-    [self formatOutputAndNotifyServer:15 
+    [self formatOutputAndNotifyClient:POINTER_DRAGGING 
                            withParam1:[NSString stringWithFormat:@"%d", (NSInteger)sageLocation.x] 
                             andParam2:[NSString stringWithFormat:@"%d", (NSInteger)sageLocation.y]];
 }
 
 - (void)translateRelease:(CGPoint *)newTouch {
     if(!pointerAlreadyShared) return;
-    [self formatOutputAndNotifyServer:10
+    [self formatOutputAndNotifyClient:POINTER_RELEASE
                               withParam1:[NSString stringWithFormat:@"%d", (NSInteger)sageLocation.x] 
                                andParam2:[NSString stringWithFormat:@"%d", (NSInteger)sageLocation.y]];
 }
 
 - (void)translateClick:(CGPoint *)newTouch {
     if(!pointerAlreadyShared) return;
-    [self formatOutputAndNotifyServer:12
+    [self formatOutputAndNotifyClient:POINTER_CLICK
                            withParam1:[NSString stringWithFormat:@"%d", (NSInteger)sageLocation.x] 
                             andParam2:[NSString stringWithFormat:@"%d", (NSInteger)sageLocation.y]];
 }
 
 - (void)unsharePointer {
-    [self formatOutputAndNotifyServer:20];
+    [self formatOutputAndNotifyClient:POINTER_UNSHARE];
 }
 
-- (void)formatOutputAndNotifyServer:(NSInteger)outputType {
+- (void)formatOutputAndNotifyClient:(NSInteger)outputType {
     formattedOutput = [NSString stringWithFormat:@"%d %u", outputType, pointerId];
-    [self notifyServerOfOutput];
+    [self notifyClientOfOutput];
 }
 
-- (void)formatOutputAndNotifyServer:(NSInteger)outputType withParam1:(NSString *)param1 
+- (void)formatOutputAndNotifyClient:(NSInteger)outputType withParam1:(NSString *)param1 
                           andParam2:(NSString *)param2 {
     formattedOutput = [NSString stringWithFormat:@"%d %u %@ %@", outputType, pointerId, param1, param2];
-    [self notifyServerOfOutput];
+    [self notifyClientOfOutput];
 }
 
-- (void)formatOutputAndNotifyServer:(NSInteger)outputType withParam1:(NSString *)param1 
+- (void)formatOutputAndNotifyClient:(NSInteger)outputType withParam1:(NSString *)param1 
                           andParam2:(NSString *)param2 
                           andParam3:(NSString *)param3 {
     formattedOutput = [NSString stringWithFormat:@"%d %u %@ %@ %@", outputType, pointerId, param1, param2, param3];
-    [self notifyServerOfOutput];
+    [self notifyClientOfOutput];
 }
 
-- (void)notifyServerOfOutput {
+- (void)notifyClientOfOutput {
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFY_OUTPUT object:self];
 }
 

@@ -12,7 +12,7 @@
 #import "DBDirectory.h"
 
 @interface FileTableViewController : UITableViewController 
-        <UITableViewDelegate, UITableViewDataSource, DBDirectoryDelegate> {
+        <UITableViewDelegate, UITableViewDataSource, DBFileTypeDelegate> {
     
     FileTableViewController *childFileTableViewController;
 }

@@ -8,13 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "DBFileType.h"
-#import "DBDirectoryDelegate.h"
 
 @interface DBDirectory : DBFileType {
     Boolean isPopulated;
 }
 
-@property (nonatomic, assign) id<DBDirectoryDelegate> delegate;
 @property (nonatomic, retain) NSMutableArray *children;
 @property (nonatomic, retain) NSMutableArray *files;    
 

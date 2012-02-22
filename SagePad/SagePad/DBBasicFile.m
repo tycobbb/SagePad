@@ -12,20 +12,22 @@
 
 - (id)initWithMetadata:(DBMetadata *)metadata andParent:(DBFileType *)parent {
     self = [super initWithMetadata:metadata andParent:parent];
-    if(self) { }
+    if(self) {
+    
+    }
     return self;
 }
 
 - (void)download {
-    
+    [dropboxManager downloadFile:self.metadata.path];
 }
 
 - (void)handleFileLoaded:(NSString*)localPath {
-    
+    [self.delegate handleFileLoaded:localPath];
 }
 
 - (void)handleFileLoadFailure:(NSError*)error {
-    
+    [self.delegate handleFileLoadFailure:error];
 }
 
 @end

@@ -19,5 +19,3 @@
 @property(readonly, nonatomic) NSInteger ftpPortNumber;
 
 @end
-
-

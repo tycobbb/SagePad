@@ -7,8 +7,10 @@
 //
 
 #import "FileTableViewController.h"
+#import "NetworkingService.h"
 #import "SagePadConstants.h"
 #import "DBManager.h"
+#import "DBBasicFile.h"
 
 @implementation FileTableViewController
 
@@ -88,7 +90,8 @@
             [pushDirectory populate];
             break;
         } case 1: {
-            
+            DBBasicFile *dropboxFile = [_currentDirectory.files objectAtIndex:indexPath.row];
+            [dropboxFile download];
             break;
         } default:
             break;
@@ -101,6 +104,21 @@
 
 - (void)handleDirectoryLoadFailure:(NSError *)error {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Couldn't Connect to Dropbox" 
+                                                    message:[error localizedDescription]
+                                                   delegate:self 
+                                          cancelButtonTitle:@"Okay"
+                                          otherButtonTitles:nil];
+    [alert show];
+    [alert release];
+}
+
+- (void)handleFileLoaded:(NSString *)path {
+    NSLog(@"Got file at: %@", path);
+    
+}
+
+- (void)handleFileLoadFailure:(NSError *)error {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Failed to Download File" 
                                                     message:[error localizedDescription]
                                                    delegate:self 
                                           cancelButtonTitle:@"Okay"

@@ -10,11 +10,13 @@
 #import <DropboxSDK/DropboxSDK.h>
 #import "DBManagerDelegate.h"
 #import "DBManager.h"
+#import "DBFileTypeDelegate.h"
 
 @interface DBFileType : NSObject <DBManagerDelegate> {
     DBManager *dropboxManager;
 }
 
+@property (nonatomic, assign) id<DBFileTypeDelegate> delegate;
 @property (nonatomic, retain) DBMetadata *metadata;
 @property (nonatomic, retain) DBFileType *parent;
 @property (nonatomic, retain) NSString *name;

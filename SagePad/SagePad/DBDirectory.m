@@ -12,7 +12,6 @@
 
 @implementation DBDirectory
 
-@synthesize delegate = _delegate;
 @synthesize children = _children;
 @synthesize files = _files;
 
@@ -52,19 +51,18 @@
 
 - (void)populate {
     if(!isPopulated) [dropboxManager requestFileList:self.metadata.path];
-    else [_delegate handleDirectoryReady];
+    else [self.delegate handleDirectoryReady];
 }
 
 - (void)handleMetadataLoaded:(DBMetadata *)metadata {
     [super setMetadataAndNameWith:metadata];
     [self initContents];
     isPopulated = YES;
-    [_delegate handleDirectoryReady];
+    [self.delegate handleDirectoryReady];
 }
 
 - (void)handleMetadataLoadFailure:(NSError *)error {
-    NSLog(@"error in dir");
-    [_delegate handleDirectoryLoadFailure:error];
+    [self.delegate handleDirectoryLoadFailure:error];
 }
 
 - (void)dealloc {

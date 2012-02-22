@@ -10,10 +10,10 @@
 #import "ConfigViewController.h"
 #import "FileTableViewController.h"
 #import "SagePadViewController.h"
-#import "DBDirectoryDelegate.h"
+#import "DBFileTypeDelegate.h"
 #import "DBDirectory.h"
 
-@interface RootViewController : UIViewController <DBDirectoryDelegate> {    
+@interface RootViewController : UIViewController <DBFileTypeDelegate> {    
     ConfigViewController *configViewController;
     FileTableViewController *fileTableViewController;
     SagePadViewController *sagePadViewController;

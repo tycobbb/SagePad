@@ -2,34 +2,27 @@
 //  NetworkingService.h
 //  SagePad
 //
-//  Created by Matthew Cobb on 11/23/11.
-//  Copyright 2011 UIC. All rights reserved.
+//  Created by Matthew Cobb on 2/21/12.
+//  Copyright 2012 UIC. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import "AbstractServer.h"
+#import "AbstractClient.h"
 #import "AbstractInputTranslator.h"
 #import "AbstractOutputTranslator.h"
 
 @interface NetworkingService : NSObject {
     id<AbstractInputTranslator> inputTranslator;
     id<AbstractOutputTranslator> outputTranslator;
-    id<AbstractServer> server;
+    id<AbstractClient> client;
 }
 
 - (id)initWithInputTranslator:(id<AbstractInputTranslator>)_inputTranslator 
           andOutputTranslator:(id<AbstractOutputTranslator>)_outputTranslator
-                    andServer:(id<AbstractServer>)_server;
+                    andClient:(id<AbstractClient>)_client;
 
-- (void)startServer;
-- (void)stopServer;
+- (void)startClient;
+- (void)stopClient;
 - (void)setServerBufferSize:(NSInteger)bufferSize;
-
-- (void)handleMove:(CGPoint *)touchCoordinates isFirst:(BOOL)isFirst;
-- (void)handlePinch:(CGFloat *)scale;
-- (void)handlePress:(CGPoint *)touchCoordinates;
-- (void)handleDrag:(CGPoint *)touchCoordinates;
-- (void)handleRelease:(CGPoint *)touchCoodinates;
-- (void)handleClick:(CGPoint *)touchCoordinates;
 
 @end
