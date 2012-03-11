@@ -8,36 +8,94 @@
 
 #import "NetworkingService.h"
 
+@interface NetworkingService ()
+
+@property (nonatomic, retain) id<AbstractClient> client;
+@property (nonatomic, retain) id<AbstractInputTranslator> inputTranslator;
+@property (nonatomic, retain) id<AbstractOutputTranslator> outputTranslator;
+
+@end
+
 @implementation NetworkingService
 
-- (id)initWithInputTranslator:(id<AbstractInputTranslator>)_inputTranslator
-          andOutputTranslator:(id<AbstractOutputTranslator>)_outputTranslator 
-                    andClient:(id<AbstractClient>)_client {
+@synthesize client = _client;
+@synthesize inputTranslator = _inputTranslator;
+@synthesize outputTranslator = _outputTranslator;
+
+- (id)initWithInputTranslator:(id<AbstractInputTranslator>)inputTranslator
+          andOutputTranslator:(id<AbstractOutputTranslator>)outputTranslator 
+                    andClient:(id<AbstractClient>)client {
     
     self = [super init];
     if (self) {
-        inputTranslator = _inputTranslator;
-        outputTranslator = _outputTranslator;
-        client = _client;
+        self.client = client;
+        self.inputTranslator = inputTranslator;
+        self.outputTranslator = outputTranslator;
         
-        [inputTranslator retain];
-        [outputTranslator retain];
-        [client retain];
+        self.client.delegate = self;
+        self.inputTranslator.delegate = self;
+        self.outputTranslator.delegate = self;
     }
     
     return self;
 }
 
+// client methods
 - (void)startClient {
-    [client start]; 
+    [_client start]; 
 }
 
 - (void)stopClient {
-    [client stop];
+    [_client stop];
 }
 
 - (void)setServerBufferSize:(NSInteger)bufferSize {
-    [client setBufferSize:bufferSize];
+    [_client setBufferSize:bufferSize];
+}
+
+// output translator methods
+// --for pointer
+- (void)handleMove:(CGPoint *)coordinates isFirst:(BOOL)isFirst {
+    [_outputTranslator translateMove:coordinates isFirst:isFirst];
+}
+
+- (void)handlePinch:(CGFloat *)scale {
+    [_outputTranslator translatePinch:scale];
+}
+
+- (void)handlePress:(CGPoint *)touchCoordinates {
+    [_outputTranslator translatePress:touchCoordinates];
+}
+
+- (void)handleDrag:(CGPoint *)touchCoordinates {
+    [_outputTranslator translateDrag:touchCoordinates];
+}
+
+- (void)handleRelease:(CGPoint *)touchCoodinates {
+    [_outputTranslator translateRelease:touchCoodinates];
+}
+
+- (void)handleClick:(CGPoint *)touchCoordinates {
+    [_outputTranslator translateClick:touchCoordinates];
+}
+
+// --for ftp
+- (void)sendFile:(NSString *)path {
+    [_outputTranslator sendFile:path];
+}
+
+// child communication methods
+- (void)handleConnectionResponse:(NSString *)response {
+    [_inputTranslator handleConnectionResponse:response];
+}
+
+- (void)handleSageConfiguration:(SageConfiguration *)configuration {
+    [_client handleSageConfiguration:configuration];
+    [_outputTranslator handleSageConfiguration:configuration];
+}
+
+- (void)handleOutputReady:(NSString *)output {
+    
 }
 
 @end

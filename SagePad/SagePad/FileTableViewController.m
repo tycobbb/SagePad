@@ -7,8 +7,8 @@
 //
 
 #import "FileTableViewController.h"
-#import "NetworkingService.h"
 #import "SagePadConstants.h"
+#import "SagePadSettings.h"
 #import "DBManager.h"
 #import "DBBasicFile.h"
 
@@ -82,10 +82,8 @@
     switch(indexPath.section) {
         case 0: {
             if(!childFileTableViewController) childFileTableViewController = [[FileTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
-            
             DBDirectory *pushDirectory = [_currentDirectory.children objectAtIndex:indexPath.row];
             pushDirectory.delegate = self;
-            
             childFileTableViewController.currentDirectory = pushDirectory;
             [pushDirectory populate];
             break;
@@ -114,7 +112,6 @@
 
 - (void)handleFileLoaded:(NSString *)path {
     NSLog(@"Got file at: %@", path);
-    
 }
 
 - (void)handleFileLoadFailure:(NSError *)error {
@@ -127,13 +124,11 @@
     [alert release];
 }
 
-- (void) viewDidDisappear:(BOOL)animated {
-    
+- (void) viewDidDisappear:(BOOL)animated {    
     [super viewDidDisappear:animated];
 }
 
 - (void)viewDidUnload {
-
     [super viewDidUnload];
 }
 

@@ -70,7 +70,7 @@
     OutputTranslator *outputTranslator = [[OutputTranslator alloc] initWithDeviceWidth:width andHeight:height];
     Client *client = [[Client alloc] initWithIp:[sagePadSettings.ipAddress copy]
                                   andPortNumber:[sagePadSettings.portNumber integerValue]];
-    pointerService = [[PointerService alloc] initWithInputTranslator:inputTranslator 
+    networkingService = [[NetworkingService alloc] initWithInputTranslator:inputTranslator 
                                                        andOutputTranslator:outputTranslator
                                                                  andClient:client];
     [sagePadSettings release];
@@ -78,14 +78,14 @@
     [outputTranslator release];
     [client release];
 
-    [pointerService startClient];
+    [networkingService startClient];
 }
 
 // handle touches
 - (void)handleTouches:(NSSet *)touches isFirst:(BOOL)isFirst {
     if([touches count] != 1) return;
     CGPoint touchCoordinates = [[touches anyObject] locationInView:self.view];
-    [pointerService handleMove:&touchCoordinates isFirst:isFirst];
+    [networkingService handleMove:&touchCoordinates isFirst:isFirst];
 }
 
 // --- "public" methods ---
@@ -116,7 +116,7 @@
     CGFloat scale = [pinch scale];
     switch(pinch.state) {
         case UIGestureRecognizerStateChanged:
-            [pointerService handlePinch:&scale];
+            [networkingService handlePinch:&scale];
             break;
         default:
             break;
@@ -127,13 +127,13 @@
     CGPoint touchCoordinates = [longPress locationInView:self.view];
     switch(longPress.state) {
         case UIGestureRecognizerStateBegan:
-            [pointerService handlePress:&touchCoordinates];
+            [networkingService handlePress:&touchCoordinates];
             break;
         case UIGestureRecognizerStateChanged:
-            [pointerService handleDrag:&touchCoordinates];
+            [networkingService handleDrag:&touchCoordinates];
             break;
         case UIGestureRecognizerStateEnded:
-            [pointerService handleRelease:&touchCoordinates];
+            [networkingService handleRelease:&touchCoordinates];
             break;
         default:
             break;
@@ -142,7 +142,7 @@
 
 - (void)handleSingleTap:(UITapGestureRecognizer *)tap {
     CGPoint touchCoordinates = [tap locationInView:self.view];
-    [pointerService handleClick:&touchCoordinates];
+    [networkingService handleClick:&touchCoordinates];
 }
 
 // method to handle touchDown event, delegate responsibility to networkingService
@@ -160,8 +160,8 @@
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
-    [pointerService stopClient];
-    [pointerService release];
+    [networkingService stopClient];
+    [networkingService release];
     
     [super viewDidDisappear:animated];
 }

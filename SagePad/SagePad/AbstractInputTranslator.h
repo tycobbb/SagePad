@@ -7,11 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "NetworkingDelegate.h"
 
 @protocol AbstractInputTranslator <NSObject>
 
+@property (nonatomic, assign) id<NetworkingDelegate> delegate;
+@property (nonatomic, retain) SageConfiguration *sageConfiguration;
+
 @required
-- (void)handleInputNotification:(NSNotification *)notification;
-- (void)notifyTranslatedInput;
+- (void)handleConnectionResponse:(NSString *)response;
 
 @end

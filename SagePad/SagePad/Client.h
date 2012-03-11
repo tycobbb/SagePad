@@ -8,12 +8,14 @@
 
 #import <Foundation/NSObject.h>
 #import "AbstractClient.h"
+#import "NetworkingDelegate.h"
+#import "SageConfiguration.h"
 
-@interface Client : NSObject <AbstractClient, NSStreamDelegate> {
-    NSString *inputTranslatorNotification;
-    
+@interface Client : NSObject <AbstractClient, NSStreamDelegate> {    
+    @private
     NSString *ipAddress;
     NSInteger portNumber;
+    NSInteger ftpPortNumber;
     
     NSInputStream *inputStream;
     NSOutputStream *outputStream;
@@ -21,9 +23,5 @@
     NSInteger bufferSize;
     BOOL isConfigured;
 }
-
-@property(readonly, nonatomic) NSString *inputFromStream;
-
-- (void)handleBytesAvailableEvent:(NSInputStream *)inputStream;
 
 @end

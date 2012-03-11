@@ -9,35 +9,23 @@
 #import <Foundation/Foundation.h>
 #import "AbstractOutputTranslator.h"
 #import "SagePadSettings.h"
+#import "SagePadConstants.h"
+#import "SageConfiguration.h"
 
 @interface OutputTranslator : NSObject <AbstractOutputTranslator> {
-    NSUInteger pointerId;
-    NSUInteger sageWidth;
-    NSUInteger sageHeight;
-    NSUInteger ftpPortNumber;
+    @private
     SagePadSettings *settings;
 
+    // pointer specific instance vars
+    BOOL pointerAlreadyShared;
     CGPoint sageLocation; // current coordiantes of the SAGE pointer
     CGPoint previousTouch; // coordinates of the previous touch location read
     CGFloat firstPinch;
     CGFloat xAtom;
     CGFloat yAtom;
-
-    BOOL pointerAlreadyShared;
+    
+    // ftp specific instance vars
+    NSFileManager *fileManager;
 }
-
-@property (readonly, nonatomic) NSString *formattedOutput;
-
-- (void)handlePointerConfiguration:(NSNotification *)notification;
-
-- (void)formatOutputAndNotifyClient:(NSInteger)outputType;
-
-- (void)formatOutputAndNotifyClient:(NSInteger)outputType withParam1:(NSString *)param1 
-                          andParam2:(NSString *)param2;
-
-- (void)formatOutputAndNotifyClient:(NSInteger)outputType withParam1:(NSString *)param1 
-                          andParam2:(NSString *)param2 
-                          andParam3:(NSString *)param3;
-- (void)unsharePointer;
 
 @end

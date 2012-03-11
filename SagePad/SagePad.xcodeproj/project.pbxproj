@@ -31,15 +31,14 @@
 		FB39681714CFC58000CC7BD9 /* DropboxSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB39681614CFC58000CC7BD9 /* DropboxSDK.framework */; };
 		FB39681A14CFC5BB00CC7BD9 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB39681914CFC5BB00CC7BD9 /* Security.framework */; };
 		FB7A430B148476840016CE54 /* swipeleft.png in Resources */ = {isa = PBXBuildFile; fileRef = FB7A430A148476840016CE54 /* swipeleft.png */; };
-		FB88957C147D6D6B00A2DA58 /* PointerService.m in Sources */ = {isa = PBXBuildFile; fileRef = FB88957B147D6D6B00A2DA58 /* PointerService.m */; };
 		FB91CD61147860950067EAE3 /* Client.m in Sources */ = {isa = PBXBuildFile; fileRef = FB91CD60147860950067EAE3 /* Client.m */; };
 		FB91CD6414786D000067EAE3 /* InputTranslator.m in Sources */ = {isa = PBXBuildFile; fileRef = FB91CD6314786D000067EAE3 /* InputTranslator.m */; };
 		FB91CD68147871D20067EAE3 /* OutputTranslator.m in Sources */ = {isa = PBXBuildFile; fileRef = FB91CD67147871D20067EAE3 /* OutputTranslator.m */; };
 		FB9C63961484829F007AC794 /* evl_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = FB9C63941484829F007AC794 /* evl_logo.png */; };
 		FB9C63971484829F007AC794 /* title.png in Resources */ = {isa = PBXBuildFile; fileRef = FB9C63951484829F007AC794 /* title.png */; };
-		FB9F76F714F4418600FD49E1 /* FTPService.m in Sources */ = {isa = PBXBuildFile; fileRef = FB9F76F614F4418600FD49E1 /* FTPService.m */; };
 		FB9F76FA14F443D900FD49E1 /* NetworkingService.m in Sources */ = {isa = PBXBuildFile; fileRef = FB9F76F914F443D900FD49E1 /* NetworkingService.m */; };
 		FBB8ED0414EB6A6D00B8EF8D /* DBFileType.m in Sources */ = {isa = PBXBuildFile; fileRef = FBB8ED0314EB6A6D00B8EF8D /* DBFileType.m */; };
+		FBD70BE815053BCC008AB539 /* SageConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD70BE715053BCB008AB539 /* SageConfiguration.m */; };
 		FBE8DC711481B75600A986B7 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBE8DC6F1481B75600A986B7 /* RootViewController.m */; };
 		FBE8DC721481B75600A986B7 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FBE8DC701481B75600A986B7 /* RootViewController.xib */; };
 		FBE8DC761481C50100A986B7 /* ConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FBE8DC741481C50100A986B7 /* ConfigViewController.m */; };
@@ -96,8 +95,6 @@
 		FB6B63D014F2E788000A44FE /* DBManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBManagerDelegate.h; path = SagePad/DBManagerDelegate.h; sourceTree = "<group>"; };
 		FB71E0CD14F2E86A0053BBDC /* DBFileType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBFileType.h; path = SagePad/DBFileType.h; sourceTree = "<group>"; };
 		FB7A430A148476840016CE54 /* swipeleft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = swipeleft.png; sourceTree = "<group>"; };
-		FB88957A147D6D6B00A2DA58 /* PointerService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointerService.h; sourceTree = "<group>"; };
-		FB88957B147D6D6B00A2DA58 /* PointerService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointerService.m; sourceTree = "<group>"; };
 		FB91CD5E14785F880067EAE3 /* Client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Client.h; sourceTree = "<group>"; };
 		FB91CD60147860950067EAE3 /* Client.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Client.m; sourceTree = "<group>"; };
 		FB91CD6214786D000067EAE3 /* InputTranslator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputTranslator.h; sourceTree = "<group>"; };
@@ -109,11 +106,12 @@
 		FB9C63941484829F007AC794 /* evl_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = evl_logo.png; sourceTree = "<group>"; };
 		FB9C63951484829F007AC794 /* title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = title.png; sourceTree = "<group>"; };
 		FB9F76F014F3F73700FD49E1 /* DBFileTypeDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBFileTypeDelegate.h; path = SagePad/DBFileTypeDelegate.h; sourceTree = "<group>"; };
-		FB9F76F514F4418600FD49E1 /* FTPService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTPService.h; sourceTree = "<group>"; };
-		FB9F76F614F4418600FD49E1 /* FTPService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTPService.m; sourceTree = "<group>"; };
 		FB9F76F814F443D800FD49E1 /* NetworkingService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkingService.h; sourceTree = "<group>"; };
 		FB9F76F914F443D900FD49E1 /* NetworkingService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkingService.m; sourceTree = "<group>"; };
+		FBB8E02315067CA8007241E3 /* NetworkingDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkingDelegate.h; sourceTree = "<group>"; };
 		FBB8ED0314EB6A6D00B8EF8D /* DBFileType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBFileType.m; path = SagePad/DBFileType.m; sourceTree = "<group>"; };
+		FBD70BE615053BCB008AB539 /* SageConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SageConfiguration.h; sourceTree = "<group>"; };
+		FBD70BE715053BCB008AB539 /* SageConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SageConfiguration.m; sourceTree = "<group>"; };
 		FBE8DC6E1481B75600A986B7 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		FBE8DC6F1481B75600A986B7 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		FBE8DC701481B75600A986B7 /* RootViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
@@ -191,7 +189,7 @@
 			children = (
 				FBFB49B8147C842200FD6736 /* Controllers */,
 				FBFB49B9147C843900FD6736 /* Views */,
-				FB889578147D6D2100A2DA58 /* Networking Services */,
+				FB889578147D6D2100A2DA58 /* Networking Service */,
 				FB0E259A14D067C7007078FB /* File IO */,
 				FB697441147C85300070D758 /* UI */,
 				FBFF2664148323C600AA13F2 /* Utility Classes */,
@@ -304,26 +302,18 @@
 			name = "App Delegate";
 			sourceTree = "<group>";
 		};
-		FB889578147D6D2100A2DA58 /* Networking Services */ = {
+		FB889578147D6D2100A2DA58 /* Networking Service */ = {
 			isa = PBXGroup;
 			children = (
+				FBB8E02315067CA8007241E3 /* NetworkingDelegate.h */,
 				FB9F76F814F443D800FD49E1 /* NetworkingService.h */,
 				FB9F76F914F443D900FD49E1 /* NetworkingService.m */,
-				FB9F76F114F440F900FD49E1 /* Pointer Service */,
-				FB9F76F414F4415500FD49E1 /* FTP Service */,
+				FBD70BE615053BCB008AB539 /* SageConfiguration.h */,
+				FBD70BE715053BCB008AB539 /* SageConfiguration.m */,
 				FB697440147C85240070D758 /* Client */,
 				FB69743E147C85050070D758 /* Translators */,
 			);
-			name = "Networking Services";
-			sourceTree = "<group>";
-		};
-		FB9F76F114F440F900FD49E1 /* Pointer Service */ = {
-			isa = PBXGroup;
-			children = (
-				FB88957A147D6D6B00A2DA58 /* PointerService.h */,
-				FB88957B147D6D6B00A2DA58 /* PointerService.m */,
-			);
-			name = "Pointer Service";
+			name = "Networking Service";
 			sourceTree = "<group>";
 		};
 		FB9F76F214F4410800FD49E1 /* Dropbox API Manager */ = {
@@ -348,15 +338,6 @@
 				FB07099514EB548F00313FC0 /* DBDirectory.m */,
 			);
 			name = "Dropbox Filetypes";
-			sourceTree = "<group>";
-		};
-		FB9F76F414F4415500FD49E1 /* FTP Service */ = {
-			isa = PBXGroup;
-			children = (
-				FB9F76F514F4418600FD49E1 /* FTPService.h */,
-				FB9F76F614F4418600FD49E1 /* FTPService.m */,
-			);
-			name = "FTP Service";
 			sourceTree = "<group>";
 		};
 		FBFB49B8147C842200FD6736 /* Controllers */ = {
@@ -512,7 +493,6 @@
 				FB91CD61147860950067EAE3 /* Client.m in Sources */,
 				FB91CD6414786D000067EAE3 /* InputTranslator.m in Sources */,
 				FB91CD68147871D20067EAE3 /* OutputTranslator.m in Sources */,
-				FB88957C147D6D6B00A2DA58 /* PointerService.m in Sources */,
 				FBE8DC711481B75600A986B7 /* RootViewController.m in Sources */,
 				FBE8DC761481C50100A986B7 /* ConfigViewController.m in Sources */,
 				FBFF26631482DBEE00AA13F2 /* SagePadConstants.m in Sources */,
@@ -522,8 +502,8 @@
 				FB07099614EB548F00313FC0 /* DBDirectory.m in Sources */,
 				FBB8ED0414EB6A6D00B8EF8D /* DBFileType.m in Sources */,
 				FB0438CB14F32695007EC996 /* DBBasicFile.m in Sources */,
-				FB9F76F714F4418600FD49E1 /* FTPService.m in Sources */,
 				FB9F76FA14F443D900FD49E1 /* NetworkingService.m in Sources */,
+				FBD70BE815053BCC008AB539 /* SageConfiguration.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

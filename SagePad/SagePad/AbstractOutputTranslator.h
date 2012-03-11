@@ -7,12 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "NetworkingDelegate.h"
 
 @protocol AbstractOutputTranslator <NSObject>
 
+@property (nonatomic, assign) id<NetworkingDelegate> delegate;
+@property (nonatomic, retain) SageConfiguration *sageConfiguration;
+
 @required
 - (id)initWithDeviceWidth:(CGFloat)deviceWidth andHeight:(CGFloat)deviceHeight;
-- (void)notifyClientOfOutput;
+- (void)notifyOutputReady:(NSString *)output;
+- (void)handleSageConfiguration:(SageConfiguration *)configuration;
 
 @optional
 - (void)translateMove:(CGPoint *)newTouch isFirst:(BOOL)isFirst;
@@ -21,5 +26,8 @@
 - (void)translateDrag:(CGPoint *)newTouch;
 - (void)translateRelease:(CGPoint *)newTouch;
 - (void)translateClick:(CGPoint *)newTouch;
+
+@optional
+- (void)sendFile:(NSString *)path;
 
 @end

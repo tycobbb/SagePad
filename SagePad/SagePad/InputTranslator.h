@@ -8,14 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "AbstractInputTranslator.h"
+#import "SageConfiguration.h"
 
-@interface InputTranslator : NSObject <AbstractInputTranslator> {
-    NSString *pointerConfigurationNotification;
-}
-
-@property(readonly, nonatomic) NSInteger pointerId;
-@property(readonly, nonatomic) NSInteger sageWidth;
-@property(readonly, nonatomic) NSInteger sageHeight;
-@property(readonly, nonatomic) NSInteger ftpPortNumber;
+@interface InputTranslator : NSObject <AbstractInputTranslator>
 
 @end

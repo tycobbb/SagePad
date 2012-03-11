@@ -9,10 +9,16 @@
 #import "Client.h"
 #import "OutputTranslator.h"
 #import "SagePadConstants.h"
+#import "InputTranslator.h"
+
+@interface Client ()
+    - (void)handleBytesAvailableEvent:(NSInputStream *)inputStream;
+@end
 
 @implementation Client
 
-@synthesize inputFromStream;
+@synthesize delegate = _delegate;
+@synthesize sageConfiguration = _sageConfiguration;
 
 - (id)initWithIp:(NSString *)_ipAddress andPortNumber:(NSInteger)_portNumber {
     self = [super init];
@@ -24,14 +30,13 @@
                 
         bufferSize = 1280; // default buffer size
         isConfigured = false;
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self 
-                                                 selector:@selector(sendOutputString:) 
-                                                     name:NOTIFY_OUTPUT 
-                                                   object:nil];
     }
     
     return self;
+}
+
+- (void)handleSageConfiguration:(SageConfiguration *)configuration {
+    _sageConfiguration = configuration;
 }
 
 - (void)start {    
@@ -70,16 +75,6 @@
     
     inputStream = nil;
     outputStream = nil;
-}
-
-- (NSString*)getIpAddress {
-    // get ip address from core data
-    return ipAddress;
-}
-
-- (NSInteger)getPortNumber {
-    // get port number from core data
-    return portNumber;
 }
 
 - (void)stream:(NSStream *)stream handleEvent:(NSStreamEvent)streamEvent {    
@@ -130,16 +125,13 @@
     uint8_t buffer[bufferSize];
     while ([inStream hasBytesAvailable] && !isConfigured) {
         responseLength = [inStream read:buffer maxLength:sizeof(buffer)];
-        NSLog(@"Size of buffer: %lu", sizeof(buffer));
-        NSLog(@"Reading from stream");
         if (responseLength > 0) {
-            inputFromStream = [[NSString alloc] initWithBytes:buffer 
-                                                       length:responseLength 
-                                                     encoding:NSASCIIStringEncoding];
-            if (inputFromStream != nil) {
+            NSString *streamInput = [[NSString alloc] initWithBytes:buffer 
+                                                             length:responseLength 
+                                                           encoding:NSASCIIStringEncoding];
+            if(streamInput != nil) {
                 isConfigured = true;
-                NSLog(@"Connection response: %@", inputFromStream);
-                [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFY_INPUT object:self];
+                [_delegate handleConnectionResponse:streamInput];
             }
         }
     }
@@ -164,8 +156,7 @@
 }
 
 - (void)dealloc {
-    [inputFromStream release];
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [_sageConfiguration release];
     
     [super dealloc];
 }

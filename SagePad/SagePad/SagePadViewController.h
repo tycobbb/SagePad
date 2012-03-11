@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <DropboxSDK/DropboxSDK.h>
-#import "PointerService.h"
+#import "NetworkingService.h"
 
 @interface SagePadViewController : UIViewController {
-    PointerService *pointerService;
+    NetworkingService *networkingService;
     DBRestClient *restClient; // dropbox client
 }
 

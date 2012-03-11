@@ -12,46 +12,39 @@
 
 @implementation InputTranslator
 
-@synthesize pointerId;
-@synthesize sageWidth;
-@synthesize sageHeight;
-@synthesize ftpPortNumber;
+@synthesize delegate = _delegate;
+@synthesize sageConfiguration = _sageConfiguration;
 
 - (id)init
 {    
     self = [super init];
     if (self) {
-        [[NSNotificationCenter defaultCenter] addObserver:self 
-                                                 selector:@selector(handleInputNotification:) 
-                                                     name:NOTIFY_INPUT
-                                                   object:nil];
+        self.sageConfiguration = [[SageConfiguration alloc] init];
     }
     
     return self;
 }
 
-// translates pointer configuration data from the SAGE server after connecting
-- (void)handleInputNotification:(NSNotification *)notification {
-    NSString *configurationString = ((Client *)[notification object]).inputFromStream;
-    NSScanner *scanner = [NSScanner scannerWithString:configurationString];
+// translates pointer configuration data from the SAGE server afer connecting
+- (void)handleConnectionResponse:(NSString *)response {
+    NSInteger pointerId, sageWidth, sageHeight, ftpPort;
+    NSScanner *scanner = [NSScanner scannerWithString:response];
     
     [scanner scanInt:&pointerId];
     [scanner scanInt:&sageWidth];
     [scanner scanInt:&sageHeight];
-    [scanner scanInt:&ftpPortNumber];
+    [scanner scanInt:&ftpPort];
     
-    [self notifyTranslatedInput];
-}
-
-- (void)notifyTranslatedInput {
-    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFY_SAGE_CONFIG object:self];
+    _sageConfiguration.pointerId = pointerId;
+    _sageConfiguration.width = sageWidth;
+    _sageConfiguration.height = sageHeight;
+    _sageConfiguration.ftpPort = ftpPort;
+    
+    [_delegate handleSageConfiguration:_sageConfiguration];
 }
 
 - (void) dealloc {
-    // If you don't remove yourself as an observer, the Notification Center
-    // will continue to try and send notification objects to the deallocated
-    // object.
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [_sageConfiguration release];
     [super dealloc];
 }
 

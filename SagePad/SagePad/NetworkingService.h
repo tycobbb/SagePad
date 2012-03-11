@@ -7,22 +7,32 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "NetworkingDelegate.h"
 #import "AbstractClient.h"
 #import "AbstractInputTranslator.h"
 #import "AbstractOutputTranslator.h"
 
-@interface NetworkingService : NSObject {
-    id<AbstractInputTranslator> inputTranslator;
-    id<AbstractOutputTranslator> outputTranslator;
-    id<AbstractClient> client;
-}
+@interface NetworkingService : NSObject <NetworkingDelegate>
 
-- (id)initWithInputTranslator:(id<AbstractInputTranslator>)_inputTranslator 
-          andOutputTranslator:(id<AbstractOutputTranslator>)_outputTranslator
-                    andClient:(id<AbstractClient>)_client;
+- (id)initWithInputTranslator:(id<AbstractInputTranslator>)inputTranslator 
+          andOutputTranslator:(id<AbstractOutputTranslator>)outputTranslator
+                    andClient:(id<AbstractClient>)client;
 
+// client methods
 - (void)startClient;
 - (void)stopClient;
 - (void)setServerBufferSize:(NSInteger)bufferSize;
+
+// output translator methods
+//      for pointer
+- (void)handleMove:(CGPoint *)touchCoordinates isFirst:(BOOL)isFirst;
+- (void)handlePinch:(CGFloat *)scale;
+- (void)handlePress:(CGPoint *)touchCoordinates;
+- (void)handleDrag:(CGPoint *)touchCoordinates;
+- (void)handleRelease:(CGPoint *)touchCoodinates;
+- (void)handleClick:(CGPoint *)touchCoordinates;
+
+//      for ftp
+- (void)sendFile:(NSString *)path;
 
 @end
