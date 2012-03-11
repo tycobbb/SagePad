@@ -18,7 +18,7 @@
 
     // pointer specific instance vars
     BOOL pointerAlreadyShared;
-    CGPoint sageLocation; // current coordiantes of the SAGE pointer
+    CGPoint sageLocation; // current coordinates of the SAGE pointer
     CGPoint previousTouch; // coordinates of the previous touch location read
     CGFloat firstPinch;
     CGFloat xAtom;
