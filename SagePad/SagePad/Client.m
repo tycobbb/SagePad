@@ -137,17 +137,15 @@
     }
 }
 
-- (void)sendOutputString:(NSNotification *)notification{
-    OutputTranslator *output = [notification object];
-    NSLog(@"MESSAGE FROM OUTPUT TRANSLATOR: %@", output.formattedOutput);
+- (void)sendOutput:(NSString *)string {
+    NSLog(@"MESSAGE FROM OUTPUT TRANSLATOR: %@", string);
     
     NSMutableData *data = [[NSMutableData alloc] initWithLength:128];
-    NSMutableData *outputData = [NSMutableData dataWithData:[output.formattedOutput dataUsingEncoding:NSUTF8StringEncoding]];
+    NSMutableData *outputData = [NSMutableData dataWithData:[string dataUsingEncoding:NSUTF8StringEncoding]];
     NSRange range = NSMakeRange(0, [outputData length]);
     [data replaceBytesInRange:range withBytes:[outputData bytes] length:[outputData length]];
     
     NSLog(@"Length of Data: %d", [data length]);
-    
     [(NSOutputStream *)outputStream write:[data bytes] maxLength:[data length]];
 }
 

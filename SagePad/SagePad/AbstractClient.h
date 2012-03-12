@@ -18,7 +18,7 @@
 
 @required
 - (id)initWithIp:(NSString *)_ipAddress andPortNumber:(NSInteger)_portNumber;
-- (void)sendOutputString:(NSNotification *)notification;
+- (void)sendOutput:(NSString *)string;
 - (void)handleSageConfiguration:(SageConfiguration *)configuration;
 
 - (void)start;

@@ -95,7 +95,7 @@
 }
 
 - (void)handleOutputReady:(NSString *)output {
-    
+    [_client sendOutput:output];
 }
 
 @end
