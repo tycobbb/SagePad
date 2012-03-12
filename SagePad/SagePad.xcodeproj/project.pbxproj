@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F91BA666150E83B400D8477C /* FtpClient.m in Sources */ = {isa = PBXBuildFile; fileRef = F91BA665150E83B400D8477C /* FtpClient.m */; };
 		F9852B19146B4DCC00ED60B2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9852B18146B4DCC00ED60B2 /* UIKit.framework */; };
 		F9852B1B146B4DCC00ED60B2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9852B1A146B4DCC00ED60B2 /* Foundation.framework */; };
 		F9852B1D146B4DCC00ED60B2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9852B1C146B4DCC00ED60B2 /* CoreGraphics.framework */; };
@@ -59,6 +60,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F91BA664150E83B400D8477C /* FtpClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FtpClient.h; sourceTree = "<group>"; };
+		F91BA665150E83B400D8477C /* FtpClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FtpClient.m; sourceTree = "<group>"; };
 		F9852B14146B4DCC00ED60B2 /* SagePad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SagePad.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9852B18146B4DCC00ED60B2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F9852B1A146B4DCC00ED60B2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -280,6 +283,8 @@
 				FB4D8528150E74E200DDDC1A /* AbstractFtpClient.h */,
 				FB91CD5E14785F880067EAE3 /* Client.h */,
 				FB91CD60147860950067EAE3 /* Client.m */,
+				F91BA664150E83B400D8477C /* FtpClient.h */,
+				F91BA665150E83B400D8477C /* FtpClient.m */,
 			);
 			name = Client;
 			sourceTree = "<group>";
@@ -506,6 +511,7 @@
 				FB0438CB14F32695007EC996 /* DBBasicFile.m in Sources */,
 				FB9F76FA14F443D900FD49E1 /* NetworkingService.m in Sources */,
 				FBD70BE815053BCC008AB539 /* SageConfiguration.m in Sources */,
+				F91BA666150E83B400D8477C /* FtpClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

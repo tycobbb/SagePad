@@ -12,7 +12,7 @@
 #import "SageConfiguration.h"
 
 @interface Client : NSObject <AbstractClient, NSStreamDelegate> {    
-    @private
+    @protected
     NSString *ipAddress;
     NSInteger portNumber;
     NSInteger ftpPortNumber;
