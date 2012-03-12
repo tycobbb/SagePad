@@ -38,85 +38,6 @@
 @synthesize delegate = _delegate;
 @synthesize sageConfiguration = _sageConfiguration;
 
-// --- "private" helper methods ---
-//   -- coordinate calculation helpers
-- (void)setPreviousTouch:(CGPoint *)newTouch {
-    previousTouch.x = newTouch->x;
-    previousTouch.y = newTouch->y;
-}
-
-- (void)calculateNewSageLocation:(CGPoint *)newTouch {
-    CGFloat sageX = sageLocation.x + (newTouch->x - previousTouch.x) * xAtom;
-    CGFloat sageY = sageLocation.y + (newTouch->y - previousTouch.y) * yAtom;
-    
-    if(sageX > _sageConfiguration.width) sageX = _sageConfiguration.width;
-    else if(sageX < 0) sageX = 0;    
-    if(sageY > _sageConfiguration.height) sageY = _sageConfiguration.height;
-    else if(sageY < 0) sageY = 0;
-    
-    sageLocation.x = sageX;
-    sageLocation.y = sageY;
-    
-    [self setPreviousTouch:newTouch];
-}
-
-// --- file helpers ---
-- (MEDIA_TYPE)getMediatype:(NSString *)path {
-   NSString *extension = [[path componentsSeparatedByString:@"."] lastObject];
-   NSRange extensionRange = NSMakeRange(0, [extension length]);
-   
-   NSTextCheckingResult *match;
-   match = [pictureRegex firstMatchInString:extension options:0 range:extensionRange];
-   if(match) return MEDIA_TYPE_IMAGE;
-   match = [videoRegex firstMatchInString:extension options:0 range:extensionRange];
-   if(match) return MEDIA_TYPE_VIDEO;
-   match = [pdfRegex firstMatchInString:extension options:0 range:extensionRange];
-   if(match) return MEDIA_TYPE_PDF;
-   match = [videoRegex firstMatchInString:extension options:0 range:extensionRange];
-   if(match) return MEDIA_TYPE_PLUGIN;
-   return MEDIA_TYPE_UNKNOWN;
-}
-   
-//  -- output message formatters
-- (void)formatPointerMsgAndNotifyClient:(NSInteger)outputType {
-    [self notifyOutputReady:[NSString stringWithFormat:@"%d %u", outputType, _sageConfiguration.pointerId]
-                   withSize:SML_MSG_SIZE];
-}
-
-- (void)formatPointerMsgAndNotifyClient:(NSInteger)outputType withParam1:(NSString *)param1 
-                              andParam2:(NSString *)param2 {
-    [self notifyOutputReady:[NSString stringWithFormat:@"%d %u %@ %@", outputType, _sageConfiguration.pointerId, param1, param2]
-                   withSize:SML_MSG_SIZE];
-}
-
-- (void)formatPointerMsgAndNotifyClient:(NSInteger)outputType withParam1:(NSString *)param1 
-                              andParam2:(NSString *)param2 
-                              andParam3:(NSString *)param3 {
-    [self notifyOutputReady:[NSString stringWithFormat:@"%d %u %@ %@ %@", outputType, _sageConfiguration.pointerId, param1, param2, param3]
-                   withSize:SML_MSG_SIZE];
-}
-
-- (void)formatFileMsgAndNotifyClient:(NSInteger)outputType withMediatype:(MEDIA_TYPE)mediatype
-                         andFilename:(NSString *)filename
-                         andFilesize:(NSInteger)filesize {
-    [self notifyOutputReady:[NSString stringWithFormat:@"%d %d %@ %d", outputType, mediatype, filename, filesize]
-                   withSize:LRG_MSG_SIZE];
-}
-
-- (void)notifyOutputReady:(NSString *)output withSize:(SAGE_MSG_SIZE)size {
-    [_delegate handleOutputReady:output withSize:size];
-}
-
-//  -- specific output messages
-- (void)sharePointer {
-    [self formatPointerMsgAndNotifyClient:POINTER_SHARE withParam1:settings.pointerName andParam2:settings.pointerColor];
-    pointerAlreadyShared = YES;
-}
-
-- (void)unsharePointer {
-    [self formatPointerMsgAndNotifyClient:POINTER_UNSHARE];
-}
-
 // --- "public" methods ---
 
 - (id)initWithDeviceWidth:(CGFloat)deviceWidth andHeight:(CGFloat)deviceHeight {
@@ -230,5 +151,85 @@
     
     [super dealloc];
 }
+
+// --- "private" helper methods ---
+//   -- coordinate calculation helpers
+- (void)setPreviousTouch:(CGPoint *)newTouch {
+    previousTouch.x = newTouch->x;
+    previousTouch.y = newTouch->y;
+}
+
+- (void)calculateNewSageLocation:(CGPoint *)newTouch {
+    CGFloat sageX = sageLocation.x + (newTouch->x - previousTouch.x) * xAtom;
+    CGFloat sageY = sageLocation.y + (newTouch->y - previousTouch.y) * yAtom;
+    
+    if(sageX > _sageConfiguration.width) sageX = _sageConfiguration.width;
+    else if(sageX < 0) sageX = 0;    
+    if(sageY > _sageConfiguration.height) sageY = _sageConfiguration.height;
+    else if(sageY < 0) sageY = 0;
+    
+    sageLocation.x = sageX;
+    sageLocation.y = sageY;
+    
+    [self setPreviousTouch:newTouch];
+}
+
+// --- file helpers ---
+- (MEDIA_TYPE)getMediatype:(NSString *)path {
+    NSString *extension = [[path componentsSeparatedByString:@"."] lastObject];
+    NSRange extensionRange = NSMakeRange(0, [extension length]);
+    
+    NSTextCheckingResult *match;
+    match = [pictureRegex firstMatchInString:extension options:0 range:extensionRange];
+    if(match) return MEDIA_TYPE_IMAGE;
+    match = [videoRegex firstMatchInString:extension options:0 range:extensionRange];
+    if(match) return MEDIA_TYPE_VIDEO;
+    match = [pdfRegex firstMatchInString:extension options:0 range:extensionRange];
+    if(match) return MEDIA_TYPE_PDF;
+    match = [videoRegex firstMatchInString:extension options:0 range:extensionRange];
+    if(match) return MEDIA_TYPE_PLUGIN;
+    return MEDIA_TYPE_UNKNOWN;
+}
+
+//  -- output message formatters
+- (void)formatPointerMsgAndNotifyClient:(NSInteger)outputType {
+    [self notifyOutputReady:[NSString stringWithFormat:@"%d %u", outputType, _sageConfiguration.pointerId]
+                   withSize:SML_MSG_SIZE];
+}
+
+- (void)formatPointerMsgAndNotifyClient:(NSInteger)outputType withParam1:(NSString *)param1 
+                              andParam2:(NSString *)param2 {
+    [self notifyOutputReady:[NSString stringWithFormat:@"%d %u %@ %@", outputType, _sageConfiguration.pointerId, param1, param2]
+                   withSize:SML_MSG_SIZE];
+}
+
+- (void)formatPointerMsgAndNotifyClient:(NSInteger)outputType withParam1:(NSString *)param1 
+                              andParam2:(NSString *)param2 
+                              andParam3:(NSString *)param3 {
+    [self notifyOutputReady:[NSString stringWithFormat:@"%d %u %@ %@ %@", outputType, _sageConfiguration.pointerId, param1, param2, param3]
+                   withSize:SML_MSG_SIZE];
+}
+
+- (void)formatFileMsgAndNotifyClient:(NSInteger)outputType withMediatype:(MEDIA_TYPE)mediatype
+                         andFilename:(NSString *)filename
+                         andFilesize:(NSInteger)filesize {
+    [self notifyOutputReady:[NSString stringWithFormat:@"%d %d %@ %d", outputType, mediatype, filename, filesize]
+                   withSize:LRG_MSG_SIZE];
+}
+
+- (void)notifyOutputReady:(NSString *)output withSize:(SAGE_MSG_SIZE)size {
+    [_delegate handleOutputReady:output withSize:size];
+}
+
+//  -- specific output messages
+- (void)sharePointer {
+    [self formatPointerMsgAndNotifyClient:POINTER_SHARE withParam1:settings.pointerName andParam2:settings.pointerColor];
+    pointerAlreadyShared = YES;
+}
+
+- (void)unsharePointer {
+    [self formatPointerMsgAndNotifyClient:POINTER_UNSHARE];
+}
+
 
 @end
