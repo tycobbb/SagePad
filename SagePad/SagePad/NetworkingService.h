@@ -16,7 +16,8 @@
 
 - (id)initWithInputTranslator:(id<AbstractInputTranslator>)inputTranslator 
           andOutputTranslator:(id<AbstractOutputTranslator>)outputTranslator
-                    andClient:(id<AbstractClient>)client;
+                    andClient:(id<AbstractClient>)client
+                 andFtpClient:(id<AbstractClient>)ftpClient;
 
 // client methods
 - (void)startClient;

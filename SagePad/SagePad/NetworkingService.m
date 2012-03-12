@@ -27,7 +27,8 @@
 
 - (id)initWithInputTranslator:(id<AbstractInputTranslator>)inputTranslator
           andOutputTranslator:(id<AbstractOutputTranslator>)outputTranslator 
-                    andClient:(id<AbstractClient>)client {
+                    andClient:(id<AbstractClient>)client
+                 andFtpClient:(id<AbstractClient>)ftpClient{
     
     self = [super init];
     if (self) {
@@ -92,10 +93,9 @@
     [_inputTranslator handleConnectionResponse:response];
 }
 
-- (void)handleSageConfiguration:(SageConfiguration *)configuration {
-    self.ftpClient = [[Client alloc] initWithIp:[_client getIpAddress]
-                                  andPortNumber:configuration.ftpPort];    
+- (void)handleSageConfiguration:(SageConfiguration *)configuration {  
     [_client handleSageConfiguration:configuration];
+    [_ftpClient handleSageConfiguration:configuration];
     [_outputTranslator handleSageConfiguration:configuration];
 }
 

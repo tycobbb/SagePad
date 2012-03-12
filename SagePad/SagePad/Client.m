@@ -86,7 +86,7 @@
             
 		case NSStreamEventHasBytesAvailable:
             if(stream == inputStream){
-                [self handleBytesAvailableEvent:(NSInputStream*)inputStream];
+                [self handleBytesAvailableEvent:(NSInputStream *)inputStream];
                 NSLog(@"Input Stream Has Bytes Available"); }
             else 
                 NSLog(@"Output Stream Has Bytes Available");

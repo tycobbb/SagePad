@@ -19,7 +19,7 @@
     
     NSInputStream *inputStream;
     NSOutputStream *outputStream;
-    
+
     NSInteger bufferSize;
     BOOL isConfigured;
 }
