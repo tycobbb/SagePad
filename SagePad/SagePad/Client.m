@@ -137,7 +137,7 @@
     }
 }
 
-- (void)sendOutput:(NSString *)string {
+- (void)sendOutputString:(NSString *)string withSize:(SAGE_MSG_SIZE)size {
     NSLog(@"MESSAGE FROM OUTPUT TRANSLATOR: %@", string);
     
     NSMutableData *data = [[NSMutableData alloc] initWithLength:128];

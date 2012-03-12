@@ -34,8 +34,13 @@ extern NSString * const DIRECTORY_EMPTY_SECTION_TITLE; // relocate these
 extern NSString * const DIRECTORY_SECTION_TITLE;       // to some content
 extern NSString * const FILES_SECTION_TITLE;           // management system
 
+typedef enum SAGE_MSG_SIZE {
+    SML_MSG_SIZE = 128,
+    LRG_MSG_SIZE = 1280
+} SAGE_MSG_SIZE;
+
 // from SAGENext -- see commondefinitions.h
-enum MEDIA_TYPE { 
+typedef enum MEDIA_TYPE { 
     MEDIA_TYPE_UNKNOWN = 100, 
     MEDIA_TYPE_IMAGE, 
     MEDIA_TYPE_VIDEO, 
@@ -46,17 +51,17 @@ enum MEDIA_TYPE {
     MEDIA_TYPE_WEBURL, 
     MEDIA_TYPE_PDF,
     MEDIA_TYPE_SAGE_STREAM
-};
+} MEDIA_TYPE;
 
 // from SAGENext -- see uiserver.h
-enum EXTUI_MSG_TYPE { 
+typedef enum EXTUI_MSG_TYPE { 
     MSG_NULL, 
     REG_FROM_UI, 
     ACK_FROM_WALL, 
     DISCONNECT_FROM_WALL, 
     WALL_IS_CLOSING, 
     TOGGLE_APP_LAYOUT, 
-    RESPOND_APP_LAYOU,
+    RESPOND_APP_LAYOUT,
     VNC_SHARING, 
     POINTER_PRESS,
     POINTER_RIGHTPRESS,
@@ -74,14 +79,14 @@ enum EXTUI_MSG_TYPE {
     WIDGET_Z, 
     WIDGET_REMOVE, 
     WIDGET_CHANGE
-};
+} EXTUI_MSG_TYPE;
 
 // from SAGENext -- see uiserver.h
-enum EXTUI_TRANSFER_MODE {
+typedef enum EXTUI_TRANSFER_MODE {
     FILE_TRANSFER, 
     FILE_STREAM, 
     PIXEL_STREAM 
-};
+} EXTUI_TRANSFER_MODE;
 
 @interface SagePadConstants : NSObject
 

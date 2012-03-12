@@ -35,6 +35,6 @@
 - (void)handleClick:(CGPoint *)touchCoordinates;
 
 //      for ftp
-- (void)sendFile:(NSString *)path;
+- (void)pushFile:(NSString *)path;
 
 @end

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "NetworkingDelegate.h"
+#import "SagePadConstants.h"
 
 @protocol AbstractOutputTranslator <NSObject>
 
@@ -16,7 +17,7 @@
 
 @required
 - (id)initWithDeviceWidth:(CGFloat)deviceWidth andHeight:(CGFloat)deviceHeight;
-- (void)notifyOutputReady:(NSString *)output;
+- (void)notifyOutputReady:(NSString *)output withSize:(SAGE_MSG_SIZE)size;
 - (void)handleSageConfiguration:(SageConfiguration *)configuration;
 
 @optional

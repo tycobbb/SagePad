@@ -86,7 +86,7 @@
 }
 
 // --for ftp
-- (void)sendFile:(NSString *)path {
+- (void)pushFile:(NSString *)path {
     [_outputTranslator sendFileHeader:path];
     [_ftpClient sendFile:path];
 }
@@ -102,8 +102,8 @@
     [_outputTranslator handleSageConfiguration:configuration];
 }
 
-- (void)handleOutputReady:(NSString *)output {
-    [_client sendOutput:output];
+- (void)handleOutputReady:(NSString *)output withSize:(SAGE_MSG_SIZE)size {
+    [_client sendOutputString:output withSize:size];
 }
 
 - (void)dealloc {

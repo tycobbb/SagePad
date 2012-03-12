@@ -120,7 +120,8 @@
 }
 
 - (void)handleFileLoaded:(NSString *)path {
-    NSLog(@"Got file at: %@", path);
+    NSLog(@"FileTableViewController -- got file at: %@", path);
+    [_networkingService pushFile:path];
 }
 
 - (void)handleFileLoadFailure:(NSError *)error {

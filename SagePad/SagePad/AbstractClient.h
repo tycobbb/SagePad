@@ -10,6 +10,7 @@
 #import "NetworkingDelegate.h"
 #import "AbstractInputTranslator.h"
 #import "AbstractOutputTranslator.h"
+#import "SagePadConstants.h"
 
 @protocol AbstractClient <NSObject>
 
@@ -23,7 +24,7 @@
 - (void)start;
 - (void)stop;
 
-- (void)sendOutput:(NSString *)string;
+- (void)sendOutputString:(NSString *)string withSize:(SAGE_MSG_SIZE)size;
 - (void)setBufferSize:(NSInteger)_bufferSize;
 
 @end

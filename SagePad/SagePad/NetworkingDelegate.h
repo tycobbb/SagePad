@@ -8,12 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "SageConfiguration.h"
+#import "SagePadConstants.h"
 
 @protocol NetworkingDelegate <NSObject>
 
 @required
 - (void)handleConnectionResponse:(NSString *)response;
 - (void)handleSageConfiguration:(SageConfiguration *)configuration;
-- (void)handleOutputReady:(NSString *)output;
+- (void)handleOutputReady:(NSString *)output withSize:(SAGE_MSG_SIZE)size;
 
 @end

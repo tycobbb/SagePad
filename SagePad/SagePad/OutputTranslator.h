@@ -26,6 +26,11 @@
     
     // ftp specific instance vars
     NSFileManager *fileManager;
+    
+    NSRegularExpression *pictureRegex;
+    NSRegularExpression *videoRegex;
+    NSRegularExpression *pdfRegex;
+    NSRegularExpression *pluginRegex;                                    
 }
 
 @end
