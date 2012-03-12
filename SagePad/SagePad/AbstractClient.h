@@ -18,14 +18,12 @@
 
 @required
 - (id)initWithIp:(NSString *)_ipAddress andPortNumber:(NSInteger)_portNumber;
-- (void)sendOutput:(NSString *)string;
 - (void)handleSageConfiguration:(SageConfiguration *)configuration;
 
 - (void)start;
 - (void)stop;
-    
-@optional
-- (NSString *)getIpAddress;
+
+- (void)sendOutput:(NSString *)string;
 - (void)setBufferSize:(NSInteger)_bufferSize;
 
 @end

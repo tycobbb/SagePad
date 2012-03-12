@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "NetworkingDelegate.h"
 #import "AbstractClient.h"
+#import "AbstractFtpClient.h"
 #import "AbstractInputTranslator.h"
 #import "AbstractOutputTranslator.h"
 
@@ -17,7 +18,7 @@
 - (id)initWithInputTranslator:(id<AbstractInputTranslator>)inputTranslator 
           andOutputTranslator:(id<AbstractOutputTranslator>)outputTranslator
                     andClient:(id<AbstractClient>)client
-                 andFtpClient:(id<AbstractClient>)ftpClient;
+                 andFtpClient:(id<AbstractFtpClient>)ftpClient;
 
 // client methods
 - (void)startClient;

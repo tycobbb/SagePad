@@ -28,6 +28,6 @@
 - (void)translateClick:(CGPoint *)newTouch;
 
 @optional
-- (void)sendFile:(NSString *)path;
+- (void)sendFileHeader:(NSString *)path;
 
 @end

@@ -11,7 +11,7 @@
 #import "NetworkingService.h"
 
 @interface SagePadViewController : UIViewController {
-    DBRestClient *restClient; // dropbox client
+
 }
 
 @property (nonatomic, retain) NetworkingService *networkingService;

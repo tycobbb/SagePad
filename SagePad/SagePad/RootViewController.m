@@ -48,7 +48,8 @@
     // create ftpClient here and pass it into the networking service constructor ---v (which we need to modify)
     NetworkingService *networkingService = [[NetworkingService alloc] initWithInputTranslator:inputTranslator 
                                                                           andOutputTranslator:outputTranslator
-                                                                                    andClient:client];
+                                                                                    andClient:client
+                                                                                 andFtpClient:NULL];
     [sagePadSettings release];
     [inputTranslator release];
     [outputTranslator release];

@@ -92,6 +92,7 @@
 		FB0E259E14D06841007078FB /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBManager.m; path = SagePad/DBManager.m; sourceTree = "<group>"; };
 		FB39681614CFC58000CC7BD9 /* DropboxSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DropboxSDK.framework; sourceTree = "<group>"; };
 		FB39681914CFC5BB00CC7BD9 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		FB4D8528150E74E200DDDC1A /* AbstractFtpClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractFtpClient.h; sourceTree = "<group>"; };
 		FB6B63D014F2E788000A44FE /* DBManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBManagerDelegate.h; path = SagePad/DBManagerDelegate.h; sourceTree = "<group>"; };
 		FB71E0CD14F2E86A0053BBDC /* DBFileType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBFileType.h; path = SagePad/DBFileType.h; sourceTree = "<group>"; };
 		FB7A430A148476840016CE54 /* swipeleft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = swipeleft.png; sourceTree = "<group>"; };
@@ -276,6 +277,7 @@
 			isa = PBXGroup;
 			children = (
 				F9EB3FAD147C9700006D946F /* AbstractClient.h */,
+				FB4D8528150E74E200DDDC1A /* AbstractFtpClient.h */,
 				FB91CD5E14785F880067EAE3 /* Client.h */,
 				FB91CD60147860950067EAE3 /* Client.m */,
 			);

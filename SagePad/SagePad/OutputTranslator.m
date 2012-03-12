@@ -150,8 +150,8 @@
                             andParam2:[NSString stringWithFormat:@"%d", (NSInteger)sageLocation.y]];
 }
 
-- (void)sendFile:(NSString *)path {
-    
+- (void)sendFileHeader:(NSString *)path {
+    // [self formatOutputAndNotifyClient ...]
 }
 
 - (void) dealloc {

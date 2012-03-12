@@ -11,7 +11,7 @@
 
 @implementation DBManager
 
-@synthesize delegate;
+@synthesize delegate = _delegate;
 
 - (id)init
 {
@@ -39,12 +39,12 @@
 
 - (void)restClient:(DBRestClient *)client loadedMetadata:(DBMetadata *)metadata {
     if(metadata.isDirectory) {
-        [delegate handleMetadataLoaded:metadata];
+        [_delegate handleMetadataLoaded:metadata];
     }
 }
 
 - (void)restClient:(DBRestClient *)client loadMetadataFailedWithError:(NSError *)error {
-    [delegate handleMetadataLoadFailure:error];
+    [_delegate handleMetadataLoadFailure:error];
 }
 
 - (void)uploadFile:(NSString *)filename {
@@ -70,7 +70,7 @@
 
 - (void)restClient:(DBRestClient *)client loadedFile:(NSString*)localPath {
     NSLog(@"Downloaded file: %@", localPath);
-    [delegate handleFileLoaded:localPath];
+    [_delegate handleFileLoaded:localPath];
     
     // temporary immediate deletion
     NSFileManager *fileManager = [[NSFileManager alloc] init];
@@ -81,7 +81,7 @@
 }
 
 - (void)restClient:(DBRestClient *)client loadFileFailedWithError:(NSError*)error {
-    [delegate handleFileLoadFailure:error];
+    [_delegate handleFileLoadFailure:error];
 }
 
 @end

@@ -12,7 +12,7 @@
 @interface NetworkingService ()
 
 @property (nonatomic, retain) id<AbstractClient> client;
-@property (nonatomic, retain) id<AbstractClient> ftpClient;
+@property (nonatomic, retain) id<AbstractFtpClient> ftpClient;
 @property (nonatomic, retain) id<AbstractInputTranslator> inputTranslator;
 @property (nonatomic, retain) id<AbstractOutputTranslator> outputTranslator;
 
@@ -28,15 +28,17 @@
 - (id)initWithInputTranslator:(id<AbstractInputTranslator>)inputTranslator
           andOutputTranslator:(id<AbstractOutputTranslator>)outputTranslator 
                     andClient:(id<AbstractClient>)client
-                 andFtpClient:(id<AbstractClient>)ftpClient{
+                 andFtpClient:(id<AbstractFtpClient>)ftpClient{
     
     self = [super init];
     if (self) {
         self.client = client;
+        self.ftpClient = ftpClient;
         self.inputTranslator = inputTranslator;
         self.outputTranslator = outputTranslator;
         
         self.client.delegate = self;
+        self.ftpClient.delegate = self;
         self.inputTranslator.delegate = self;
         self.outputTranslator.delegate = self;
     }
@@ -85,7 +87,8 @@
 
 // --for ftp
 - (void)sendFile:(NSString *)path {
-    [_outputTranslator sendFile:path];
+    [_outputTranslator sendFileHeader:path];
+    [_ftpClient sendFile:path];
 }
 
 // child communication methods
@@ -101,6 +104,15 @@
 
 - (void)handleOutputReady:(NSString *)output {
     [_client sendOutput:output];
+}
+
+- (void)dealloc {
+    [_client release];
+    [_ftpClient release];
+    [_inputTranslator release];
+    [_outputTranslator release];
+    
+    [super dealloc];
 }
 
 @end
