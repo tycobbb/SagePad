@@ -123,7 +123,7 @@
 - (void)handleBytesAvailableEvent:(NSInputStream*)inStream {
     NSInteger responseLength;
     uint8_t buffer[bufferSize];
-    while ([inStream hasBytesAvailable] && !isConfigured) {
+    while([inStream hasBytesAvailable] && !isConfigured) {
         responseLength = [inStream read:buffer maxLength:sizeof(buffer)];
         if (responseLength > 0) {
             NSString *streamInput = [[NSString alloc] initWithBytes:buffer 
