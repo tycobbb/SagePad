@@ -151,7 +151,8 @@
 }
 
 - (void)sendFileHeader:(NSString *)path {
-    // [self formatOutputAndNotifyClient ...]
+    
+    //[self formatOutputAndNotifyClient ...]
 }
 
 - (void) dealloc {

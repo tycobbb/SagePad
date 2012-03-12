@@ -7,9 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AbstractClient.h"
 
-@protocol AbstractFtpClient <NSObject, AbstractClient>
+@protocol AbstractFtpClient <NSObject>
 
 - (void)sendFile:(NSString *)path;
 
