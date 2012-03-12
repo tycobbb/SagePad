@@ -3,7 +3,7 @@
 //  SagePad
 //
 //  Created by Jakub Misterka on 3/11/12.
-//  Copyright 2012 __MyCompanyName__. All rights reserved.
+//  Copyright 2012 UIC. All rights reserved.
 //
 
 #import "FtpClient.h"
@@ -11,15 +11,10 @@
 @implementation FtpClient
 
 - (id)initWithIp:(NSString *)_ipAddress{
-    self = [super init];
+    self = [super initWithIp:_ipAddress andPortNumber:0];
     if (self) {
-        ipAddress = _ipAddress;
-        NSLog(@"IP Address for FTP: %@", ipAddress);
-        isConfigured = false;
+        fileManager = [[NSFileManager alloc] init];
     }
-    
-    fileManager = [[NSFileManager alloc] init];
-    
     return self;
 }
 
@@ -28,7 +23,7 @@
     isConfigured = true;
 }
 
-//To be implemented
+// to be implemented
 - (void)handleBytesAvailableEvent:(NSInputStream*)inStream withSize:(NSInteger)size {
     
 }

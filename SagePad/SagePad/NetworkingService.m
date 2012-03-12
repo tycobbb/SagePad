@@ -12,7 +12,7 @@
 @interface NetworkingService ()
 
 @property (nonatomic, retain) id<AbstractClient> client;
-@property (nonatomic, retain) id<AbstractFtpClient> ftpClient;
+@property (nonatomic, retain) id<AbstractClient> ftpClient;
 @property (nonatomic, retain) id<AbstractInputTranslator> inputTranslator;
 @property (nonatomic, retain) id<AbstractOutputTranslator> outputTranslator;
 
@@ -28,7 +28,7 @@
 - (id)initWithInputTranslator:(id<AbstractInputTranslator>)inputTranslator
           andOutputTranslator:(id<AbstractOutputTranslator>)outputTranslator 
                     andClient:(id<AbstractClient>)client
-                 andFtpClient:(id<AbstractFtpClient>)ftpClient{
+                 andFtpClient:(id<AbstractClient>)ftpClient{
     
     self = [super init];
     if (self) {

@@ -27,4 +27,7 @@
 - (void)sendOutputString:(NSString *)string withSize:(SAGE_MSG_SIZE)size;
 - (void)setBufferSize:(NSInteger)_bufferSize;
 
+@optional
+- (void)sendFile:(NSString *)path;
+
 @end

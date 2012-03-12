@@ -72,7 +72,7 @@
     NSLog(@"Downloaded file: %@", localPath);
     [_delegate handleFileLoaded:localPath];
     
-    // temporary immediate deletion
+    // delete after all calls unwind and file is sent
     NSFileManager *fileManager = [[NSFileManager alloc] init];
     if(![fileManager removeItemAtPath:localPath error:nil])
         NSLog(@"Error removing file: %@", localPath);

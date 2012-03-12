@@ -247,8 +247,8 @@
 		FB0E259C14D0680A007078FB /* Dropbox Utility */ = {
 			isa = PBXGroup;
 			children = (
-				FB9F76F214F4410800FD49E1 /* Dropbox API Manager */,
 				FB9F76F314F4412800FD49E1 /* Dropbox Filetypes */,
+				FB9F76F214F4410800FD49E1 /* Dropbox API Manager */,
 			);
 			name = "Dropbox Utility";
 			sourceTree = "<group>";

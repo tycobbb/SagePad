@@ -12,6 +12,7 @@
 #import "InputTranslator.h"
 #import "OutputTranslator.h"
 #import "Client.h"
+#import "FtpClient.h"
 
 @interface RootViewController ()
     - (NetworkingService *)initNetworkingService;
@@ -45,16 +46,16 @@
     OutputTranslator *outputTranslator = [[OutputTranslator alloc] initWithDeviceWidth:width andHeight:height];
     Client *client = [[Client alloc] initWithIp:[sagePadSettings.ipAddress copy]
                                   andPortNumber:[sagePadSettings.portNumber integerValue]];
-    // create ftpClient here and pass it into the networking service constructor ---v (which we need to modify)
+    FtpClient *ftpClient = [[FtpClient alloc] initWithIp:[sagePadSettings.ipAddress copy]];
     NetworkingService *networkingService = [[NetworkingService alloc] initWithInputTranslator:inputTranslator 
                                                                           andOutputTranslator:outputTranslator
                                                                                     andClient:client
-                                                                                 andFtpClient:NULL];
+                                                                                 andFtpClient:ftpClient];
     [sagePadSettings release];
     [inputTranslator release];
     [outputTranslator release];
     [client release];
-    // and make sure to release the ftp client
+    [ftpClient release];
     
     return networkingService;
     //[networkingService startClient];
