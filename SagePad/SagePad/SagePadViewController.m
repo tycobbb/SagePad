@@ -14,6 +14,8 @@
 
 @implementation SagePadViewController 
 
+@synthesize networkingService = _networkingService;
+
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
@@ -60,32 +62,32 @@
     [tap release];
 }
 
-// initialize and start the networking service
-- (void)initNetworkingService {
-    CGFloat width = CGRectGetWidth(self.view.bounds);
-    CGFloat height = CGRectGetHeight(self.view.bounds); // need to account for status bar...
-
-    SagePadSettings *sagePadSettings = [[SagePadSettings alloc] init];
-    InputTranslator *inputTranslator = [[InputTranslator alloc] init];
-    OutputTranslator *outputTranslator = [[OutputTranslator alloc] initWithDeviceWidth:width andHeight:height];
-    Client *client = [[Client alloc] initWithIp:[sagePadSettings.ipAddress copy]
-                                  andPortNumber:[sagePadSettings.portNumber integerValue]];
-    networkingService = [[NetworkingService alloc] initWithInputTranslator:inputTranslator 
-                                                       andOutputTranslator:outputTranslator
-                                                                 andClient:client];
-    [sagePadSettings release];
-    [inputTranslator release];
-    [outputTranslator release];
-    [client release];
-
-    [networkingService startClient];
-}
+//// initialize and start the networking service
+//- (void)initNetworkingService {
+//    CGFloat width = CGRectGetWidth(self.view.bounds);
+//    CGFloat height = CGRectGetHeight(self.view.bounds); // need to account for status bar...
+//
+//    SagePadSettings *sagePadSettings = [[SagePadSettings alloc] init];
+//    InputTranslator *inputTranslator = [[InputTranslator alloc] init];
+//    OutputTranslator *outputTranslator = [[OutputTranslator alloc] initWithDeviceWidth:width andHeight:height];
+//    Client *client = [[Client alloc] initWithIp:[sagePadSettings.ipAddress copy]
+//                                  andPortNumber:[sagePadSettings.portNumber integerValue]];
+//    networkingService = [[NetworkingService alloc] initWithInputTranslator:inputTranslator 
+//                                                       andOutputTranslator:outputTranslator
+//                                                                 andClient:client];
+//    [sagePadSettings release];
+//    [inputTranslator release];
+//    [outputTranslator release];
+//    [client release];
+//
+//    [networkingService startClient];
+//}
 
 // handle touches
 - (void)handleTouches:(NSSet *)touches isFirst:(BOOL)isFirst {
     if([touches count] != 1) return;
     CGPoint touchCoordinates = [[touches anyObject] locationInView:self.view];
-    [networkingService handleMove:&touchCoordinates isFirst:isFirst];
+    [_networkingService handleMove:&touchCoordinates isFirst:isFirst];
 }
 
 // --- "public" methods ---
@@ -101,9 +103,9 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+    // [_networkingService startClient]
     
-    [self initNetworkingService];   
+    [super viewWillAppear:animated];
 }
 
 // method to handle swipe event, direct back to the home view
@@ -116,7 +118,7 @@
     CGFloat scale = [pinch scale];
     switch(pinch.state) {
         case UIGestureRecognizerStateChanged:
-            [networkingService handlePinch:&scale];
+            [_networkingService handlePinch:&scale];
             break;
         default:
             break;
@@ -127,13 +129,13 @@
     CGPoint touchCoordinates = [longPress locationInView:self.view];
     switch(longPress.state) {
         case UIGestureRecognizerStateBegan:
-            [networkingService handlePress:&touchCoordinates];
+            [_networkingService handlePress:&touchCoordinates];
             break;
         case UIGestureRecognizerStateChanged:
-            [networkingService handleDrag:&touchCoordinates];
+            [_networkingService handleDrag:&touchCoordinates];
             break;
         case UIGestureRecognizerStateEnded:
-            [networkingService handleRelease:&touchCoordinates];
+            [_networkingService handleRelease:&touchCoordinates];
             break;
         default:
             break;
@@ -142,7 +144,7 @@
 
 - (void)handleSingleTap:(UITapGestureRecognizer *)tap {
     CGPoint touchCoordinates = [tap locationInView:self.view];
-    [networkingService handleClick:&touchCoordinates];
+    [_networkingService handleClick:&touchCoordinates];
 }
 
 // method to handle touchDown event, delegate responsibility to networkingService
@@ -160,8 +162,7 @@
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
-    [networkingService stopClient];
-    [networkingService release];
+    //[_networkingService stopClient];
     
     [super viewDidDisappear:animated];
 }
@@ -175,6 +176,8 @@
 }
 
 - (void)dealloc {
+    [_networkingService release];
+    
     [super dealloc];
 }
 

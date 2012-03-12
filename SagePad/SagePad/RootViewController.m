@@ -8,6 +8,14 @@
 
 #import "RootViewController.h"
 #import "SagePadConstants.h"
+#import "SagePadSettings.h"
+#import "InputTranslator.h"
+#import "OutputTranslator.h"
+#import "Client.h"
+
+@interface RootViewController ()
+    - (NetworkingService *)initNetworkingService;
+@end
 
 @implementation RootViewController
 
@@ -17,10 +25,40 @@
         configViewController = [[ConfigViewController alloc] init];
         fileTableViewController = [[FileTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
         sagePadViewController = [[SagePadViewController alloc] init];
+        
+        NetworkingService *networkingService = [self initNetworkingService];
+        fileTableViewController.networkingService = networkingService;
+        sagePadViewController.networkingService = networkingService;
+        [networkingService release];
     }
     
     return self;
 }
+
+// initialize and start the networking service
+- (NetworkingService *)initNetworkingService {
+    CGFloat width = CGRectGetWidth(sagePadViewController.view.bounds);
+    CGFloat height = CGRectGetHeight(sagePadViewController.view.bounds); // need to account for status bar...
+    
+    SagePadSettings *sagePadSettings = [[SagePadSettings alloc] init];
+    InputTranslator *inputTranslator = [[InputTranslator alloc] init];
+    OutputTranslator *outputTranslator = [[OutputTranslator alloc] initWithDeviceWidth:width andHeight:height];
+    Client *client = [[Client alloc] initWithIp:[sagePadSettings.ipAddress copy]
+                                  andPortNumber:[sagePadSettings.portNumber integerValue]];
+    // create ftpClient here and pass it into the networking service constructor ---v (which we need to modify)
+    NetworkingService *networkingService = [[NetworkingService alloc] initWithInputTranslator:inputTranslator 
+                                                                          andOutputTranslator:outputTranslator
+                                                                                    andClient:client];
+    [sagePadSettings release];
+    [inputTranslator release];
+    [outputTranslator release];
+    [client release];
+    // and make sure to release the ftp client
+    
+    return networkingService;
+    //[networkingService startClient];
+}
+
 
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.

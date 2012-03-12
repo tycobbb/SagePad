@@ -15,6 +15,7 @@
 @implementation FileTableViewController
 
 @synthesize currentDirectory = _currentDirectory;
+@synthesize networkingService = _networkingService;
 
 // --- "private" helper methods ---
 
@@ -22,10 +23,15 @@
 
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
-    if(self) {
+    if(self) { }
+    return self;
+}
 
+- (id)initWithStyle:(UITableViewStyle)style andNetworkingService:(NetworkingService *)networkingService {
+    self = [super initWithStyle:style];
+    if(self) {
+        self.networkingService = networkingService;
     }
-    
     return self;
 }
 
@@ -81,7 +87,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     switch(indexPath.section) {
         case 0: {
-            if(!childFileTableViewController) childFileTableViewController = [[FileTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+            if(!childFileTableViewController) 
+                childFileTableViewController = [[FileTableViewController alloc] initWithStyle:UITableViewStyleGrouped
+                                                                         andNetworkingService:_networkingService];
+            
             DBDirectory *pushDirectory = [_currentDirectory.children objectAtIndex:indexPath.row];
             pushDirectory.delegate = self;
             childFileTableViewController.currentDirectory = pushDirectory;
@@ -138,6 +147,7 @@
 
 - (void)dealloc {
     [_currentDirectory release];
+    [_networkingService release];
     
     [super dealloc];
 }

@@ -25,6 +25,7 @@
 - (void)stop;
     
 @optional
+- (NSString *)getIpAddress;
 - (void)setBufferSize:(NSInteger)_bufferSize;
 
 @end

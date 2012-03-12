@@ -7,10 +7,12 @@
 //
 
 #import "NetworkingService.h"
+#import "Client.h"
 
 @interface NetworkingService ()
 
 @property (nonatomic, retain) id<AbstractClient> client;
+@property (nonatomic, retain) id<AbstractClient> ftpClient;
 @property (nonatomic, retain) id<AbstractInputTranslator> inputTranslator;
 @property (nonatomic, retain) id<AbstractOutputTranslator> outputTranslator;
 
@@ -19,6 +21,7 @@
 @implementation NetworkingService
 
 @synthesize client = _client;
+@synthesize ftpClient = _ftpClient;
 @synthesize inputTranslator = _inputTranslator;
 @synthesize outputTranslator = _outputTranslator;
 
@@ -90,6 +93,8 @@
 }
 
 - (void)handleSageConfiguration:(SageConfiguration *)configuration {
+    self.ftpClient = [[Client alloc] initWithIp:[_client getIpAddress]
+                                  andPortNumber:configuration.ftpPort];    
     [_client handleSageConfiguration:configuration];
     [_outputTranslator handleSageConfiguration:configuration];
 }

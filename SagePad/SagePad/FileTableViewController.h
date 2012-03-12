@@ -10,6 +10,7 @@
 #import <DropboxSDK/DropboxSDK.h>
 #import "DBManagerDelegate.h"
 #import "DBDirectory.h"
+#import "NetworkingService.h"
 
 @interface FileTableViewController : UITableViewController 
         <UITableViewDelegate, UITableViewDataSource, DBFileTypeDelegate> {
@@ -18,7 +19,9 @@
 }
 
 @property (nonatomic, retain) DBDirectory *currentDirectory;
+@property (nonatomic, retain) NetworkingService *networkingService;
 
 - (id)initWithStyle:(UITableViewStyle)style;
+- (id)initWithStyle:(UITableViewStyle)style andNetworkingService:(NetworkingService *)networkingService;
 
 @end

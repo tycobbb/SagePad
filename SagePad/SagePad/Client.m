@@ -153,6 +153,10 @@
     bufferSize = _bufferSize;
 }
 
+- (NSString *)getIpAddress {
+    return ipAddress;
+}
+
 - (void)dealloc {
     [_sageConfiguration release];
     
