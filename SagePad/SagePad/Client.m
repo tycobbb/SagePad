@@ -40,7 +40,7 @@
 }
 
 - (void)start {    
-    NSLog(@"Client.startWithInputTranslator");
+    NSLog(@"Starting a client: %d", portNumber);
 
     CFReadStreamRef readStream;
     CFWriteStreamRef writeStream;
@@ -60,7 +60,7 @@
 }
 
 - (void)stop { // Fixed
-    NSLog(@"Client: Closing Streams");
+    NSLog(@"Stopping a client: %d", portNumber);
     [inputStream close];
     [outputStream close];
     
