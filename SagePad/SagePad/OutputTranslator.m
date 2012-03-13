@@ -11,6 +11,8 @@
 
 @interface OutputTranslator ()
 
+- (void)initRegex;
+
 - (void)setPreviousTouch:(CGPoint *)newTouch;
 - (void)calculateNewSageLocation:(CGPoint *)newTouch;
 
@@ -56,21 +58,24 @@
         firstPinch = 0;
         
         fileManager = [[NSFileManager alloc] init];
-        pictureRegex = [NSRegularExpression regularExpressionWithPattern:@"bmp|svg|tif|tiff|png|jpg|bmp|gif|xpm|jpeg" 
-                                                                 options:NSRegularExpressionCaseInsensitive 
-                                                                   error:NULL];
-        videoRegex = [NSRegularExpression regularExpressionWithPattern:@"avi|mov|mpg|mpeg|mp4|mkv|flv|wmv" 
-                                                               options:NSRegularExpressionCaseInsensitive 
-                                                                 error:NULL];
-        pdfRegex = [NSRegularExpression regularExpressionWithPattern:@"pdf" 
-                                                             options:NSRegularExpressionCaseInsensitive 
-                                                               error:NULL];
-        pluginRegex = [NSRegularExpression regularExpressionWithPattern:@"so|dll|dylib" 
-                                                                options:NSRegularExpressionCaseInsensitive 
-                                                                  error:NULL];
     }
     
     return self;
+}
+
+- (void)initRegex {
+    pictureRegex = [[NSRegularExpression alloc] initWithPattern:@"bmp|svg|tif|tiff|png|jpg|bmp|gif|xpm|jpeg" 
+                                                             options:NSRegularExpressionCaseInsensitive 
+                                                               error:NULL];
+    videoRegex = [[NSRegularExpression alloc] initWithPattern:@"avi|mov|mpg|mpeg|mp4|mkv|flv|wmv" 
+                                                           options:NSRegularExpressionCaseInsensitive 
+                                                             error:NULL];
+    pdfRegex = [[NSRegularExpression alloc] initWithPattern:@"pdf" 
+                                                         options:NSRegularExpressionCaseInsensitive 
+                                                           error:NULL];
+    pluginRegex = [[NSRegularExpression alloc] initWithPattern:@"so|dll|dylib" 
+                                                            options:NSRegularExpressionCaseInsensitive 
+                                                              error:NULL];
 }
 
 - (void)handleSageConfiguration:(SageConfiguration *)configuration {
@@ -147,6 +152,10 @@
     [settings release];
     [fileManager release];
     [_sageConfiguration release];
+    [pictureRegex release];
+    [videoRegex release];
+    [pdfRegex release];
+    [pluginRegex release];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
     [super dealloc];

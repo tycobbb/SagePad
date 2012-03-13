@@ -22,11 +22,12 @@
     [dropboxManager downloadFile:self.metadata.path];
 }
 
-- (void)handleFileLoaded:(NSString*)localPath {
+- (void)handleFileLoaded:(NSString *)localPath {
+    NSLog(@"DBBasicFile: got %@, delegate: %@", localPath, self.delegate);
     [self.delegate handleFileLoaded:localPath];
 }
 
-- (void)handleFileLoadFailure:(NSError*)error {
+- (void)handleFileLoadFailure:(NSError *)error {
     [self.delegate handleFileLoadFailure:error];
 }
 

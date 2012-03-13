@@ -98,6 +98,7 @@
             break;
         } case 1: {
             DBBasicFile *dropboxFile = [_currentDirectory.files objectAtIndex:indexPath.row];
+            dropboxFile.delegate = self;
             [dropboxFile download];
             break;
         } default:

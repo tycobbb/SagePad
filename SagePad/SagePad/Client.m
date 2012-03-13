@@ -87,19 +87,19 @@
 		case NSStreamEventHasBytesAvailable:
             if(stream == inputStream){
                 [self handleBytesAvailableEvent:(NSInputStream *)inputStream];
-                NSLog(@"Input Stream Has Bytes Available"); }
-            else 
-                NSLog(@"Output Stream Has Bytes Available");
+                // NSLog(@"Input Stream Has Bytes Available"); 
+            } else 
+                ; // NSLog(@"Output Stream Has Bytes Available");
             break;
 			
 		case NSStreamEventErrorOccurred:
-            if(stream == inputStream) NSLog(@"Input Stream Unable to connect to host.");
-            else NSLog(@"Output Stream Unable to connect to host.");
+            if(stream == inputStream) ; // NSLog(@"Input Stream Unable to connect to host.");
+            else ; //NSLog(@"Output Stream Unable to connect to host.");
             break;
             
         case NSStreamEventHasSpaceAvailable:
-            if(stream == inputStream) NSLog(@"Input Stream has Space Available");
-            else NSLog(@"Output Stream has Space Available");
+            if(stream == inputStream) ; // NSLog(@"Input Stream has Space Available");
+            else  ; // NSLog(@"Output Stream has Space Available");
             break;
 		
         case NSStreamEventEndEncountered:

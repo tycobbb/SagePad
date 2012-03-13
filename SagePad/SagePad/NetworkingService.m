@@ -95,6 +95,7 @@
 
 // --for ftp
 - (void)pushFile:(NSString *)path {
+    NSLog(@"NetworkingService: trying to push %@", path);
     [_outputTranslator sendFileHeader:path];
     [_ftpClient sendFile:path];
 }
