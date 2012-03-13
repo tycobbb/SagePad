@@ -21,8 +21,10 @@
                  andFtpClient:(id<AbstractClient>)ftpClient;
 
 // client methods
-- (void)startClient;
-- (void)stopClient;
+- (void)startMessageClient;
+- (void)stopMessageClient;
+- (void)startFtpClient;
+- (void)stopFtpClient;
 - (void)setServerBufferSize:(NSInteger)bufferSize;
 
 // output translator methods

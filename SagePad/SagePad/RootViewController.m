@@ -15,7 +15,7 @@
 #import "FtpClient.h"
 
 @interface RootViewController ()
-    - (NetworkingService *)initNetworkingService;
+    - (void)initNetworkingService;
 @end
 
 @implementation RootViewController
@@ -27,38 +27,40 @@
         fileTableViewController = [[FileTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
         sagePadViewController = [[SagePadViewController alloc] init];
         
-        NetworkingService *networkingService = [self initNetworkingService];
+        [self initNetworkingService];
         fileTableViewController.networkingService = networkingService;
         sagePadViewController.networkingService = networkingService;
-        [networkingService release];
+        
+        // for now, i'm starting both of these right away, stopping on roots dealloc
+        [networkingService startMessageClient];
+        [networkingService startFtpClient];
     }
     
     return self;
 }
 
 // initialize and start the networking service
-- (NetworkingService *)initNetworkingService {
+- (void)initNetworkingService {
     CGFloat width = CGRectGetWidth(sagePadViewController.view.bounds);
     CGFloat height = CGRectGetHeight(sagePadViewController.view.bounds); // need to account for status bar...
     
     SagePadSettings *sagePadSettings = [[SagePadSettings alloc] init];
-    InputTranslator *inputTranslator = [[InputTranslator alloc] init];
-    OutputTranslator *outputTranslator = [[OutputTranslator alloc] initWithDeviceWidth:width andHeight:height];
     Client *client = [[Client alloc] initWithIp:[sagePadSettings.ipAddress copy]
                                   andPortNumber:[sagePadSettings.portNumber integerValue]];
     FtpClient *ftpClient = [[FtpClient alloc] initWithIp:[sagePadSettings.ipAddress copy]];
-    NetworkingService *networkingService = [[NetworkingService alloc] initWithInputTranslator:inputTranslator 
-                                                                          andOutputTranslator:outputTranslator
-                                                                                    andClient:client
-                                                                                 andFtpClient:ftpClient];
+    InputTranslator *inputTranslator = [[InputTranslator alloc] init];
+    OutputTranslator *outputTranslator = [[OutputTranslator alloc] initWithDeviceWidth:width andHeight:height];
+    
+    networkingService = [[NetworkingService alloc] initWithInputTranslator:inputTranslator 
+                                                       andOutputTranslator:outputTranslator
+                                                                 andClient:client
+                                                              andFtpClient:ftpClient];
+    
     [sagePadSettings release];
-    [inputTranslator release];
-    [outputTranslator release];
     [client release];
     [ftpClient release];
-    
-    return networkingService;
-    //[networkingService startClient];
+    [inputTranslator release];
+    [outputTranslator release];
 }
 
 
@@ -135,9 +137,13 @@
 }
 
 - (void)dealloc {
+    [networkingService stopMessageClient];
+    [networkingService stopFtpClient];
+    
     [sagePadViewController release];
     [configViewController release];
     [fileTableViewController release];
+    [networkingService release];
     [pushDirectory release];
         
     [super dealloc];

@@ -11,7 +11,7 @@
 
 @interface NetworkingService ()
 
-@property (nonatomic, retain) id<AbstractClient> client;
+@property (nonatomic, retain) id<AbstractClient> messageClient;
 @property (nonatomic, retain) id<AbstractClient> ftpClient;
 @property (nonatomic, retain) id<AbstractInputTranslator> inputTranslator;
 @property (nonatomic, retain) id<AbstractOutputTranslator> outputTranslator;
@@ -20,7 +20,7 @@
 
 @implementation NetworkingService
 
-@synthesize client = _client;
+@synthesize messageClient = _messageClient;
 @synthesize ftpClient = _ftpClient;
 @synthesize inputTranslator = _inputTranslator;
 @synthesize outputTranslator = _outputTranslator;
@@ -32,12 +32,12 @@
     
     self = [super init];
     if (self) {
-        self.client = client;
+        self.messageClient = client;
         self.ftpClient = ftpClient;
         self.inputTranslator = inputTranslator;
         self.outputTranslator = outputTranslator;
         
-        self.client.delegate = self;
+        self.messageClient.delegate = self;
         self.ftpClient.delegate = self;
         self.inputTranslator.delegate = self;
         self.outputTranslator.delegate = self;
@@ -47,16 +47,24 @@
 }
 
 // client methods
-- (void)startClient {
-    [_client start]; 
+- (void)startMessageClient {
+    [_messageClient start]; 
 }
 
-- (void)stopClient {
-    [_client stop];
+- (void)stopMessageClient {
+    [_messageClient stop];
+}
+
+- (void)startFtpClient {
+    [_ftpClient start];
+}
+
+- (void)stopFtpClient {
+    [_ftpClient stop];
 }
 
 - (void)setServerBufferSize:(NSInteger)bufferSize {
-    [_client setBufferSize:bufferSize];
+    [_messageClient setBufferSize:bufferSize];
 }
 
 // output translator methods
@@ -97,17 +105,17 @@
 }
 
 - (void)handleSageConfiguration:(SageConfiguration *)configuration {  
-    [_client handleSageConfiguration:configuration];
+    [_messageClient handleSageConfiguration:configuration];
     [_ftpClient handleSageConfiguration:configuration];
     [_outputTranslator handleSageConfiguration:configuration];
 }
 
 - (void)handleOutputReady:(NSString *)output withSize:(SAGE_MSG_SIZE)size {
-    [_client sendOutputString:output withSize:size];
+    [_messageClient sendOutputString:output withSize:size];
 }
 
 - (void)dealloc {
-    [_client release];
+    [_messageClient release];
     [_ftpClient release];
     [_inputTranslator release];
     [_outputTranslator release];

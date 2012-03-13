@@ -18,6 +18,7 @@
     FileTableViewController *fileTableViewController;
     SagePadViewController *sagePadViewController;
     
+    NetworkingService *networkingService;
     DBDirectory *pushDirectory;
 }
 
