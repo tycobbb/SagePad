@@ -8,12 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "SagePadSettings.h"
+#import "NetworkingService.h"
 
 @interface ConfigViewController : UIViewController <UITextFieldDelegate> {    
     NSCharacterSet *decimalDigitCharacterSet;
     NSCharacterSet *alphanumericCharacterSet;
     SagePadSettings *settings;
 }
+
+@property (nonatomic, retain) NetworkingService *networkingService;
 
 @property (nonatomic, retain) IBOutlet UITextField *ipTextField;
 @property (nonatomic, retain) IBOutlet UITextField *portTextField;

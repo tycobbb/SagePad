@@ -62,27 +62,6 @@
     [tap release];
 }
 
-//// initialize and start the networking service
-//- (void)initNetworkingService {
-//    CGFloat width = CGRectGetWidth(self.view.bounds);
-//    CGFloat height = CGRectGetHeight(self.view.bounds); // need to account for status bar...
-//
-//    SagePadSettings *sagePadSettings = [[SagePadSettings alloc] init];
-//    InputTranslator *inputTranslator = [[InputTranslator alloc] init];
-//    OutputTranslator *outputTranslator = [[OutputTranslator alloc] initWithDeviceWidth:width andHeight:height];
-//    Client *client = [[Client alloc] initWithIp:[sagePadSettings.ipAddress copy]
-//                                  andPortNumber:[sagePadSettings.portNumber integerValue]];
-//    networkingService = [[NetworkingService alloc] initWithInputTranslator:inputTranslator 
-//                                                       andOutputTranslator:outputTranslator
-//                                                                 andClient:client];
-//    [sagePadSettings release];
-//    [inputTranslator release];
-//    [outputTranslator release];
-//    [client release];
-//
-//    [networkingService startClient];
-//}
-
 // handle touches
 - (void)handleTouches:(NSSet *)touches isFirst:(BOOL)isFirst {
     if([touches count] != 1) return;
@@ -103,7 +82,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    // [_networkingService startClient]
+    [_networkingService sharePointer];
     
     [super viewWillAppear:animated];
 }
@@ -161,9 +140,9 @@
     // not sure what to do with cancelled touch, or how a touch is cancelled
 }
 
-- (void)viewDidDisappear:(BOOL)animated {
-    //[_networkingService stopClient];
-    
+- (void)viewDidDisappear:(BOOL)animated {    
+    [_networkingService unsharePointer];
+
     [super viewDidDisappear:animated];
 }
 

@@ -30,9 +30,6 @@
 
 - (void)notifyOutputReady:(NSString *)output withSize:(SAGE_MSG_SIZE)size;
 
-- (void)sharePointer;
-- (void)unsharePointer;
-
 @end
 
 @implementation OutputTranslator
@@ -41,7 +38,6 @@
 @synthesize sageConfiguration = _sageConfiguration;
 
 // --- "public" methods ---
-
 - (id)initWithDeviceWidth:(CGFloat)deviceWidth andHeight:(CGFloat)deviceHeight {
     self = [super init];
     if (self) {
@@ -65,17 +61,17 @@
 
 - (void)initRegex {
     pictureRegex = [[NSRegularExpression alloc] initWithPattern:@"bmp|svg|tif|tiff|png|jpg|bmp|gif|xpm|jpeg" 
-                                                             options:NSRegularExpressionCaseInsensitive 
-                                                               error:NULL];
+                                                        options:NSRegularExpressionCaseInsensitive 
+                                                          error:NULL];
     videoRegex = [[NSRegularExpression alloc] initWithPattern:@"avi|mov|mpg|mpeg|mp4|mkv|flv|wmv" 
-                                                           options:NSRegularExpressionCaseInsensitive 
-                                                             error:NULL];
+                                                      options:NSRegularExpressionCaseInsensitive 
+                                                        error:NULL];
     pdfRegex = [[NSRegularExpression alloc] initWithPattern:@"pdf" 
-                                                         options:NSRegularExpressionCaseInsensitive 
-                                                           error:NULL];
+                                                    options:NSRegularExpressionCaseInsensitive 
+                                                      error:NULL];
     pluginRegex = [[NSRegularExpression alloc] initWithPattern:@"so|dll|dylib" 
-                                                            options:NSRegularExpressionCaseInsensitive 
-                                                              error:NULL];
+                                                       options:NSRegularExpressionCaseInsensitive 
+                                                         error:NULL];
 }
 
 - (void)handleSageConfiguration:(SageConfiguration *)configuration {
@@ -83,8 +79,16 @@
 
     xAtom = _sageConfiguration.width / xAtom * [settings.sensitivity floatValue] / 100.0; // now the atomic values are set correctly
     yAtom = _sageConfiguration.height / yAtom * [settings.sensitivity floatValue] / 100.0;
-    
-    if(!pointerAlreadyShared) [self sharePointer];
+}
+
+- (void)sharePointer {
+    [self formatPointerMsgAndNotifyClient:POINTER_SHARE withParam1:settings.pointerName andParam2:settings.pointerColor];
+    pointerAlreadyShared = YES;
+}
+
+- (void)unsharePointer {
+    [self formatPointerMsgAndNotifyClient:POINTER_UNSHARE];
+    pointerAlreadyShared = NO;
 }
 
 - (void)translateMove:(CGPoint *)newTouch isFirst:(BOOL)isFirst {
@@ -148,15 +152,14 @@
 }
 
 - (void) dealloc {
-    [self unsharePointer];
     [settings release];
     [fileManager release];
     [_sageConfiguration release];
+    
     [pictureRegex release];
     [videoRegex release];
     [pdfRegex release];
     [pluginRegex release];
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
     
     [super dealloc];
 }
@@ -231,14 +234,7 @@
 }
 
 //  -- specific output messages
-- (void)sharePointer {
-    [self formatPointerMsgAndNotifyClient:POINTER_SHARE withParam1:settings.pointerName andParam2:settings.pointerColor];
-    pointerAlreadyShared = YES;
-}
 
-- (void)unsharePointer {
-    [self formatPointerMsgAndNotifyClient:POINTER_UNSHARE];
-}
 
 
 @end

@@ -69,6 +69,14 @@
 
 // output translator methods
 // --for pointer
+- (void)sharePointer {
+    [_outputTranslator sharePointer];
+}
+
+- (void)unsharePointer {
+    [_outputTranslator unsharePointer];
+}
+
 - (void)handleMove:(CGPoint *)coordinates isFirst:(BOOL)isFirst {
     [_outputTranslator translateMove:coordinates isFirst:isFirst];
 }

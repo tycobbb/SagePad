@@ -29,6 +29,8 @@
 
 // output translator methods
 //      for pointer
+- (void)sharePointer;
+- (void)unsharePointer;
 - (void)handleMove:(CGPoint *)touchCoordinates isFirst:(BOOL)isFirst;
 - (void)handlePinch:(CGFloat *)scale;
 - (void)handlePress:(CGPoint *)touchCoordinates;

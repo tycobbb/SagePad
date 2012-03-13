@@ -13,6 +13,8 @@
 
 @implementation ConfigViewController
 
+@synthesize networkingService = _networkingService;
+
 @synthesize ipTextField;
 @synthesize portTextField;
 @synthesize nameTextField;
@@ -104,7 +106,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-        
+    
     [ipTextField setDelegate:self];
     [portTextField setDelegate:self];
     [nameTextField setDelegate:self];
@@ -124,6 +126,9 @@
     colorTextField.text = settings.pointerColor;
     sensitivityTextField.text = [NSString stringWithFormat:@"%@", settings.sensitivity];
     sensitvitySlider.value = [settings.sensitivity floatValue] / 100;
+    
+    [_networkingService stopMessageClient];
+    [_networkingService stopFtpClient];
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)newString {
@@ -187,6 +192,8 @@
 
 - (void) viewDidDisappear:(BOOL)animated {
     [settings release];
+    [_networkingService startMessageClient];
+    [_networkingService startFtpClient];
     
     [super viewDidDisappear:animated];
 }

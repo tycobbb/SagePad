@@ -30,6 +30,7 @@
         [self initNetworkingService];
         fileTableViewController.networkingService = networkingService;
         sagePadViewController.networkingService = networkingService;
+        configViewController.networkingService = networkingService;
         
         // for now, i'm starting both of these right away, stopping on roots dealloc
         [networkingService startMessageClient];
