@@ -40,7 +40,7 @@
 }
 
 - (void)start {    
-    NSLog(@"Starting a client: %d", portNumber);
+    NSLog(@"Starting a client: %d!", portNumber);
 
     CFReadStreamRef readStream;
     CFWriteStreamRef writeStream;
@@ -60,7 +60,7 @@
 }
 
 - (void)stop { // Fixed
-    NSLog(@"Stopping a client: %d", portNumber);
+    NSLog(@"Stopping a client: %d!", portNumber);
     [inputStream close];
     [outputStream close];
     
