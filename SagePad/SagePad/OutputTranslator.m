@@ -233,8 +233,4 @@
     [_delegate handleOutputReady:output withSize:size];
 }
 
-//  -- specific output messages
-
-
-
 @end

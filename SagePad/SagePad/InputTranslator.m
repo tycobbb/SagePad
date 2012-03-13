@@ -27,9 +27,10 @@
 
 // translates pointer configuration data from the SAGE server afer connecting
 - (void)handleConnectionResponse:(NSString *)response {
-    NSInteger pointerId, sageWidth, sageHeight, ftpPort;
+    NSInteger ackFromWall, pointerId, sageWidth, sageHeight, ftpPort;
     NSScanner *scanner = [NSScanner scannerWithString:response];
     
+    [scanner scanInt:&ackFromWall];
     [scanner scanInt:&pointerId];
     [scanner scanInt:&sageWidth];
     [scanner scanInt:&sageHeight];
