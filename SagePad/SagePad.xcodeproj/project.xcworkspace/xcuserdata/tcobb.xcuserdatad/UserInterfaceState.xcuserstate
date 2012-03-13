@@ -716,7 +716,7 @@
 		<string>PrimaryDocumentVisibleCharacterRange</string>
 		<string>HideAllIssues</string>
 		<string>PrimaryDocumentSelectedCharacterRange</string>
-		<real>353351210.08239502</real>
+		<real>353351307.46136397</real>
 		<string>{0, 1050}</string>
 		<false/>
 		<string>{0, 0}</string>
@@ -12256,7 +12256,7 @@
 				</dict>
 			</array>
 		</dict>
-		<real>353351210.08001</real>
+		<real>353351307.45874101</real>
 		<string>{0, 1050}</string>
 		<dict>
 			<key>$class</key>
@@ -17718,8 +17718,8 @@
 				</dict>
 			</array>
 		</dict>
-		<string>{0, 14}</string>
-		<real>353350990.90724498</real>
+		<string>{0, 24}</string>
+		<real>353351307.45883602</real>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -21634,35 +21634,35 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1623</integer>
+					<integer>1624</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1625</integer>
+					<integer>1626</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1627</integer>
+					<integer>1628</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1629</integer>
+					<integer>1630</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1631</integer>
+					<integer>1632</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1633</integer>
+					<integer>1634</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1635</integer>
+					<integer>1636</integer>
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>1637</integer>
+					<integer>1638</integer>
 				</dict>
 			</array>
 		</dict>
@@ -21680,132 +21680,7 @@
 			<key>NS.relative</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>1372</integer>
-			</dict>
-		</dict>
-		<dict>
-			<key>$class</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>85</integer>
-			</dict>
-			<key>NS.base</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
-			<key>NS.relative</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>1624</integer>
-			</dict>
-		</dict>
-		<string>file://localhost/Users/tcobb/Dropbox/school/SagePad/SagePad/SagePad/RootViewController.m</string>
-		<dict>
-			<key>$class</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>85</integer>
-			</dict>
-			<key>NS.base</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
-			<key>NS.relative</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>1626</integer>
-			</dict>
-		</dict>
-		<string>file://localhost/Users/tcobb/Dropbox/school/SagePad/SagePad/SagePad/RootViewController.h</string>
-		<dict>
-			<key>$class</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>85</integer>
-			</dict>
-			<key>NS.base</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
-			<key>NS.relative</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>1628</integer>
-			</dict>
-		</dict>
-		<string>file://localhost/Users/tcobb/Dropbox/school/SagePad/SagePad/SagePad/NetworkingService.m</string>
-		<dict>
-			<key>$class</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>85</integer>
-			</dict>
-			<key>NS.base</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
-			<key>NS.relative</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>1630</integer>
-			</dict>
-		</dict>
-		<string>file://localhost/Users/tcobb/Dropbox/school/SagePad/SagePad/SagePad/NetworkingService.h</string>
-		<dict>
-			<key>$class</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>85</integer>
-			</dict>
-			<key>NS.base</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
-			<key>NS.relative</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>1632</integer>
-			</dict>
-		</dict>
-		<string>file://localhost/Users/tcobb/Dropbox/school/SagePad/SagePad/SagePad.xcodeproj/project.xcworkspace/xcuserdata/tcobb.xcuserdatad/UserInterfaceState.xcuserstate</string>
-		<dict>
-			<key>$class</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>85</integer>
-			</dict>
-			<key>NS.base</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
-			<key>NS.relative</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>1634</integer>
-			</dict>
-		</dict>
-		<string>file://localhost/Users/tcobb/Dropbox/school/SagePad/SagePad/SagePad/FileTableViewController.m</string>
-		<dict>
-			<key>$class</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>85</integer>
-			</dict>
-			<key>NS.base</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>0</integer>
-			</dict>
-			<key>NS.relative</key>
-			<dict>
-				<key>CF$UID</key>
-				<integer>1636</integer>
+				<integer>1623</integer>
 			</dict>
 		</dict>
 		<string>file://localhost/Users/tcobb/Dropbox/school/SagePad/SagePad/.gitignore</string>
@@ -21823,7 +21698,133 @@
 			<key>NS.relative</key>
 			<dict>
 				<key>CF$UID</key>
-				<integer>1638</integer>
+				<integer>1625</integer>
+			</dict>
+		</dict>
+		<string>file://localhost/Users/tcobb/Dropbox/school/SagePad/SagePad/SagePad/.DS_Store</string>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>85</integer>
+			</dict>
+			<key>NS.base</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>0</integer>
+			</dict>
+			<key>NS.relative</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>1627</integer>
+			</dict>
+		</dict>
+		<string>file://localhost/Users/tcobb/Dropbox/school/SagePad/SagePad/SagePad/RootViewController.m</string>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>85</integer>
+			</dict>
+			<key>NS.base</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>0</integer>
+			</dict>
+			<key>NS.relative</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>1629</integer>
+			</dict>
+		</dict>
+		<string>file://localhost/Users/tcobb/Dropbox/school/SagePad/SagePad/SagePad/RootViewController.h</string>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>85</integer>
+			</dict>
+			<key>NS.base</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>0</integer>
+			</dict>
+			<key>NS.relative</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>1631</integer>
+			</dict>
+		</dict>
+		<string>file://localhost/Users/tcobb/Dropbox/school/SagePad/SagePad/SagePad/NetworkingService.m</string>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>85</integer>
+			</dict>
+			<key>NS.base</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>0</integer>
+			</dict>
+			<key>NS.relative</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>1633</integer>
+			</dict>
+		</dict>
+		<string>file://localhost/Users/tcobb/Dropbox/school/SagePad/SagePad/SagePad/NetworkingService.h</string>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>85</integer>
+			</dict>
+			<key>NS.base</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>0</integer>
+			</dict>
+			<key>NS.relative</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>1635</integer>
+			</dict>
+		</dict>
+		<string>file://localhost/Users/tcobb/Dropbox/school/SagePad/SagePad/SagePad.xcodeproj/project.xcworkspace/xcuserdata/tcobb.xcuserdatad/UserInterfaceState.xcuserstate</string>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>85</integer>
+			</dict>
+			<key>NS.base</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>0</integer>
+			</dict>
+			<key>NS.relative</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>1637</integer>
+			</dict>
+		</dict>
+		<string>file://localhost/Users/tcobb/Dropbox/school/SagePad/SagePad/SagePad/FileTableViewController.m</string>
+		<dict>
+			<key>$class</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>85</integer>
+			</dict>
+			<key>NS.base</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>0</integer>
+			</dict>
+			<key>NS.relative</key>
+			<dict>
+				<key>CF$UID</key>
+				<integer>1639</integer>
 			</dict>
 		</dict>
 		<string>file://localhost/Users/tcobb/Dropbox/school/SagePad/SagePad/SagePad/DBManager.m</string>
