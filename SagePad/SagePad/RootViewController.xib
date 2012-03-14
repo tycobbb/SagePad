@@ -47,7 +47,7 @@
 					<object class="IBUIButton" id="18496921">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{93, 368}, {153, 153}}</string>
+						<string key="NSFrame">{{138, 375}, {153, 153}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="271537471"/>
@@ -56,12 +56,13 @@
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<object class="NSFont" key="IBUIFont" id="212160155">
-							<string key="NSName">Futura-CondensedExtraBold</string>
+						<object class="NSFont" key="IBUIFont" id="250833069">
+							<string key="NSName">Futura-Medium</string>
 							<double key="NSSize">36</double>
 							<int key="NSfFlags">16</int>
 						</object>
 						<int key="IBUIButtonType">1</int>
+						<string key="IBUITitleShadowOffset">{1, 2}</string>
 						<string key="IBUINormalTitle">Config</string>
 						<object class="NSColor" key="IBUIHighlightedTitleColor" id="997144155">
 							<int key="NSColorSpace">3</int>
@@ -79,7 +80,7 @@
 					<object class="IBUIButton" id="271537471">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{322, 368}, {153, 153}}</string>
+						<string key="NSFrame">{{341, 375}, {153, 153}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="192271590"/>
@@ -88,8 +89,9 @@
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<reference key="IBUIFont" ref="212160155"/>
+						<reference key="IBUIFont" ref="250833069"/>
 						<int key="IBUIButtonType">1</int>
+						<string key="IBUITitleShadowOffset">{1, 2}</string>
 						<string key="IBUINormalTitle">File</string>
 						<reference key="IBUIHighlightedTitleColor" ref="997144155"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
@@ -101,11 +103,12 @@
 					<object class="IBUIImageView" id="48515121">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{545, 260}, {479, 479}}</string>
+						<string key="NSFrame">{{572, 249}, {387, 479}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:544</string>
+						<int key="IBUIContentMode">4</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
@@ -116,7 +119,7 @@
 					<object class="IBUIImageView" id="1039228845">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{26, 15}, {973, 259}}</string>
+						<string key="NSFrame">{{20, 20}, {973, 259}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="18496921"/>
@@ -147,7 +150,7 @@
 					<object class="IBUILabel" id="365343785">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{120, 693}, {242, 21}}</string>
+						<string key="NSFrame">{{120, 693}, {356, 24}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="48515121"/>
@@ -157,7 +160,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-						<string key="IBUIText">Copyright 2011 MisterKobb++</string>
+						<string key="IBUIText">© 2011 Ty Cobb And Jakub Misterka</string>
 						<object class="NSFont" key="IBUIFont">
 							<string key="NSName">Futura-Medium</string>
 							<double key="NSSize">17</double>
@@ -246,12 +249,12 @@
 						<reference key="object" ref="766721923"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="48515121"/>
 							<reference ref="192271590"/>
 							<reference ref="365343785"/>
-							<reference ref="271537471"/>
-							<reference ref="18496921"/>
 							<reference ref="1039228845"/>
+							<reference ref="18496921"/>
+							<reference ref="48515121"/>
+							<reference ref="271537471"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -396,7 +399,7 @@
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>{160, 91}</string>
-				<string>{2000, 2000}</string>
+				<string>{387, 433}</string>
 				<string>{973, 259}</string>
 			</object>
 		</object>

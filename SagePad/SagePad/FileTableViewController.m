@@ -100,6 +100,7 @@
             DBBasicFile *dropboxFile = [_currentDirectory.files objectAtIndex:indexPath.row];
             dropboxFile.delegate = self;
             [dropboxFile download];
+            [tableView deselectRowAtIndexPath:indexPath animated:YES];
             break;
         } default:
             break;
