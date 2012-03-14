@@ -317,8 +317,8 @@
 				FB9F76F914F443D900FD49E1 /* NetworkingService.m */,
 				FBD70BE615053BCB008AB539 /* SageConfiguration.h */,
 				FBD70BE715053BCB008AB539 /* SageConfiguration.m */,
-				FB697440147C85240070D758 /* Client */,
 				FB69743E147C85050070D758 /* Translators */,
+				FB697440147C85240070D758 /* Client */,
 			);
 			name = "Networking Service";
 			sourceTree = "<group>";

@@ -73,11 +73,11 @@
     [_delegate handleFileLoaded:localPath];
     
     // delete after all calls unwind and file is sent
-    NSFileManager *fileManager = [[NSFileManager alloc] init];
+    /*NSFileManager *fileManager = [[NSFileManager alloc] init];
     if(![fileManager removeItemAtPath:localPath error:nil])
         NSLog(@"Error removing file: %@", localPath);
     else
-        NSLog(@"Deleted %@ successfully", localPath);
+        NSLog(@"Deleted %@ successfully", localPath);*/
 }
 
 - (void)restClient:(DBRestClient *)client loadFileFailedWithError:(NSError*)error {

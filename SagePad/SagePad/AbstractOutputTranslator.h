@@ -18,6 +18,7 @@
 @required
 - (id)initWithDeviceWidth:(CGFloat)deviceWidth andHeight:(CGFloat)deviceHeight;
 - (void)notifyOutputReady:(NSString *)output withSize:(SAGE_MSG_SIZE)size;
+- (void)notifyFtpReady:(NSString *)output withSize:(SAGE_MSG_SIZE)size;
 - (void)handleSageConfiguration:(SageConfiguration *)configuration;
 
 @optional
