@@ -54,6 +54,7 @@
         firstPinch = 0;
         
         fileManager = [[NSFileManager alloc] init];
+        [self initRegex];
     }
     
     return self;
