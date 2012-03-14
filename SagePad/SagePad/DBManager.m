@@ -64,8 +64,9 @@
 }
 
 - (void)downloadFile:(NSString *)file {
+    NSString *filename = [[file componentsSeparatedByString:@"/"] lastObject];
     [restClient loadFile:file 
-                intoPath:[NSString stringWithFormat:@"/tmp%@", file]];
+                intoPath:[NSString stringWithFormat:@"/tmp/%@", filename]];
 }
 
 - (void)restClient:(DBRestClient *)client loadedFile:(NSString*)localPath {
