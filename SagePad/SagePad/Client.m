@@ -140,7 +140,7 @@
 - (void)sendOutputString:(NSString *)string withSize:(SAGE_MSG_SIZE)size {
     NSLog(@"MESSAGE FROM OUTPUT TRANSLATOR: %@", string);
     
-    NSMutableData *data = [[NSMutableData alloc] initWithLength:128];
+    NSMutableData *data = [[NSMutableData alloc] initWithLength:size];
     NSMutableData *outputData = [NSMutableData dataWithData:[string dataUsingEncoding:NSUTF8StringEncoding]];
     NSRange range = NSMakeRange(0, [outputData length]);
     [data replaceBytesInRange:range withBytes:[outputData bytes] length:[outputData length]];

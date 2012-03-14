@@ -147,7 +147,7 @@
 - (void)sendFileHeader:(NSString *)path {
     [self formatFileMsgAndNotifyClient:0 
                          withMediatype:[self getMediatype:path] 
-                           andFilename:path
+                           andFilename:[path lastPathComponent]
                            andFilesize:[[fileManager attributesOfItemAtPath:path error:NULL] fileSize]];
 }
 
@@ -225,12 +225,16 @@
 - (void)formatFileMsgAndNotifyClient:(NSInteger)outputType withMediatype:(MEDIA_TYPE)mediatype
                          andFilename:(NSString *)filename
                          andFilesize:(NSInteger)filesize {
-    [self notifyOutputReady:[NSString stringWithFormat:@"%d %d %@ %d", outputType, mediatype, filename, filesize]
+    [self notifyFtpReady:[NSString stringWithFormat:@"%d %d %@ %d\n", outputType, mediatype, filename, filesize]
                    withSize:LRG_MSG_SIZE];
 }
 
 - (void)notifyOutputReady:(NSString *)output withSize:(SAGE_MSG_SIZE)size {
     [_delegate handleOutputReady:output withSize:size];
+}
+
+- (void)notifyFtpReady:(NSString *)output withSize:(SAGE_MSG_SIZE)size {
+    [_delegate handleFtpReady:output withSize:size];
 }
 
 @end

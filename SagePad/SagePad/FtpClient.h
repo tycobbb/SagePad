@@ -14,5 +14,6 @@
 }
 
 - (id)initWithIp:(NSString *)_ipAddress;
+- (void)initialFtpMessage;
 
 @end

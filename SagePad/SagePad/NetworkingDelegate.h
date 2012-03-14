@@ -16,5 +16,6 @@
 - (void)handleConnectionResponse:(NSString *)response;
 - (void)handleSageConfiguration:(SageConfiguration *)configuration;
 - (void)handleOutputReady:(NSString *)output withSize:(SAGE_MSG_SIZE)size;
+- (void)handleFtpReady:(NSString *)output withSize:(SAGE_MSG_SIZE)size;
 
 @end

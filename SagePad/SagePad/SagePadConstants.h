@@ -42,7 +42,7 @@ typedef enum SAGE_MSG_SIZE {
 // from SAGENext -- see commondefinitions.h
 typedef enum MEDIA_TYPE { 
     MEDIA_TYPE_UNKNOWN = 100, 
-    MEDIA_TYPE_IMAGE, 
+    MEDIA_TYPE_IMAGE = 101, 
     MEDIA_TYPE_VIDEO, 
     MEDIA_TYPE_LOCAL_VIDEO, 
     MEDIA_TYPE_AUDIO, 

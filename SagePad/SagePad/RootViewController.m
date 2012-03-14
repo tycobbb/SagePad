@@ -34,8 +34,8 @@
         
         // for now, i'm starting both of these right away, stopping on roots dealloc
         [networkingService startMessageClient];
-        [networkingService startFtpClient];
-    }
+
+}
     
     return self;
 }

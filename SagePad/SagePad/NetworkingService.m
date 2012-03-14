@@ -123,6 +123,10 @@
     [_messageClient sendOutputString:output withSize:size];
 }
 
+- (void)handleFtpReady:(NSString *)output withSize:(SAGE_MSG_SIZE)size {
+    [_ftpClient sendOutputString:output withSize:size];
+}
+
 - (void)dealloc {
     [_messageClient release];
     [_ftpClient release];
