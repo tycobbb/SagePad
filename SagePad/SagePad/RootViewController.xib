@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">1056</int>
-		<string key="IBDocument.SystemVersion">11B26</string>
+		<string key="IBDocument.SystemVersion">11D50b</string>
 		<string key="IBDocument.InterfaceBuilderVersion">1617</string>
-		<string key="IBDocument.AppKitVersion">1138</string>
-		<string key="IBDocument.HIToolboxVersion">566.00</string>
+		<string key="IBDocument.AppKitVersion">1138.32</string>
+		<string key="IBDocument.HIToolboxVersion">568.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			<string key="NS.object.0">534</string>
@@ -116,11 +116,12 @@
 					<object class="IBUIImageView" id="1039228845">
 						<reference key="NSNextResponder" ref="766721923"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 54}, {984, 188}}</string>
+						<string key="NSFrame">{{26, 15}, {973, 259}}</string>
 						<reference key="NSSuperview" ref="766721923"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="18496921"/>
 						<string key="NSReuseIdentifierKey">_NS:544</string>
+						<int key="IBUIContentMode">4</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
@@ -177,7 +178,7 @@
 				<reference key="NSNextKeyView" ref="1039228845"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
-					<bytes key="NSRGB">MC40NTg4MjM1Mjk0IDAuNDkwMTk2MDc4NCAwLjQ3NDUwOTgwMzkAA</bytes>
+					<bytes key="NSRGB">MC44MzkyMTU2ODYzIDAuODUwOTgwMzkyMiAwLjg3MDU4ODIzNTMAA</bytes>
 				</object>
 				<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics">
@@ -246,11 +247,11 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="48515121"/>
-							<reference ref="1039228845"/>
 							<reference ref="192271590"/>
 							<reference ref="365343785"/>
 							<reference ref="271537471"/>
 							<reference ref="18496921"/>
+							<reference ref="1039228845"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -396,7 +397,7 @@
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>{160, 91}</string>
 				<string>{2000, 2000}</string>
-				<string>{2500, 500}</string>
+				<string>{973, 259}</string>
 			</object>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">534</string>
