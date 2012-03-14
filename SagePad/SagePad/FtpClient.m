@@ -39,19 +39,27 @@
     
 }
 
+- (void) stream: (NSStream *) stream handleEvent: (NSStreamEvent) eventCode{
+    if(eventCode == NSStreamEventHasSpaceAvailable){
+        
+    }
+}
 
 - (void)sendFile:(NSString *)path {
     NSNumber *size;
-    NSData *data;
-    NSMutableData * newData;
+    NSInteger bytesWritten = 0;
+    NSInteger bytesLeft;
+    
+    NSData *data, *subData;
+
     NSLog(@"Path of File to be Sent: %@", path);
+    
     NSError *error = nil;
     NSDictionary *attributes = [fileManager attributesOfItemAtPath:path error:&error];
     if (!error) {
         size = [attributes objectForKey:NSFileSize];
         data = [fileManager contentsAtPath:path];
-        newData = [NSMutableData dataWithData:data];
-        [newData appendData:[[NSString stringWithFormat:@"\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+        bytesLeft = [data length];
     }
     else{
         NSLog(@"There is an error in the path name");
@@ -59,7 +67,16 @@
     }
     
     NSLog(@"Size of File: %d", [size unsignedIntValue]);
-    [(NSOutputStream *)outputStream write:[newData bytes] maxLength:[size unsignedIntValue] + 1];
+    
+    while(YES){
+        if([outputStream hasSpaceAvailable]){
+            subData = [data subdataWithRange:NSMakeRange(bytesWritten, bytesLeft)];
+            bytesWritten += [outputStream write:[subData bytes] maxLength:bytesLeft];
+            bytesLeft = [data length] - bytesWritten;
+            if(bytesWritten >= [data length])
+                break;
+        }
+    }
 }
 
 @end
